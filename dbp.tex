@@ -370,20 +370,28 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Adding characters and spaces to lines
-\def\dots{...}
-\def\thinspace{\hbox{ }}
 \def\'#1{{\accent"13 #1}}
 \chardef\$=`\$
 \def\copyright{{\sym\char"A9}}
 \def\registered{{\sym\char"AB}}
 \def\trademark{{\sym\char"97}}
+\def\ldots{.\thinnbsp.\thinnbsp.}
 
 % Character Styles
 % TODO: Make this handle nested emphasis.
 %       Or give a way to go back to roman.
 %       Or switch to {\rm ...} and {\it ...}.
 \def\emph#1{{\it #1\/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Spaces
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\nbsp{\kern1em }
+\newdimen\enwidth   \def\enspace{\hskip\enwidth\relax}     \def\ennbsp{\kern\enwidth }
+\newdimen\thinwidth \def\thinspace{\hskip\thinwidth\relax} \def\thinnbsp{\kern\thinwidth }
+\newdimen\hairwidth \def\hairspace{\hskip\hairwidth\relax} \def\hairnbsp{\kern\hairwidth }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -475,6 +483,9 @@
 % Microtypography
 \pdfadjustspacing=2
 \pdfprotrudechars=2
+\enwidth=.5em
+\thinwidth=.2em
+\hairwidth=.1em
 
 % Paragraphs
 \parskip=0pt plus 1pt % extra glue just above paragraphs
@@ -541,5 +552,5 @@
 \medmuskip=4mu plus 2mu minus 4mu % medium space in math formulas
 \thickmuskip=5mu plus 5mu % thick space in math formulas
 \def\fmtname{dbp}
-\def\fmtversion{1}
+\xdef\fmtversion{\the\year-\the\month-\the\day-\the\time}
 \dump
