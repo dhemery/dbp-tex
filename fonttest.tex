@@ -1,0 +1,12 @@
+\input garamond
+
+\def\switchtofont#1{\string#1&{\csname#1\endcsname\xdef\thefonttag{\fonttag{#1}}}\thefonttag\cr}
+
+\halign{\hfil# & #\hfil\cr
+\switchtofont{it}
+\switchtofont{sc}
+\switchtofont{bf}
+\switchtofont{tl}
+\switchtofont{sym}
+}
+\end
