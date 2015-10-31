@@ -1,0 +1,43 @@
+\input garamond
+
+\def\showmacro#1{\string#1 & #1\cr}
+This is \fmtname \fmtversion.
+
+\halign{ # & # \cr
+\showmacro\clq % single low-9 quotation mark
+\showmacro\clqq
+\showmacro\clqq % double low-9 quotation mark
+\showmacro\crq  % left single quotation mark
+\showmacro\crqq % left double quotation mark
+\showmacro\flqq % left-pointing double angle quotation mark
+\showmacro\frqq % right-pointing double angle quotation mark
+\showmacro\pound % pound sign
+\showmacro\utfhyphen % no-break space
+\string\- & hy\-phen\cr
+\showmacro\trademark
+\showmacro\registered
+%\string\quad foo\quad foo
+% \showmacro\nbsp % no-break space
+% \showmacro\registered % registered TODO: Math mode. Is this in T1 or TS1?
+% \showmacro\pipe % TODO: Hand-aligned. Is this in T1 or TS1?
+% \showmacro\promile % per mile sign TODO: Compound. Is this in T1 or TS1?
+% FROM PLAIN TeX
+% \showmacro\aa % latin small letter a with ring above
+% \showmacro\AA % latin capital letter a with ring above
+% \showmacro\ae % latin small ligature ae
+% \showmacro\AE % latin capital ligature ae
+% \showmacro\copyright % copyright
+% \showmacro\dag % dagger
+% \showmacro\ddag % double dagger
+% \showmacro\dots % horizontal ellipsis
+% \showmacro\o % latin small letter o slash
+% \showmacro\O % latin capital letter o slash
+% \showmacro\oe % latin small ligature oe
+% \showmacro\OE % latin capital ligature oe
+% \showmacro\P % pilcrow sign
+% \showmacro\quad % em space
+% \showmacro\S % section sign
+% \showmacro\ss % latin small letter sharp s}
+}
+
+\end

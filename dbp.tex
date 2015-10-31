@@ -1,5 +1,5 @@
 % Make this format with:
-% pdftex -ini -enc dbp.tex 
+% pdftex -ini -enc dbp.tex
 \catcode`\{=1 % { begin group
 \catcode`\}=2 % } end group
 \catcode`\$=3 % $ shift into and out of math mode
@@ -142,7 +142,6 @@
   \shipout\vbox{\moveright\leftmargin\vbox{\makeheadline\pagebody\makefootline}}%
   \userunningpageframe%
   \advancepageno%
-  \ifnum\outputpenalty>-20000 \else\dosupereject\fi%
 }
 
 \def\pagebody{\vbox to\vsize{\unvbox255}}
@@ -377,6 +376,8 @@
 \def\'#1{{\accent"13 #1}}
 \chardef\$=`\$
 \def\copyright{{\sym\char"A9}}
+\def\registered{{\sym\char"AB}}
+\def\trademark{{\sym\char"97}}
 
 % Character Styles
 % TODO: Make this handle nested emphasis.
@@ -539,4 +540,6 @@
 \thinmuskip=3mu % thin space in math formulas
 \medmuskip=4mu plus 2mu minus 4mu % medium space in math formulas
 \thickmuskip=5mu plus 5mu % thick space in math formulas
+\def\fmtname{dbp}
+\def\fmtversion{1}
 \dump
