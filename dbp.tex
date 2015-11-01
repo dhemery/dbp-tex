@@ -35,7 +35,7 @@
 \def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
 \def\fontspec{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
 \def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
-\def\fonttag#1{#1\fontstyle}
+\def\fonttag#1{\fontstyle#1font}
 
 % Declare a new font family.
 % This specifies terms to identify parts of file names for this family
@@ -78,7 +78,7 @@
 \def\withfontweight#1{\edef\fontweight{#1}}
 \def\withfontswitch#1{\edef\fontfoo{#1}}
 
-\def\selectfont#1{\message{Switching to font \fonttag#1}\font\currentfont=\fontspec\currentfont\definefontexpandability}
+\def\selectfont#1{\expandafter\font\csname\fonttag{#1}\endcsname=\fontspec\csname\fonttag{#1}\endcsname\definefontexpandability}
 
 \def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
 \def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont{it}}
