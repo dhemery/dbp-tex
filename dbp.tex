@@ -50,7 +50,6 @@
 % Declare a new font style. This specifies the terms to use
 % to build file names for this style.
 \def\newstyle#1#2#3#4#5{% #1: a name for the style
-  \xdef\fontstyle{#1}
   \expandafter\xdef\csname#1family\endcsname{#2}% #2: the name of this style's font family
   \expandafter\xdef\csname#1opticalsize\endcsname{#3}% #3: the word that identifies this style's optical size in the family's file names
   \expandafter\xdef\csname#1figures\endcsname{#4}% #4: the word that identifies this style's figure style in the family's file names
@@ -59,6 +58,7 @@
 
 % Select a style and switch to its \rm font
 \def\style#1{%
+  \edef\fontstyle{#1}
   \edef\fontfamily{\csname#1family\endcsname}%
   \edef\fontbasename{\csname\fontfamily basename\endcsname}%
   \edef\fontdefaultshape{\csname\fontfamily defaultshape\endcsname}%
@@ -353,7 +353,7 @@
 % Spacing lines
 \newdimen\leading
 
-\def\linespacing#1{\baselineskip=#1\fontdimen6\the\font}
+\def\linespacing#1{\baselineskip=#1em}
 \def\normalbaselines{ % TODO: Delete this?
   \lineskip=\normallineskip
   \baselineskip=\normlbaselineskip
