@@ -76,18 +76,18 @@
 \def\withfontslant#1{\edef\fontslant{#1}}
 \def\withfontvariant#1{\edef\fontvariant{#1}}
 \def\withfontweight#1{\edef\fontweight{#1}}
-\def\withfontswitch#1{\edef\fontfoo{#1}}
 
-\def\loadfont#1#2{\global\expandafter\font#1=\fontfilename\makeexpandable{#1}}
+\def\loadfont#1{%
+  \ifcsname#1\endcsname\else%
+    \global\expandafter\font\csname#1\endcsname=\fontfilename%
+    \makeexpandable{\csname#1\endcsname}%
+  \fi
+}
 
 \def\selectfont#1{%
   \edef\selectedfonttag{\fonttag{#1}}%
-  \ifcsname\selectedfonttag\endcsname%
-  \else%
-    \loadfont{\csname\selectedfonttag\endcsname}{\fontfilename}%
-  \fi%
-  \def\selectedfont{\csname\selectedfonttag\endcsname}%
-  \selectedfont%
+  \loadfont{\selectedfonttag}%
+  \csname\selectedfonttag\endcsname%
 }
 
 \def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
