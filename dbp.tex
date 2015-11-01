@@ -33,7 +33,7 @@
 
 \def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
 \def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
-\def\fontspec{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
+\def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
 \def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
 \def\fonttag#1{\fontstyle#1font}
 
@@ -78,12 +78,13 @@
 \def\withfontweight#1{\edef\fontweight{#1}}
 \def\withfontswitch#1{\edef\fontfoo{#1}}
 
-\def\loadfont#1#2{\global\expandafter\font#1=\fontspec\makeexpandable{#1}}
+\def\loadfont#1#2{\global\expandafter\font#1=\fontfilename\makeexpandable{#1}}
 
 \def\selectfont#1{%
-  \edef\selectedfonttag{\fonttag{#1}}
-  \unless\ifcsname\selectedfonttag\endcsname
-    \loadfont{\csname\selectedfonttag\endcsname}{\fontspec}%
+  \edef\selectedfonttag{\fonttag{#1}}%
+  \ifcsname\selectedfonttag\endcsname%
+  \else%
+    \loadfont{\csname\selectedfonttag\endcsname}{\fontfilename}%
   \fi%
   \def\selectedfont{\csname\selectedfonttag\endcsname}%
   \selectedfont%
