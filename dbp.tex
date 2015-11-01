@@ -78,7 +78,16 @@
 \def\withfontweight#1{\edef\fontweight{#1}}
 \def\withfontswitch#1{\edef\fontfoo{#1}}
 
-\def\selectfont#1{\expandafter\font\csname\fonttag{#1}\endcsname=\fontspec\csname\fonttag{#1}\endcsname\definefontexpandability}
+\def\loadfont#1#2{\global\expandafter\font#1=\fontspec\makeexpandable{#1}}
+
+\def\selectfont#1{%
+  \edef\selectedfonttag{\fonttag{#1}}
+  \unless\ifcsname\selectedfonttag\endcsname
+    \loadfont{\csname\selectedfonttag\endcsname}{\fontspec}%
+  \fi%
+  \def\selectedfont{\csname\selectedfonttag\endcsname}%
+  \selectedfont%
+}
 
 \def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
 \def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont{it}}
@@ -402,7 +411,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\definefontexpandability{\pdffontexpand\font 30 30 10 autoexpand}
+\def\makeexpandable#1{\pdffontexpand#1 30 30 10 autoexpand}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
