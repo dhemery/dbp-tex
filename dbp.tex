@@ -289,33 +289,39 @@
 % Logo
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\logotextsize{\cheadsize}
+\newdimen\logotextsize \logotextsize=\cheadsize
 \newfamily{proxima}{ProximaNova}{Regular}{It}{Bold}{Regular}
-\newstyle{logo}{proxima}{}{osf}{\logotextsize}
+\newstyle{logo}{proxima}{}{osf}{\the\logotextsize}
 
-\newdimen\logobarthickness \logobarthickness=\logotextsize
-\divide\logobarthickness by 16
-\def\logolineskip{\vskip4\logobarthickness}
+\newdimen\logolinespacing
+\newdimen\logobarthickness
+
+\message{logotextsize: \the\logotextsize}
+\message{logolineskip: \the\logolinespacing}
+\message{logobarthickness: \the\logobarthickness}
+
+\def\logobar{\hrule height\logobarthickness}
+\def\logolineskip{\vskip\logolinespacing}
 
 \def\logostack#1#2{%
-  \setbox0=\hbox{DRISCOLL}%
-  \copy0%
-  \logolineskip%
-  \hbox to \wd0{#1BROOK#2}%
-  \logolineskip%
-  \hbox to \wd0{#1PRESS#2}%
+  \halign{##&##&##\cr%
+    &DRISCOLL&\cr%
+    &#1BROOK#2&\cr%
+    &#1PRESS#2&\cr%
+  }%
 }
 
 \def\logo#1{
   \begingroup%
-  \offinterlineskip%
   \style{logo}%
+  \offinterlineskip%
+  \lineskip=\logolinespacing%
   \vbox{%
-    \hrule height \logobarthickness%
+    \logobar%
     \logolineskip%
     #1%
     \logolineskip%
-    \hrule height \logobarthickness%
+    \logobar%
     }%
   \endgroup%
 }
@@ -324,6 +330,9 @@
 \def\centerlogo{\logo{\logostack{\hss}{\hss}}}
 \def\rightlogo{\logo{\logostack{\hss}{}}}
 \def\linelogo{\logo{\hbox{DRISCOLL BROOK PRESS}}}
+
+\logolinespacing=.25\logotextsize
+\logobarthickness=0.25\logolinespacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
