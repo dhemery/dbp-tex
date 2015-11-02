@@ -58,7 +58,7 @@
 
 % Select a style and switch to its \rm font
 \def\style#1{%
-  \edef\fontstyle{#1}
+  \edef\fontstyle{#1}%
   \edef\fontfamily{\csname#1family\endcsname}%
   \edef\fontbasename{\csname\fontfamily basename\endcsname}%
   \edef\fontdefaultshape{\csname\fontfamily defaultshape\endcsname}%
@@ -81,7 +81,7 @@
   \ifcsname#1\endcsname\else%
     \global\expandafter\font\csname#1\endcsname=\fontfilename%
     \makeexpandable{\csname#1\endcsname}%
-  \fi
+  \fi%
 }
 
 \def\selectfont#1{%
