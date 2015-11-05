@@ -14,7 +14,7 @@ directory install_dir do |t|
 end
 
 file fmt_file => tex_file do |t|
-  `pdftex -ini -enc -etex #{tex_file}`
+  print %x{pdftex -ini -enc -etex #{tex_file}}
 end
 
 file installed_fmt_file => [fmt_file, install_dir] do
