@@ -1,0 +1,13 @@
+\newdimen\edgemargin
+\newdimen\spinemargin
+
+\def\setspinemargin#1{
+  \edgemargin=#1
+  \spinemargin=\pdfpagewidth
+    \advance\spinemargin by -\hsize
+    \advance\spinemargin by -#1
+}
+
+% Use edge margin for left/even pages,
+% spine margin for odd/right pages
+\def\leftmargin{\ifodd\pageno\edgemargin\else\spinemargin\fi}

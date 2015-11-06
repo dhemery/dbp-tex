@@ -1,0 +1,32 @@
+\def\frontmatter{\nextoddpage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
+\def\mainmatter{\nextoddpage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
+\def\backmatter{\frontmatter}
+\def\endbook{\nextoddpage\end}
+
+\def\part#1{
+  \nextoddpage
+  \baselinebox{\raggedspine\parttitle{#1}\par}{10}{0}
+  \nextoddpage
+}
+
+\def\chapter#1{
+  \nextpage
+  \usedisplayframethispage
+  \baselinebox{\raggedspine\chaptertitle{#1}}{10}{1}
+}
+
+% \bookinfo is a named frontmatter or backmatter division.
+\def\bookinfo#1{
+  \nextpage
+  \useemptypageframe
+  {\centered\chaptertitle{#1}\par}
+}
+
+% TODO: Name this something better. It's about positionint titles on display pages.
+% \baselinebox{content}{bottom (baselines)}{skip (baselines)}
+\long\def\baselinebox#1#2#3{\vbox to #2\leading{\line{}\vfill#1}\vskip#3\leading}
+
+\def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
+\def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
+\def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
+\def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}

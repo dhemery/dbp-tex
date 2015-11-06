@@ -1,0 +1,20 @@
+
+\def\aheadsize{36pt} % Book and part titles
+\def\bheadsize{24pt} % Author name
+\def\cheadsize{18pt} % Chapter titles and publisher logo
+\def\bodytextsize{11pt}
+\def\smalltextsize{10pt}
+\def\runningheadersize{8pt}
+
+\def\definestyles{%
+  \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\aheadsize}%
+  \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\bheadsize}%
+  \newstyle{parttitle}{\parttitlefamily}{\aheadopticalsize}{osf}{\aheadsize}%
+  \newstyle{chaptertitle}{\chaptertitlefamily}{\cheadopticalsize}{osf}{\cheadsize}%
+  \newstyle{bodytext}{\bodytextfamily}{\bodytextopticalsize}{osf}{\bodytextsize}%
+  \newstyle{smalltext}{\smalltextfamily}{\smalltextopticalsize}{osf}{\smalltextsize}%
+  \newstyle{runningheader}{\runningheaderfamily}{\runningheaderopticalsize}{osf}{\runningheadersize}%
+}
+
+\def\leadin#1{\nobreak\noindent{\sc #1}}
+\def\emph#1{{\it #1\/}}

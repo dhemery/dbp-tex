@@ -7,10 +7,13 @@
 % Load the mapping from UTF-8 input to T1 output.
 \input utf8-t1
 
+% utf8-t1 maps certain UTF-8 characters to these control sequences.
 \def\nbsp{\penalty10000\ }
-\def\'#1{{\accent"13 #1}}
-\chardef\$=`\$
 \def\copyright{{\sym\char"A9}}
 \def\registered{{\sym\char"AB}}
 \def\trademark{{\sym\char"97}}
 \def\ldots{\nbhairspace.\nbthinspace.\nbthinspace.}
+
+% Macros for other basic characters
+\def\'#1{{\accent"13 #1}}
+\chardef\$=`\$

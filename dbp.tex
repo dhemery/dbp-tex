@@ -1,244 +1,26 @@
-% Make this format with:
+% To make this format, run:
 % pdftex -ini -enc dbp.tex
 \input syntax
 \input registers
+\input hyphen
 \input fonts
+\input styles
+
 \input characters
 \input words
 \input lines
+\input paragraphs
+\input divisions
+\input logo
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Text and Title Styles
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input pages
+\input pageframe
+\input pageoutput
+\input textblock
 
-\def\aheadsize{36pt} % Book and part titles
-\def\bheadsize{24pt} % Author name
-\def\cheadsize{18pt} % Chapter titles and publisher logo
-\def\bodytextsize{11pt}
-\def\smalltextsize{10pt}
-\def\runningheadersize{8pt}
+\input pdf
 
-\def\definestyles{%
-  \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\aheadsize}%
-  \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\bheadsize}%
-  \newstyle{parttitle}{\parttitlefamily}{\aheadopticalsize}{osf}{\aheadsize}%
-  \newstyle{chaptertitle}{\chaptertitlefamily}{\cheadopticalsize}{osf}{\cheadsize}%
-  \newstyle{bodytext}{\bodytextfamily}{\bodytextopticalsize}{osf}{\bodytextsize}%
-  \newstyle{smalltext}{\smalltextfamily}{\smalltextopticalsize}{osf}{\smalltextsize}%
-  \newstyle{runningheader}{\runningheaderfamily}{\runningheaderopticalsize}{osf}{\runningheadersize}%
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Textblock Size and Position on the Page
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newdimen\edgemargin
-\newdimen\spinemargin
-\def\setspinemargin#1{
-  \edgemargin=#1
-  \spinemargin=\pdfpagewidth
-    \advance\spinemargin by -\hsize
-    \advance\spinemargin by -#1
-}
-
-% Use edge margin for left/even pages,
-% spine margin for odd/right pages
-\def\leftmargin{\ifodd\pageno\edgemargin\else\spinemargin\fi}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Output Routine
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newtoks\headline
-\newtoks\footline
-\newdimen\headlineskip % Distance from textblock first baseline to top of headline
-\newdimen\footlineskip % Distance from textblock last baseline to footline baseline
-
-% Write one page (headline, textblock, and footline).
-\def\facingpages{%
-  \shipout\vbox{\moveright\leftmargin\vbox{\makeheadline\pagebody\makefootline}}%
-  \userunningpageframe%
-  \advancepageno%
-}
-
-\def\pagebody{\vbox to\vsize{\unvbox255}}
-
-\def\makeheadline{\vbox to 0pt{\positionheadline\line{\the\headline}\vss\nointerlineskip}}
-\def\makefootline{\vbox to 0pt{\positionfootline\line{\the\footline}\vss\nointerlineskip}}
-\def\positionheadline{\vskip.33333\leading\vskip-\headlineskip}
-\def\positionfootline{\vskip-1.33333\leading\vskip\footlineskip}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Page Frame (Headline and Footline)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\runningheadline{\line{}}
-\def\runningfootline{\line{}}
-\def\useclearedframethispage{\global\headline={\clearedheadline}\global\footline={\clearedfootline}}
-\def\usedisplayframethispage{\global\headline={\displayheadline}\global\footline={\displayfootline}}
-\def\userunningpageframe{\global\headline={\runningheadline}\global\footline={\runningfootline}}
-
-% Running headline and footline for cleared pages
-% (pages begun by \nextpage, \nextoddpage, and \nextevenpage).
-% You may want to change these for debugging.
-\def\clearedheadline{\line{}}
-\def\clearedfootline{\line{}}
-
-% Running headline and footline for display pages
-% (pages that begin with a major display item such as a part or chapter title)
-\def\displayheadline{\line{}}
-\def\displayfootline{\style{runningheader}\sc\hfil\folio\hfil}
-
-% Running headline and footline after user calls \useemptypageframe.
-% By default, this format uses empty frames for frontmatter and backmatter pages.
-% You may want to change these for debugging.
-\def\emptyheadline{\line{}}
-\def\emptyfootline{\line{}}
-
-% Running headline and footline for most content pages.
-% We use different headlines on even and odd pages.
-% Redefine to suit your formatting needs.
-\def\normalheadline{\style{runningheader}\sc\ifodd\pageno\normaloddpageheadline\else\normalevenpageheadline\fi}
-% No footline on normal pages
-\def\normalfootline{\line{}}
-% Odd (right) pages: title at inner margin, page number at outer margin
-\def\normaloddpageheadline{\style{runningheader}\sc\title\hfil\folio}
-% Even (left) pages: page number at outer margin, author name at inner margin
-\def\normalevenpageheadline{\style{runningheader}\sc\folio\hfil\author}
-
-\def\useemptypageframe{
-  \gdef\runningheadline{\emptyheadline}
-  \gdef\runningfootline{\emptyfootline}
-  \userunningpageframe
-}
-
-\def\usenormalpageframe{
-  \gdef\runningheadline{\normalheadline}
-  \gdef\runningfootline{\normalfootline}
-  \userunningpageframe
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Pages
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\nextpage{\vfil\eject\useclearedframethispage}
-\def\nextoddpage{\nextpage\onoddpage}
-\def\nextevenpage{\nextpage\ifodd\pageno \line{}\nextpage\else \fi}
-\def\onoddpage{\ifodd\pageno \else \line{}\nextpage\fi}
-
-% Breaking pages
-\def\break{\penalty-10000 }
-\def\nobreak{\penalty10000 }
-\def\eject{\par\break}
-\def\raggedbottom{}
-
-% Page numbering
-\countdef\pageno=0 % TeX logs \count0 when shipping the page out
-\newcount\pagenoincrement
-
-\def\advancepageno{\global\advance\pageno by \pagenoincrement}
-\def\folio{\number\pageno}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Divisions
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\frontmatter{\nextoddpage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
-\def\mainmatter{\nextoddpage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
-\def\backmatter{\frontmatter}
-\def\endbook{\nextoddpage\end}
-
-\def\part#1{
-  \nextoddpage
-  \baselinebox{\raggedspine\parttitle{#1}\par}{10}{0}
-  \nextoddpage
-}
-
-\def\chapter#1{
-  \nextpage
-  \usedisplayframethispage
-  \baselinebox{\raggedspine\chaptertitle{#1}}{10}{1}
-}
-
-% \bookinfo is a named frontmatter or backmatter division.
-\def\bookinfo#1{
-  \nextpage
-  \useemptypageframe
-  {\centered\chaptertitle{#1}\par}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Titles
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \baselinebox{content}{bottom (baselines)}{skip (baselines)}
-\long\def\baselinebox#1#2#3{\vbox to #2\leading{\line{}\vfill#1}\vskip#3\leading}
-
-\def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
-\def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
-\def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
-\def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Logo
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Paragraphs
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\raggedleft{\parindent=0pt\parfillskip=0pt\leftskip=0pt plus \hsize\relax}
-\def\raggedright{\parindent=0pt\parfillskip=0pt\rightskip=0pt plus \hsize\relax}
-\def\centered{\raggedleft\raggedright}
-\def\raggedspine{\ifodd\pageno\raggedleft\else\raggedright\fi}
-
-\def\authorinfoheading#1{\skipline\skipline{\sc\centered#1\par}}
-\def\authorinfoitem#1{\skiphalfline{\centered#1\par}}
-\def\connect#1#2{\authorinfoheading{#1}\authorinfoitem{#2}}
-\def\genre#1{\authorinfoheading{#1}}
-\def\genrebook#1{\authorinfoitem{\emph{#1}}}
-
-\def\leadin#1{\nobreak\noindent{\sc #1}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Characters
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Character Styles
-% TODO: Make this handle nested emphasis.
-%       Or give a way to go back to roman.
-%       Or switch to {\rm ...} and {\it ...}.
-\def\emph#1{{\it #1\/}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Microtypography
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\makeexpandable#1{\pdffontexpand#1 30 30 10 autoexpand}
+\input version
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -248,25 +30,9 @@
 
 \newdimen\maxdimen \maxdimen=16383.99999pt
 
-% PDF settings. Adapted from pdftexconfig.tex
-\pdfoutput=1
-\pdfcompresslevel=9
-\pdfdecimaldigits=3
-\pdfhorigin=0 true in
-\pdfvorigin=0 true in
-\pdfpkresolution=600
-\pdfminorversion=5
-\pdfobjcompresslevel=2
-
 % Paper
 \pdfpagewidth=5 true in
 \pdfpageheight=8 true in
-
-% Page Output
-\output{\facingpages}
-\pageno=1
-\pagenoincrement=1
-% \tracingoutput % positive if showing boxes that are shipped out
 
 % Textblock
 \hsize=22pc % textblock width
@@ -283,7 +49,6 @@
 % \interlinepenalty % penalty for page break between lines
 % \outputpenalty % penalty at the current page break
 % \tracingpages % positive if showing page-break calculations
-\raggedbottom
 \brokenpenalty=100 % penalty for page break after a hyphenated line
 \predisplaypenalty=10000 % penalty for page break just before a display
 \clubpenalty=150 % penalty for create a club line at bottom of page
@@ -387,9 +152,4 @@
 \medmuskip=4mu plus 2mu minus 4mu % medium space in math formulas
 \thickmuskip=5mu plus 5mu % thick space in math formulas
 
-\input logo
-\input hyphen
-
-\def\fmtname{dbp}
-\xdef\fmtversion{\the\year-\the\month-\the\day-\the\time}
 \dump

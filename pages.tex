@@ -1,0 +1,20 @@
+\countdef\pageno=0 % TeX writes \count0 to the log when shipping a page out
+\newcount\pagenoincrement
+
+\def\nextpage{\vfil\eject\useclearedframethispage}
+\def\nextoddpage{\nextpage\onoddpage}
+\def\nextevenpage{\nextpage\ifodd\pageno \line{}\nextpage\else \fi}
+\def\onoddpage{\ifodd\pageno \else \line{}\nextpage\fi}
+
+% Breaking pages
+\def\break{\penalty-10000 }
+\def\nobreak{\penalty10000 }
+\def\eject{\par\break}
+\def\raggedbottom{} % TODO: Define this
+
+\def\advancepageno{\global\advance\pageno by \pagenoincrement}
+\def\folio{\number\pageno}
+
+\pageno=1
+\pagenoincrement=1
+\raggedbottom

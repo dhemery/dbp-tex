@@ -1,0 +1,8 @@
+\def\facingpages{\shipout\positionedpage\userunningpageframe\advancepageno}
+\def\positionedpage{\vbox{\moveright\leftmargin\framedpage}}
+\def\framedpage{\vbox{\makeheadline\pagebody\makefootline}}
+\def\pagebody{\vbox to\vsize{\unvbox255}}
+
+\output{\facingpages}
+
+\tracingoutput=0 % positive if showing boxes that are shipped out
