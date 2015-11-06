@@ -15,14 +15,14 @@
   \baselinebox{\raggedspine\chaptertitle{#1}}{10}{1}
 }
 
-% \bookinfo is a named frontmatter or backmatter division.
+% \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{
   \nextpage
   \useemptypageframe
   {\centered\chaptertitle{#1}\par}
 }
 
-% TODO: Name this something better. It's about positionint titles on display pages.
+% TODO: Name this something better. It's about positioning titles on display pages.
 % \baselinebox{content}{bottom (baselines)}{skip (baselines)}
 \long\def\baselinebox#1#2#3{\vbox to #2\leading{\line{}\vfill#1}\vskip#3\leading}
 
