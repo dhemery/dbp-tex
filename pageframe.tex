@@ -1,7 +1,9 @@
 \newtoks\headline
 \newtoks\footline
-\newdimen\headlineskip % Distance from textblock first baseline to top of headline
-\newdimen\footlineskip % Distance from textblock last baseline to footline baseline
+% Place headline two lines above first baseline
+\newdimen\headlineskip \headlineskip=2\leading
+% Place footline two lines below the textblock's last baseline
+\newdimen\footlineskip \footlineskip=2\leading
 
 \def\makeheadline{\vbox to 0pt{\positionheadline\line{\the\headline}\vss\nointerlineskip}}
 \def\makefootline{\vbox to 0pt{\positionfootline\line{\the\footline}\vss\nointerlineskip}}

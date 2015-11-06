@@ -11,3 +11,9 @@
 % Use edge margin for left/even pages,
 % spine margin for odd/right pages
 \def\leftmargin{\ifodd\pageno\edgemargin\else\spinemargin\fi}
+
+\hsize=22pc % textblock width
+\vsize=28\leading % textblock height
+\voffset=\pdfpageheight \advance\voffset by -\vsize \divide\voffset by 2
+\topskip=\leading % glue at top of main pages
+\setspinemargin{4.5pc} % textblock spine margin

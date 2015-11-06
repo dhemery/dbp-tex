@@ -8,3 +8,10 @@
 \catcode`\^^I=10 % Treat tab as like space
 \catcode`\~=13 \def~{\nbsp}
 \catcode`\^^L=13 \outer\def\^^L{\par}   % Convert form feed to \par
+
+% \globaldefs = 0: assignments obey \global prefix
+% \globaldefs < 0: all assignments are local (\global prefix ignored)
+% \globaldefs > 0: all assignments are global (\global prefix implied)
+\globaldefs=0
+
+% \endlinechar % character placed at the right end of an input line

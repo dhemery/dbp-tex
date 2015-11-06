@@ -2,7 +2,7 @@
 % pdftex -ini -enc dbp.tex
 \input syntax
 \input registers
-\input hyphen
+\input hyphenation
 \input fonts
 \input styles
 
@@ -16,140 +16,12 @@
 \input pages
 \input pageframe
 \input pageoutput
+
+\input paper % TODO: Figure out how to allow inputting this after textblock
 \input textblock
 
-\input pdf
-
+\input pdfoutput
+\input debugging
 \input version
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Default Values
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newdimen\maxdimen \maxdimen=16383.99999pt
-
-% Paper
-\pdfpagewidth=5 true in
-\pdfpageheight=8 true in
-
-% Textblock
-\hsize=22pc % textblock width
-\vsize=28\leading % textblock height page height
-\voffset=\pdfpageheight \advance\voffset by -\vsize \divide\voffset by 2
-\setspinemargin{4.5pc} % textblock spine margin
-\topskip=\leading % glue at top of main pages
-
-% Page Frames
-\headlineskip=2\leading % Place headline two lines above first baseline
-\footlineskip=2\leading % Place footline two lines below the textblock's last baseline
-
-% Page Breaks
-% \interlinepenalty % penalty for page break between lines
-% \outputpenalty % penalty at the current page break
-% \tracingpages % positive if showing page-break calculations
-\brokenpenalty=100 % penalty for page break after a hyphenated line
-\predisplaypenalty=10000 % penalty for page break just before a display
-\clubpenalty=150 % penalty for create a club line at bottom of page
-\widowpenalty=150 % penalty for creating a widow line at top of page
-\displaywidowpenalty=50 % ditto, before a display
-
-% Lines
-\baselineskip=15pt % desired glue between baselines
-\lineskip=0pt % interline glue if \baselineskip isn't feasible
-\lineskiplimit=0pt % threshold where \baselineskip changes to \lineskip
-\leftskip=0pt % glue at left of justified lines
-\rightskip=0pt % glue at right of justified lines
-\spaceskip=.3333em % glue between words, if nonzero
-\xspaceskip=.5em % glue between sentences, if nonzero
-
-% Hyphenation
-\defaulthyphenchar=`\- % \hyphencharacter value when a font is loaded
-\uchyph=1 % positive if hyphenating words beginning with capital letters
-
-% Line Breaks
-\pretolerance=100 % badness tolerance before hyphenation
-\tolerance=200 % badness tolerance after hyphenation
-\linepenalty=10 % amount added to badness of every line in a paragraph
-\adjdemerits=10000 % demerits for adjacent incompatible lines
-\hyphenpenalty=10 % penalty for line break after discretionary hyphen
-\exhyphenpenalty=50 % penalty for like break after explicit hyphen
-\binoppenalty=700 % penalty for line break after binary operation
-\relpenalty=500 % penalty for line break after math relation
-\doublehyphendemerits=10000 % demerits for consecutive broken lines
-\finalhyphendemerits=5000 % demerits for a penultimate broken line
-\lefthyphenmin=3 % smallest fragment at beginning of hyphenated word
-\righthyphenmin=3 % smallest fragment at end of hyphenated word
-% \language % the current set of hyphenation rules
-
-% Microtypography
-\pdfadjustspacing=2
-\pdfprotrudechars=2
-
-% Paragraphs
-\parskip=0pt plus 1pt % extra glue just above paragraphs
-\parindent=\leading % width of \indent
-\emergencystretch=1.5\leading % reduces badness on final pass of line-breaking
-\parfillskip=0pt plus 1fil % additional rightskip at end of paragraphs
-\looseness=0 % change to the number of lines in a paragraph
-\tracingparagraphs=0 % positive if showing line-break calculations
-\hangindent=0pt % amount of hanging indentation
-\hangafter=0 % hanging indentation changes after this many lines
-
-% Debugging
-\errorcontextlines=5 % maximum extra context shown when errors occur
-\hbadness=1000 % badness above which bad hboxes will be shown
-\vbadness=1000 % badness above which bad vboxes will be shown
-\hfuzz=0.1pt % maximum overrun before overfull hbox messages occur
-\vfuzz=0.1pt % maximum overrun before overfull vbox messages occur
-\overfullrule=5pt % width of rules appended to overfull boxes
-\showboxbreadth=5 % maximum items per level when boxes are shown
-\showboxdepth=3 % maximum level when boxes are shown
-\tracinglostchars=1 % positive if showing characters not in the font
-\tracingonline=0 % positive if showing diagnostic info on the terminal
-\tracingmacros=0 % positive if showing macros as they are expanded
-\tracingstats=0 % positive if showing statistics about memory usage
-\tracingcommands=0 % positive if showing commands before they are executed
-\tracingrestores=0 % positive if showing deassinments when groups end
-
-% Integer parameters (TeXbook page 272)
-\delimiterfactor=901 % ratio for variable delimiters, times 1000
-\defaultskewchar=-1 % \skewchar value when a font is loaded
-\newlinechar=-1 % character that starts a new output line
-% \floatingpenalty % penalty for insertions that are split
-% \pausing % positive if pausing after each line is read from a file
-% \holdinginserts % positive if insertions remain dormant in output box
-% \globaldefs % nonzero if overriding \global specifications
-% \escapechar % escape character in the out put of control sequence tokens
-% \endlinechar % character placed at the right end of an input line
-% \maxdeadcycles % upper bound on \deadcycles
-% \fam % the current family number
-% \mag % magnification ratio, times 1000
-
-% dimen parameters (TeXbook page 374)
-\maxdepth=4pt % maximum depth of boxes on main pages
-\splitmaxdepth=\maxdimen % maximum depth of boxes on split pages
-\boxmaxdepth=\maxdimen % maximum depth of boxes on explicit pages
-\delimitershortfall=5pt % maximum space not covered by a delimiter
-\nulldelimiterspace=1.2pt % width of a null delimiter
-\scriptspace=0.5pt % extra space after a subscript or superscript
-% \mathsurround % kerning before and after math in text
-% \predisplaysize % length of text preceding a display
-% \displaywidth % length of a line for displayed equation
-% \displayindent % indentation of line for displayed equation
-
-% glue parameters (TeXbook page 374)
-\abovedisplayskip=12pt plus 3pt minus 9pt % extra glue just above displays
-\abovedisplayshortskip=0pt plus 3pt % ditto, following short lines
-\belowdisplayskip=12pt plus 3pt minus 9pt % extra glue just below displays
-\belowdisplayshortskip=7pt plus 3pt minus 4pt % ditto, following short lines
-\splittopskip=\leading % glue at top of split pages
-% \tabskip % glue between aligned entries
-
-% muglue parameters (TeXbook page 374)
-\thinmuskip=3mu % thin space in math formulas
-\medmuskip=4mu plus 2mu minus 4mu % medium space in math formulas
-\thickmuskip=5mu plus 5mu % thick space in math formulas
 
 \dump

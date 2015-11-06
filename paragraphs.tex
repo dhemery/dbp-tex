@@ -8,3 +8,11 @@
 \def\raggedright{\parindent=0pt\parfillskip=0pt\rightskip=0pt plus \hsize\relax}
 \def\centered{\raggedleft\raggedright}
 \def\raggedspine{\ifodd\pageno\raggedleft\else\raggedright\fi}
+
+\parskip=0pt plus 1pt % extra glue just above paragraphs
+\parindent=\leading % width of \indent
+\emergencystretch=1.5\leading % reduces badness on final pass of line-breaking
+\parfillskip=0pt plus 1fil % additional rightskip at end of paragraphs
+\looseness=0 % change to the number of lines in a paragraph
+\hangindent=0pt % amount of hanging indentation
+\hangafter=0 % hanging indentation changes after this many lines

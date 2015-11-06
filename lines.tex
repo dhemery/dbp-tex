@@ -18,3 +18,21 @@
 
 % TODO: Define this elsewhere.
 \leading=15pt
+\baselineskip=\leading % desired glue between baselines
+\lineskip=0pt % interline glue if \baselineskip isn't feasible
+\lineskiplimit=0pt % threshold where \baselineskip changes to \lineskip
+\leftskip=0pt % glue at left of justified lines
+\rightskip=0pt % glue at right of justified lines
+
+\pretolerance=100 % badness tolerance before hyphenation
+\tolerance=200 % badness tolerance after hyphenation
+\linepenalty=10 % amount added to badness of every line in a paragraph
+\adjdemerits=10000 % demerits for adjacent incompatible lines
+\hyphenpenalty=10 % penalty for line break after discretionary hyphen
+\exhyphenpenalty=50 % penalty for like break after explicit hyphen
+\binoppenalty=700 % penalty for line break after binary operation
+\relpenalty=500 % penalty for line break after math relation
+\doublehyphendemerits=10000 % demerits for consecutive broken lines
+\finalhyphendemerits=5000 % demerits for a penultimate broken line
+\lefthyphenmin=3 % smallest fragment at beginning of hyphenated word
+\righthyphenmin=3 % smallest fragment at end of hyphenated word
