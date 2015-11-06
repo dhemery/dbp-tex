@@ -1,0 +1,65 @@
+\def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
+\def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
+\def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
+\def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
+\def\fonttag#1{\fontstyle#1font}
+
+% Declare a new font family.
+% This specifies terms to identify parts of file names for this family
+\def\newfamily#1#2#3#4#5#6{% #1 name for this family
+  \expandafter\xdef\csname#1basename\endcsname{#2}% #2: the words that identify the family in this family's file names (e.g. GaramondPremrPro)
+  \expandafter\xdef\csname#1regularweight\endcsname{#3}% #3: the possibly empty word that identifies the regular weight in this family's file names
+  \expandafter\xdef\csname#1italicslant\endcsname{#4}% #4: the word that identifies italic slant in this family's file names
+  \expandafter\xdef\csname#1boldweight\endcsname{#5}% #5: the word that identifies bold weight in this family's file names
+  \expandafter\xdef\csname#1defaultshape\endcsname{#6}% #6: the possibly empty word that identifies regular roman book style in this family's file names
+}
+
+% Declare a new font style. This specifies the terms to use
+% to build file names for this style.
+\def\newstyle#1#2#3#4#5{% #1: a name for the style
+  \expandafter\xdef\csname#1family\endcsname{#2}% #2: the name of this style's font family
+  \expandafter\xdef\csname#1opticalsize\endcsname{#3}% #3: the word that identifies this style's optical size in the family's file names
+  \expandafter\xdef\csname#1figures\endcsname{#4}% #4: the word that identifies this style's figure style in the family's file names
+  \expandafter\xdef\csname#1size\endcsname{#5}% #5: the possibly empty point size at which to render this style
+}
+
+% Select a style and switch to its \rm font
+\def\style#1{%
+  \edef\fontstyle{#1}%
+  \edef\fontfamily{\csname#1family\endcsname}%
+  \edef\fontbasename{\csname\fontfamily basename\endcsname}%
+  \edef\fontdefaultshape{\csname\fontfamily defaultshape\endcsname}%
+  \edef\fontopticalsize{\csname#1opticalsize\endcsname}%
+  \edef\fontfigures{\csname#1figures\endcsname}%
+  \edef\fontsize{\csname#1size\endcsname}%
+  \rm%
+}
+
+\def\withfontbasename#1{\edef\fontbasename{#1}}
+\def\withfontencoding#1{\edef\fontencoding{#1}}
+\def\withfontfigures#1{\edef\fontfigures{#1}}
+\def\withfontopticalsize#1{\edef\fontopticalsize{#1}}
+\def\withfontshape#1#2#3{\withfontweight{#1}\withfontslant{#2}\withfontopticalsize{#3}}
+\def\withfontslant#1{\edef\fontslant{#1}}
+\def\withfontvariant#1{\edef\fontvariant{#1}}
+\def\withfontweight#1{\edef\fontweight{#1}}
+
+\def\loadfont#1{%
+  \ifcsname#1\endcsname\else%
+    \global\expandafter\font\csname#1\endcsname=\fontfilename%
+    \makeexpandable{\csname#1\endcsname}%
+  \fi%
+}
+
+\def\selectfont#1{%
+  \edef\selectedfonttag{\fonttag{#1}}%
+  \loadfont{\selectedfonttag}%
+  \csname\selectedfonttag\endcsname%
+}
+
+\def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
+\def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont{it}}
+\def\bf{\withfontweight{\csname\fontfamily boldweight\endcsname}\selectfont{bf}}
+\def\sc{\withfontvariant{sc}\selectfont{sc}}
+\def\tl{\withfontvariant{titling}\withfontfigures{tlf}\selectfont{tl}}
+\def\sym{\withfontencoding{ts1}\selectfont{sym}}

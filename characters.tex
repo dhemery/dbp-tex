@@ -1,0 +1,16 @@
+% utf8-t1 requires \bgroup and \loop
+\let\bgroup={ \let\egroup=}
+\def\loop#1\repeat{\def\body{#1}\iterate}
+\def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
+\let\repeat=\fi
+
+% Load the mapping from UTF-8 input to T1 output.
+\input utf8-t1
+
+\def\nbsp{\penalty10000\ }
+\def\'#1{{\accent"13 #1}}
+\chardef\$=`\$
+\def\copyright{{\sym\char"A9}}
+\def\registered{{\sym\char"AB}}
+\def\trademark{{\sym\char"97}}
+\def\ldots{\nbhairspace.\nbthinspace.\nbthinspace.}

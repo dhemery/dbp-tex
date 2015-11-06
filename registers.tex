@@ -1,0 +1,13 @@
+\countdef\nextcountregister=10 \nextcountregister=11
+
+% TODO: Before allocating a register, verify that it is available
+\def\newcount#1{\global\countdef#1=\nextcountregister \advance\nextcountregister by 1}
+\newcount\nextboxregister \nextboxregister=10
+\newcount\nextdimenregister \nextdimenregister=10
+\newcount\nextskipregister \nextskipregister=10
+\newcount\nexttoksregister \nexttoksregister=10
+
+% TODO: Before allocating a register, verify that it is available
+\def\newdimen#1{\global\dimendef#1=\nextdimenregister \advance\nextdimenregister by 1}
+\def\newskip#1{\global\skipdef#1=\nextskipregister \advance\nextskipregister by 1}
+\def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1}

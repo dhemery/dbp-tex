@@ -1,0 +1,20 @@
+% Spacing lines
+\newdimen\leading
+
+\def\linespacing#1{\baselineskip=#1em}
+\def\nointerlineskip{\prevdepth=-1000pt}
+\def\offinterlineskip{\baselineskip=-1000pt\lineskip=0pt\lineskiplimit=\maxdimen}
+\def\titleleading{\linespacing1}
+
+% Skipping lines
+\def\skipline{\vskip\leading plus 0pt minus 0pt}
+\def\skiphalfline{\vskip.5\leading plus 0pt minus 0pt}
+
+% Making single line boxes
+\def\line{\hbox to\hsize}
+\def\leftline#1{\line{#1\hss}}
+\def\centerline#1{\line{\hss#1\hss}}
+\def\rightline#1{\line{\hss#1}}
+
+% TODO: Leave this to the book style
+\leading=15pt

@@ -1,104 +1,11 @@
 % Make this format with:
 % pdftex -ini -enc dbp.tex
-\catcode`\{=1 % { begin group
-\catcode`\}=2 % } end group
-\catcode`\$=3 % $ shift into and out of math mode
-\catcode`\&=4 % & alignment tab
-\catcode`\#=6 % # macro parameter prefix
-\catcode`\^=7 % ^ superscript operator
-\catcode`\_=8 % _ subscript operator
-\catcode`\^^I=10 % Treat tab as like space
-\catcode`\~=13 \def~{\penalty10000\ }% Tilde is active
-\catcode`\^^L=13 \outer\def\^^L{\par}   % Convert form feed to \par
-
-% utf8-t1 requires \bgroup and \loop
-\let\bgroup={ \let\egroup=}
-\def\loop#1\repeat{\def\body{#1}\iterate}
-\def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
-\let\repeat=\fi
-
-% Load the mapping from UTF-8 input to T1 output.
-\input utf8-t1
-
-\countdef\nextcountregister=10 \nextcountregister=11
-
-% TODO: Before allocating a register, verify that it is available
-\def\newcount#1{\global\countdef#1=\nextcountregister \advance\nextcountregister by 1}
-\newcount\nextboxregister \nextboxregister=10
-\newcount\nextdimenregister \nextdimenregister=10
-\newcount\nextskipregister \nextskipregister=10
-\newcount\nexttoksregister \nexttoksregister=10
-
-% TODO: Before allocating a register, verify that it is available
-\def\newdimen#1{\global\dimendef#1=\nextdimenregister \advance\nextdimenregister by 1}
-\def\newskip#1{\global\skipdef#1=\nextskipregister \advance\nextskipregister by 1}
-\def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1}
-
-\def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
-\def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
-\def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
-\def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
-\def\fonttag#1{\fontstyle#1font}
-
-% Declare a new font family.
-% This specifies terms to identify parts of file names for this family
-\def\newfamily#1#2#3#4#5#6{% #1 name for this family
-  \expandafter\xdef\csname#1basename\endcsname{#2}% #2: the words that identify the family in this family's file names (e.g. GaramondPremrPro)
-  \expandafter\xdef\csname#1regularweight\endcsname{#3}% #3: the possibly empty word that identifies the regular weight in this family's file names
-  \expandafter\xdef\csname#1italicslant\endcsname{#4}% #4: the word that identifies italic slant in this family's file names
-  \expandafter\xdef\csname#1boldweight\endcsname{#5}% #5: the word that identifies bold weight in this family's file names
-  \expandafter\xdef\csname#1defaultshape\endcsname{#6}% #6: the possibly empty word that identifies regular roman book style in this family's file names
-}
-
-% Declare a new font style. This specifies the terms to use
-% to build file names for this style.
-\def\newstyle#1#2#3#4#5{% #1: a name for the style
-  \expandafter\xdef\csname#1family\endcsname{#2}% #2: the name of this style's font family
-  \expandafter\xdef\csname#1opticalsize\endcsname{#3}% #3: the word that identifies this style's optical size in the family's file names
-  \expandafter\xdef\csname#1figures\endcsname{#4}% #4: the word that identifies this style's figure style in the family's file names
-  \expandafter\xdef\csname#1size\endcsname{#5}% #5: the possibly empty point size at which to render this style
-}
-
-% Select a style and switch to its \rm font
-\def\style#1{%
-  \edef\fontstyle{#1}%
-  \edef\fontfamily{\csname#1family\endcsname}%
-  \edef\fontbasename{\csname\fontfamily basename\endcsname}%
-  \edef\fontdefaultshape{\csname\fontfamily defaultshape\endcsname}%
-  \edef\fontopticalsize{\csname#1opticalsize\endcsname}%
-  \edef\fontfigures{\csname#1figures\endcsname}%
-  \edef\fontsize{\csname#1size\endcsname}%
-  \rm%
-}
-
-\def\withfontbasename#1{\edef\fontbasename{#1}}
-\def\withfontencoding#1{\edef\fontencoding{#1}}
-\def\withfontfigures#1{\edef\fontfigures{#1}}
-\def\withfontopticalsize#1{\edef\fontopticalsize{#1}}
-\def\withfontshape#1#2#3{\withfontweight{#1}\withfontslant{#2}\withfontopticalsize{#3}}
-\def\withfontslant#1{\edef\fontslant{#1}}
-\def\withfontvariant#1{\edef\fontvariant{#1}}
-\def\withfontweight#1{\edef\fontweight{#1}}
-
-\def\loadfont#1{%
-  \ifcsname#1\endcsname\else%
-    \global\expandafter\font\csname#1\endcsname=\fontfilename%
-    \makeexpandable{\csname#1\endcsname}%
-  \fi%
-}
-
-\def\selectfont#1{%
-  \edef\selectedfonttag{\fonttag{#1}}%
-  \loadfont{\selectedfonttag}%
-  \csname\selectedfonttag\endcsname%
-}
-
-\def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
-\def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont{it}}
-\def\bf{\withfontweight{\csname\fontfamily boldweight\endcsname}\selectfont{bf}}
-\def\sc{\withfontvariant{sc}\selectfont{sc}}
-\def\tl{\withfontvariant{titling}\withfontfigures{tlf}\selectfont{tl}}
-\def\sym{\withfontencoding{ts1}\selectfont{sym}}
+\input syntax
+\input registers
+\input fonts
+\input characters
+\input words
+\input lines
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -292,46 +199,7 @@
 % Logo
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newdimen\logotextsize \logotextsize=\cheadsize
-\newfamily{proxima}{ProximaNova}{Regular}{It}{Bold}{Regular}
-\newstyle{logo}{proxima}{}{osf}{\the\logotextsize}
 
-\newdimen\logolinespacing
-\newdimen\logobarthickness
-
-\def\logobar{\hrule height\logobarthickness}
-\def\logolineskip{\vskip\logolinespacing}
-
-\def\logostack#1#2{%
-  \halign{##&#1###2&##\cr%
-    &DRISCOLL&\cr%
-    &BROOK&\cr%
-    &PRESS&\cr%
-  }%
-}
-
-\def\logo#1{
-  \begingroup%
-  \style{logo}%
-  \offinterlineskip%
-  \lineskip=\logolinespacing%
-  \vbox{%
-    \logobar%
-    \logolineskip%
-    #1%
-    \logolineskip%
-    \logobar%
-    }%
-  \endgroup%
-}
-
-\def\leftlogo{\logo{\logostack{}{\hss}}}
-\def\centerlogo{\logo{\logostack{\hss}{\hss}}}
-\def\rightlogo{\logo{\logostack{\hss}{}}}
-\def\linelogo{\logo{\hbox{DRISCOLL BROOK PRESS}}}
-
-\logolinespacing=.25\logotextsize
-\logobarthickness=0.25\logolinespacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -354,56 +222,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Lines
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Spacing lines
-\newdimen\leading \leading=15pt
-
-\def\linespacing#1{\baselineskip=#1em}
-\def\nointerlineskip{\prevdepth=-1000pt}
-\def\offinterlineskip{\baselineskip=-1000pt\lineskip=0pt\lineskiplimit=\maxdimen}
-\def\titleleading{\linespacing1}
-
-% Skipping lines
-\def\skipline{\vskip\leading plus 0pt minus 0pt}
-\def\skiphalfline{\vskip.5\leading plus 0pt minus 0pt}
-
-% Making single line boxes
-\def\line{\hbox to\hsize}
-\def\leftline#1{\line{#1\hss}}
-\def\centerline#1{\line{\hss#1\hss}}
-\def\rightline#1{\line{\hss#1}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 % Characters
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\def\'#1{{\accent"13 #1}}
-\chardef\$=`\$
-\def\copyright{{\sym\char"A9}}
-\def\registered{{\sym\char"AB}}
-\def\trademark{{\sym\char"97}}
-\def\ldots{\hairnbsp.\thinnbsp.\thinnbsp.}
 
 % Character Styles
 % TODO: Make this handle nested emphasis.
 %       Or give a way to go back to roman.
 %       Or switch to {\rm ...} and {\it ...}.
 \def\emph#1{{\it #1\/}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Spaces
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\nbsp{~}
-\def\enspace{\hskip.5em} \def\ennbsp{\kern.5em}
-\def\thinspace{\hskip.2em} \def\thinnbsp{\kern.2em}
-\def\hairspace{\hskip.1em} \def\hairnbsp{\kern.1em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -420,7 +247,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newdimen\maxdimen \maxdimen=16383.99999pt
-\message{\maxdimen \the\maxdimen}
 
 % PDF settings. Adapted from pdftexconfig.tex
 \pdfoutput=1
@@ -560,7 +386,10 @@
 \thinmuskip=3mu % thin space in math formulas
 \medmuskip=4mu plus 2mu minus 4mu % medium space in math formulas
 \thickmuskip=5mu plus 5mu % thick space in math formulas
+
+\input logo
+\input hyphen
+
 \def\fmtname{dbp}
 \xdef\fmtversion{\the\year-\the\month-\the\day-\the\time}
-\input hyphen
 \dump
