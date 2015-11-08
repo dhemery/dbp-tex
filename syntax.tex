@@ -1,24 +1,39 @@
 % Cat codes for fundamental TeX features
-\catcode`\{=1 % { begin group
-\catcode`\}=2 % } end group
-\catcode`\$=3 % $ shift into and out of math mode
-\catcode`\&=4 % & alignment tab
-\catcode`\#=6 % # macro parameter prefix
-\catcode`\^=7 % ^ superscript operator
-\catcode`\_=8 % _ subscript operator
-\catcode`\^^I=10 % Treat tab as space
+\catcode`\\=0     % \ escape character
+\catcode`\{=1     % { begin group
+\catcode`\}=2     % } end group
+\catcode`\$=3     % $ shift into and out of math mode
+\catcode`\&=4     % & alignment tab
+\catcode`\#=6     % # macro parameter prefix
+\catcode`\^=7     % ^ superscript operator
+\catcode`\_=8     % _ subscript operator
+\catcode`\ =10    % space acts as space
+\catcode`\~=13    % tilde is a control symbol
+\catcode`\%=14    % % comment to end of line
 
-% Active characters
-\catcode`\~=13 \def~{\nbsp} % Treat tilde (aka "tie") as nonbreaking space
-\catcode`\^^L=13 \outer\def\^^L{\par}   % Convert form feed to \par
+\catcode`\^^M=5   % treat return as end of line
+\catcode`\^^@=9   % char 0 is ignored
+\catcode`\^^?=15  % char 255 is invalid TODO: Why?
+\catcode`\^^I=10  % tab acts as space
+\catcode`\^^L=13  % form feed is a control symbol
+
+% Tab and return act as space
+\def\^^I={\ } % Tab
+\def\^^M={\ } % Return
+
+% Form feed acts as \par
+ \outer\def\^^L{\par}
+
+% Tilde acts as nonbreaking space (aka "tie")
+ \def~{\nbsp}
 
 % TODO: What other basic syntax macros should I borrow from plain TeX?
 \def\'#1{{\accent"13 #1}}
 \chardef\$=`\$
 
-% \globaldefs = 0: assignments obey \global prefix
-% \globaldefs < 0: all assignments are local (\global prefix ignored)
-% \globaldefs > 0: all assignments are global (\global prefix implied)
+% =0: assignments obey \global prefix
+% <0: all assignments are local (\global prefix ignored)
+% >0: all assignments are global (\global prefix implied)
 \globaldefs=0
 
 % \endlinechar % character placed at the right end of an input line
