@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Badness (of a line)
+%   How much stretching or shrinking TeX must apply to fit
+%   a line into \hsize. The square of the badness is added
+%   to the demerits for the paragraph.
+%
+% Tolerance (for the badness of a line)
+%   How much badness TeX will allow in a line. If badness
+%   exceeds the tolerance, the line will be set overfull or
+%   underfull.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Tolerance for badness when determining line breaks before
+% hyphenating the words.
+\pretolerance=100
+
+% Tolerance for badness when determining line breaks after
+% hyphenating the words.
+\tolerance=200
+
+% TeX adds \linepenalty to badness when it calculates the
+% demerits contributed by the line. A higher value will
+% prefer shorter paragraphs.
+\linepenalty=10
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Penalties (of a break point)
+%   A penalty represents the undesirability of breaking the
+%   line at this spot. The square of sum of penalties for a
+%   breakpoint is added to the demerits for a paragraph.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Penalty for breaking a line after a discretionary hyphen.
+\hyphenpenalty=10
+
+% Penalty for breaking a line after an explicit hyphen.
+\exhyphenpenalty=50
+
+% Penalty for breaking a line after a binary operation.
+\binoppenalty=700
+
+% Penalty for breaking a line after a math relation.
+\relpenalty=500
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Demerits (of a paragraph)
+%   TeX chooses the breakpoints that minimize the number of
+%   demerits accumulated for the paragraph.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Demerits for visually incompatible adjacent lines.
+%
+% TeX categorizes lines:
+% - tight: shrink with badness > 12
+% - decent: badness <= 12
+% - loose: stretch with badness > 12
+% - very loose: badness > 100
+%
+% Lines are visually compatible only if their categories
+% the same or adjacent.
+\adjdemerits=10000
+
+% Demerits for ending consecutive lines in hyphens.
+\doublehyphendemerits=10000
+
+% Demerits for breaking the last line of a paragraph at a
+% hyphen.
+\finalhyphendemerits=5000
+
+% TODO: Move \parfillskip here?
+% TODO: Move all of this stuff back to lines.tex and paragraphs.tex?
+
+% Adjusts the number of lines TeX tries to divide a
+% paragraph into.
+\looseness=0
