@@ -1,6 +1,6 @@
 \def\facingpages{\shipout\positionedpage\userunningpageframe\advancepageno}
 \def\positionedpage{\vbox{\moveright\leftmargin\framedpage}}
-\def\framedpage{\vbox{\makeheadline\pagebody\makefootline}}
+\def\framedpage{\vbox{\makehead\pagebody\makefoot}}
 \def\pagebody{\vbox to\vsize{\unvbox255}}
 
 \output{\facingpages}

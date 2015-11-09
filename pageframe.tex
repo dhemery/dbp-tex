@@ -1,57 +1,57 @@
-\newtoks\headline
-\newtoks\footline
-% Place headline two lines above first baseline
-\newdimen\headlineskip \headlineskip=2\leading
-% Place footline two lines below the textblock's last baseline
-\newdimen\footlineskip \footlineskip=2\leading
+\newtoks\head
+\newtoks\foot
+% Place head two lines above first baseline
+\newdimen\headskip \headskip=2\leading
+% Place foot two lines below the textblock's last baseline
+\newdimen\footskip \footskip=2\leading
 
-\def\makeheadline{\vbox to 0pt{\positionheadline\line{\the\headline}\vss\nointerlineskip}}
-\def\makefootline{\vbox to 0pt{\positionfootline\line{\the\footline}\vss\nointerlineskip}}
-\def\positionheadline{\vskip.33333\leading\vskip-\headlineskip}
-\def\positionfootline{\vskip-1.33333\leading\vskip\footlineskip}
+\def\makehead{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
+\def\makefoot{\vbox to 0pt{\positionfoot\line{\the\foot}\vss\nointerlineskip}}
+\def\positionhead{\vskip.33333\leading\vskip-\headskip}
+\def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
 
-\def\runningheadline{\line{}}
-\def\runningfootline{\line{}}
-\def\useclearedframethispage{\global\headline={\clearedheadline}\global\footline={\clearedfootline}}
-\def\usedisplayframethispage{\global\headline={\displayheadline}\global\footline={\displayfootline}}
-\def\userunningpageframe{\global\headline={\runningheadline}\global\footline={\runningfootline}}
+\def\runninghead{\line{}}
+\def\runningfoot{\line{}}
+\def\useclearedframethispage{\global\head={\clearedhead}\global\foot={\clearedfoot}}
+\def\usedisplayframethispage{\global\head={\displayhead}\global\foot={\displayfoot}}
+\def\userunningpageframe{\global\head={\runninghead}\global\foot={\runningfoot}}
 
-% Running headline and footline for cleared pages
+% Running head and foot for cleared pages
 % (pages begun by \nextpage, \nextoddpage, and \nextevenpage).
 % You may want to change these for debugging.
-\def\clearedheadline{\line{}}
-\def\clearedfootline{\line{}}
+\def\clearedhead{\line{}}
+\def\clearedfoot{\line{}}
 
-% Running headline and footline for display pages
+% Running head and foot for display pages
 % (pages that begin with a major display item such as a part or chapter title)
-\def\displayheadline{\line{}}
-\def\displayfootline{\style{runningheader}\sc\hfil\folio\hfil}
+\def\displayhead{\line{}}
+\def\displayfoot{\style{runningheader}\sc\hfil\folio\hfil}
 
-% Running headline and footline after user calls \useemptypageframe.
+% Running head and foot after user calls \useemptypageframe.
 % By default, this format uses empty frames for frontmatter and backmatter pages.
 % You may want to change these for debugging.
-\def\emptyheadline{\line{}}
-\def\emptyfootline{\line{}}
+\def\emptyhead{\line{}}
+\def\emptyfoot{\line{}}
 
-% Running headline and footline for most content pages.
-% We use different headlines on even and odd pages.
+% Running head and foot for most content pages.
+% We use different heads on even and odd pages.
 % Redefine to suit your formatting needs.
-\def\normalheadline{\style{runningheader}\sc\ifodd\pageno\normaloddpageheadline\else\normalevenpageheadline\fi}
-% No footline on normal pages
-\def\normalfootline{\line{}}
+\def\normalhead{\style{runningheader}\sc\ifodd\pageno\normaloddpagehead\else\normalevenpagehead\fi}
+% No foot on normal pages
+\def\normalfoot{\line{}}
 % Odd (right) pages: title at inner margin, page number at outer margin
-\def\normaloddpageheadline{\style{runningheader}\sc\title\hfil\folio}
+\def\normaloddpagehead{\style{runningheader}\sc\title\hfil\folio}
 % Even (left) pages: page number at outer margin, author name at inner margin
-\def\normalevenpageheadline{\style{runningheader}\sc\folio\hfil\author}
+\def\normalevenpagehead{\style{runningheader}\sc\folio\hfil\author}
 
 \def\useemptypageframe{
-  \gdef\runningheadline{\emptyheadline}
-  \gdef\runningfootline{\emptyfootline}
+  \gdef\runninghead{\emptyhead}
+  \gdef\runningfoot{\emptyfoot}
   \userunningpageframe
 }
 
 \def\usenormalpageframe{
-  \gdef\runningheadline{\normalheadline}
-  \gdef\runningfootline{\normalfootline}
+  \gdef\runninghead{\normalhead}
+  \gdef\runningfoot{\normalfoot}
   \userunningpageframe
 }
