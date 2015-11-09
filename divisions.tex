@@ -1,4 +1,4 @@
-\newcount\topheadlines
+\newskip\topheadtopskip
 
 \def\frontmatter{\nextoddpage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
 \def\mainmatter{\nextoddpage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
@@ -7,7 +7,7 @@
 
 \def\part#1{
   \nextoddpage
-  \tophead{\parttitle{#1}\par}
+  \tophead{\parttitle{#1}}
   \nextoddpage
 }
 
@@ -21,16 +21,15 @@
 \def\bookinfo#1{
   \nextpage
   \useemptypageframe
-  {\centered\chaptertitle{#1}\par}
+  {\centered\chaptertitle{#1}}
 }
 
-% TODO: Name this something better. It's about positioning titles on display pages.
 % \baselinebox{content}{bottom (baselines)}
-\long\def\tophead#1{\vbox to \topheadlines\leading{\line{}\raggedspine\vfill#1}}
+\long\def\tophead#1{{\topskip=\topheadtopskip{\vbox{\raggedspine#1}}}}
 
 \def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
 \def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
-\def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
+\def\parttitle#1{{\style{parttitle}\sc\titleleading#1}\par}
 \def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}
 
-\topheadlines=10
+\topheadtopskip=10\leading
