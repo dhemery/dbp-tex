@@ -56,14 +56,15 @@
 
 % Demerits for visually incompatible adjacent lines.
 %
-% TeX categorizes lines:
+% TeX categorizes lines by fitness (how well they fit
+% the hbox in which they appear):
 % - tight: shrink with badness > 12
 % - decent: badness <= 12
 % - loose: stretch with badness > 12
 % - very loose: badness > 100
 %
-% Lines are visually compatible only if their categories
-% the same or adjacent.
+% Lines are visually compatible only if their fitness
+% categories the same or adjacent.
 \adjdemerits=10000
 
 % Demerits for ending consecutive lines in hyphens.
@@ -76,6 +77,26 @@
 % TODO: Move \parfillskip here?
 % TODO: Move all of this stuff back to lines.tex and paragraphs.tex?
 
-% Adjusts the number of lines TeX tries to divide a
-% paragraph into.
-\looseness=0
+% Penalty for breaking a page just after a line that ends
+% with a hyphen.
+\brokenpenalty=100
+
+% Penalty for breaking a page between the first two lines
+% of a paragraph.
+\clubpenalty=150
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph.
+\widowpenalty=150
+
+% Penalty for breaking a page just before a display.
+\predisplaypenalty=10000
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph that precedes a display.
+\displaywidowpenalty=50
+
+% \floatingpenalty % penalty for insertions that are split
+% \holdinginserts % positive if insertions remain dormant in output box
+% \interlinepenalty % penalty for page break between lines
+% \outputpenalty % penalty at the current page break
