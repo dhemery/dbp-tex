@@ -1,3 +1,5 @@
+\newcount\topheadlines
+
 \def\frontmatter{\nextoddpage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
 \def\mainmatter{\nextoddpage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
 \def\backmatter{\frontmatter}
@@ -5,14 +7,14 @@
 
 \def\part#1{
   \nextoddpage
-  \tophead{\parttitle{#1}\par}{10}
+  \tophead{\parttitle{#1}\par}
   \nextoddpage
 }
 
 \def\chapter#1{
   \nextpage
   \usedisplayframethispage
-  \tophead{\chaptertitle{#1}}{10}
+  \tophead{\chaptertitle{#1}}
 }
 
 % \bookinfo is a title division in frontmatter or backmatter.
@@ -24,9 +26,11 @@
 
 % TODO: Name this something better. It's about positioning titles on display pages.
 % \baselinebox{content}{bottom (baselines)}
-\long\def\tophead#1#2{\vbox to #2\leading{\line{}\raggedspine\vfill#1}}
+\long\def\tophead#1{\vbox to \topheadlines\leading{\line{}\raggedspine\vfill#1}}
 
 \def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
 \def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
 \def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
 \def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}
+
+\topheadlines=10
