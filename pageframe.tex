@@ -5,8 +5,8 @@
 % Place foot two lines below the textblock's last baseline
 \newdimen\footskip \footskip=2\leading
 
-\def\makehead{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
-\def\makefoot{\vbox to 0pt{\positionfoot\line{\the\foot}\vss\nointerlineskip}}
+\def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
+\def\footline{\vbox to 0pt{\positionfoot\line{\the\foot}\vss\nointerlineskip}}
 \def\positionhead{\vskip.33333\leading\vskip-\headskip}
 \def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
 
