@@ -102,3 +102,7 @@
 % \holdinginserts % positive if insertions remain dormant in output box
 % \interlinepenalty % penalty for page break between lines
 % \outputpenalty % penalty at the current page break
+
+\def\break{\penalty-10000 }
+\def\nobreak{\penalty10000 }
+\def\allowbreak{\penalty0 }
