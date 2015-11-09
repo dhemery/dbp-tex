@@ -5,29 +5,31 @@
 %   a line into \hsize. The square of the badness is added
 %   to the demerits for the paragraph.
 %
-% Tolerance (for the badness of a line)
-%   How much badness TeX will allow in a line. If badness
-%   exceeds the tolerance, the line will be set overfull or
-%   underfull.
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Tolerance for badness when determining line breaks before
-% hyphenating the words.
+% TeX finds the set of line breaks that minimizes the sum
+% of demerits for the paragraph. If the resulting paragraph
+% has any line with badness above \pretolerance, TeX
+% hyphenates the words and tries again. See \tolerance.
 \pretolerance=100
 
-% Tolerance for badness when determining line breaks after
-% hyphenating the words.
+% If TeX cannot break the paragraph in a tolerable way, it
+% applies its hyphenation algorithm to insert applicable
+% discretionary breaks into every word. It then finds the
+% optimal set of line breaks, allowing the discretionary
+% breaks. If the resulting paragraph has any line with
+% badness above \tolerance, TeX sets one or more overful
+% lines as a last resort.
 \tolerance=200
 
 % TeX adds \linepenalty to badness when it calculates the
-% demerits contributed by the line. A higher value will
+% demerits contributed by each line. A higher value will
 % prefer shorter paragraphs.
 \linepenalty=10
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Penalties (of a break point)
+% Penalties (of a breakpoint)
 %   A penalty represents the undesirability of breaking the
 %   line at this spot. The square of sum of penalties for a
 %   breakpoint is added to the demerits for a paragraph.
@@ -49,8 +51,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Demerits (of a paragraph)
-%   TeX chooses the breakpoints that minimize the number of
-%   demerits accumulated for the paragraph.
+%   TeX chooses breakpoints to minimize the sum of demerits
+%   for the paragraph.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
