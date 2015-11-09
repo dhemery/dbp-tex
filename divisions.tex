@@ -5,14 +5,14 @@
 
 \def\part#1{
   \nextoddpage
-  \baselinebox{\raggedspine\parttitle{#1}\par}{10}{0}
+  \displaypageheading{\parttitle{#1}\par}{10}
   \nextoddpage
 }
 
 \def\chapter#1{
   \nextpage
   \usedisplayframethispage
-  \baselinebox{\raggedspine\chaptertitle{#1}}{10}{1}
+  \displaypageheading{\chaptertitle{#1}}{10}
 }
 
 % \bookinfo is a title division in frontmatter or backmatter.
@@ -23,8 +23,8 @@
 }
 
 % TODO: Name this something better. It's about positioning titles on display pages.
-% \baselinebox{content}{bottom (baselines)}{skip (baselines)}
-\long\def\baselinebox#1#2#3{\vbox to #2\leading{\line{}\vfill#1}\vskip#3\leading}
+% \baselinebox{content}{bottom (baselines)}
+\long\def\displaypageheading#1#2{\vbox to #2\leading{\line{}\raggedspine\vfill#1}}
 
 \def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
 \def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
