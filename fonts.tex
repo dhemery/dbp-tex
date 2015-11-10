@@ -1,8 +1,8 @@
 \def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
 \def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
-\def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding\optionalwithprefix{ at }{\fontsize\relax}}
+\def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding1\optionalwithprefix{ at }{\fontsize\relax}}
 \def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
-\def\fonttag#1{\fontstyle#1font}
+\def\fonttag{\fontstyle\expandafter\fontshape\fontfigures\fontvariant\fontencoding font}
 
 % Declare a new font family.
 % This specifies terms to identify parts of file names for this family
@@ -51,18 +51,18 @@
   \fi%
 }
 
-\def\selectfont#1{%
-  \edef\selectedfonttag{\fonttag{#1}}%
+\def\selectfont{%
+  \edef\selectedfonttag{\fonttag}%
   \loadfont{\selectedfonttag}%
   \csname\selectedfonttag\endcsname%
 }
 
-\def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t1}\selectfont{rm}}
-\def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont{it}}
-\def\bf{\withfontweight{\csname\fontfamily boldweight\endcsname}\selectfont{bf}}
-\def\sc{\withfontvariant{sc}\selectfont{sc}}
-\def\tl{\withfontvariant{titling}\withfontfigures{tlf}\selectfont{tl}}
-\def\sym{\withfontencoding{ts1}\selectfont{sym}}
+\def\rm{\withfontweight{\csname\fontfamily regularweight\endcsname}\withfontslant{}\withfontvariant{}\withfontencoding{t}\selectfont}
+\def\it{\withfontslant{\csname\fontfamily italicslant\endcsname}\selectfont}
+\def\bf{\withfontweight{\csname\fontfamily boldweight\endcsname}\selectfont}
+\def\sc{\withfontvariant{sc}\selectfont}
+\def\tl{\withfontvariant{titling}\withfontfigures{tlf}\selectfont}
+\def\sym{\withfontencoding{ts}\selectfont}
 
 % TODO: Parameterize this
 \def\makeexpandable#1{\pdffontexpand#1 30 30 10 autoexpand}
