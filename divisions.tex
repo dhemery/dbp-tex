@@ -5,17 +5,20 @@
 \def\backmatter{\frontmatter}
 \def\endbook{\nextoddpage\end}
 
+
 \def\part#1{
-  \nextoddpage
+  \nextpartpage
   \tophead{\parttitle{#1}}
   \nextoddpage
 }
+\def\nextpartpage{\nextoddpage}
 
 \def\chapter#1{
-  \nextpage
+  \nextchapterpage
   \usedisplayframethispage
   \tophead{\chaptertitle{#1}}
 }
+\def\nextchapterpage{\nextpage}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{
@@ -24,7 +27,9 @@
   {\centered\chaptertitle{#1}}
 }
 
-% \baselinebox{content}{bottom (baselines)}
+
+% Places text in a box with its baseline \topheadskip from the top of the page.
+% \tophead works only when it is the first content added to a new page.
 \long\def\tophead#1{{\topskip=\topheadtopskip{\vbox{\raggedspine#1}}}}
 
 \def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
@@ -32,4 +37,5 @@
 \def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
 \def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}
 
+% How far down the page to place \tophead titles.
 \topheadtopskip=10\leading
