@@ -13,3 +13,22 @@
 \def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1}
 
 \newdimen\maxdimen \maxdimen=16383.99999pt
+
+\def\timestamp{\the\year-\twodigits{\month}-\twodigits{\day} \hoursminutes{\time}}
+\def\hoursminutes#1{{%
+  \count0=#1% Minutes since midnight
+  \count1=\count0 %
+  \divide\count0 by 60 % Hours since midnight
+  \twodigits{\count0}%
+  \multiply\count0 by 60\relax % The minute when this hour started
+  \advance\count1 by -\count0\relax % Minutes since this hour started
+  :\twodigits{\count1}%
+}}
+
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1\relax}
+
+% utf8-t1 requires \bgroup and \loop
+\let\bgroup={ \let\egroup=}
+\def\loop#1\repeat{\def\body{#1}\iterate}
+\def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
+\let\repeat=\fi

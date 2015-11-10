@@ -1,9 +1,3 @@
-% utf8-t1 requires \bgroup and \loop
-\let\bgroup={ \let\egroup=}
-\def\loop#1\repeat{\def\body{#1}\iterate}
-\def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
-\let\repeat=\fi
-
 % For each glyph in the T1 font encoding, utf8-t1 maps the
 % corresponding UTF-8 character to the glyph's T1 character
 % code.
