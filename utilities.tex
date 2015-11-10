@@ -20,8 +20,8 @@
   \count1=\count0 %
   \divide\count0 by 60 % Hours since midnight
   \twodigits{\count0}%
-  \multiply\count0 by 60\relax % The minute when this hour started
-  \advance\count1 by -\count0\relax % Minutes since this hour started
+  \multiply\count0 by 60% The minute when this hour started
+  \advance\count1 by -\count0% Minutes since this hour started
   :\twodigits{\count1}%
 }}
 
