@@ -1,12 +1,20 @@
-\input garamond
+\input ../fonts/garamond
 
-\def\switchtofont#1{\string#1&{\csname#1\endcsname\xdef\thefonttag{\fonttag{#1}}}\thefonttag\cr}
+\style{bodytext}
+\string\rm\ Roman
 
-\halign{\hfil# & #\hfil\cr
-\switchtofont{it}
-\switchtofont{sc}
-\switchtofont{bf}
-\switchtofont{tl}
-\switchtofont{sym}
-}
+\bf\string\bf\ Bold
+
+\it\string\it\ Bold Italic
+
+\sc\string\sc\ Bold Italic Small Caps
+
+\string\rm\ Roman
+
+\it\string\it\ Italic
+
+\bf\string\bf\ Bold Italic
+
+\sc\string\sc\ Bold Italic Small Caps
+
 \end
