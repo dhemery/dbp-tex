@@ -1,17 +1,16 @@
 \newskip\topheadtopskip
 
-\def\frontmatter{\nextoddpage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
-\def\mainmatter{\nextoddpage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
+\def\frontmatter{\nextrectopage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
+\def\mainmatter{\nextrectopage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
 \def\backmatter{\frontmatter}
-\def\endbook{\nextoddpage\end}
+\def\endbook{\nextrectopage\end}
 
 
 \def\part#1{
   \nextpartpage
   \tophead{\parttitle{#1}}
-  \nextoddpage
 }
-\def\nextpartpage{\nextoddpage}
+\def\nextpartpage{\nextrectopage}
 
 \def\chapter#1{
   \nextchapterpage
@@ -19,6 +18,7 @@
   \tophead{\chaptertitle{#1}}
 }
 \def\nextchapterpage{\nextpage}
+\def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{

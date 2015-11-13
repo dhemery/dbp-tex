@@ -2,9 +2,9 @@
 \newcount\pagenoincrement
 
 \def\nextpage{\vfil\eject\useclearedframethispage}
-\def\nextoddpage{\nextpage\onoddpage}
-\def\nextevenpage{\nextpage\ifodd\pageno \line{}\nextpage\else \fi}
-\def\onoddpage{\ifodd\pageno \else \line{}\nextpage\fi}
+\def\nextrectopage{\nextpage\onrectopage}
+\def\nextversopage{\nextpage\ifodd\pageno \line{}\nextpage\else \fi}
+\def\onrectopage{\ifodd\pageno \else \line{}\nextpage\fi}
 
 % Breaking pages
 \def\break{\penalty-10000 }

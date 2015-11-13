@@ -17,7 +17,7 @@
 \def\userunningpageframe{\global\head={\runninghead}\global\foot={\runningfoot}}
 
 % Running head and foot for cleared pages
-% (pages begun by \nextpage, \nextoddpage, and \nextevenpage).
+% (pages begun by \nextpage, \nextrectopage, and \nextversopage).
 % You may want to change these for debugging.
 \def\clearedhead{\line{}}
 \def\clearedfoot{\line{}}
@@ -36,13 +36,13 @@
 % Running head and foot for most content pages.
 % We use different heads on even and odd pages.
 % Redefine to suit your formatting needs.
-\def\normalhead{\style{runningheader}\sc\ifodd\pageno\normaloddpagehead\else\normalevenpagehead\fi}
+\def\normalhead{\style{runningheader}\sc\ifodd\pageno\normalrectopagehead\else\normalversopagehead\fi}
 % No foot on normal pages
 \def\normalfoot{\line{}}
 % Odd (right) pages: title at inner margin, page number at outer margin
-\def\normaloddpagehead{\style{runningheader}\sc\title\hfil\folio}
+\def\normalrectopagehead{\style{runningheader}\sc\title\hfil\folio}
 % Even (left) pages: page number at outer margin, author name at inner margin
-\def\normalevenpagehead{\style{runningheader}\sc\folio\hfil\author}
+\def\normalversopagehead{\style{runningheader}\sc\folio\hfil\author}
 
 \def\useemptypageframe{
   \gdef\runninghead{\emptyhead}
