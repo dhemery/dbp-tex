@@ -22,3 +22,27 @@
 \boxmaxdepth=\maxdimen % maximum depth of boxes on explicit pages
 \splitmaxdepth=\maxdimen % maximum depth of boxes on split pages
 \splittopskip=\leading % glue at top of split pages
+
+% Penalty for breaking a page just after a line that ends
+% with a hyphen.
+\brokenpenalty=100
+
+% Penalty for breaking a page between lines of a paragraph.
+\interlinepenalty=0
+
+% Penalty for breaking a page between the first two lines
+% of a paragraph.
+\clubpenalty=0 % Bringhurst says don't worry about these.
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph.
+\widowpenalty=700
+
+% Penalty for breaking a page just before a display.
+\predisplaypenalty=10000
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph that precedes a display.
+\displaywidowpenalty=50
+
+% \floatingpenalty % penalty for insertions that are split

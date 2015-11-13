@@ -7,7 +7,7 @@ log_file = "#{format_name}.log"
 install_dir = '/usr/local/texlive/texmf-local/web2c/pdftex'
 installed_fmt_file = "#{install_dir}/#{fmt_file}"
 
-task default: [:clobber, :install]
+task default: [:clobber, :build, :log, :install]
 
 directory install_dir do |t|
   mkdir_p install_dir
