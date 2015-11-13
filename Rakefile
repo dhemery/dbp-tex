@@ -7,25 +7,30 @@ log_file = "#{format_name}.log"
 install_dir = '/usr/local/texlive/texmf-local/web2c/pdftex'
 installed_fmt_file = "#{install_dir}/#{fmt_file}"
 
-task default: :install
+task default: [:clobber, :install]
 
 directory install_dir do |t|
   mkdir_p install_dir
 end
 
-file fmt_file => tex_file do |t|
-  print %x{pdftex -ini -enc -etex #{tex_file}}
+file fmt_file
+
+file installed_fmt_file
+
+desc 'Build the format file'
+task :build do
+ `pdftex -interaction=batchmode -etex -enc -ini #{tex_file}`
 end
 
-file installed_fmt_file => [fmt_file, install_dir] do
+desc 'Install the format file'
+task install: [:build, install_dir] do
   cp fmt_file, installed_fmt_file
 end
 
-desc 'Build the format file'
-task build: fmt_file
-
-desc 'Install the format file'
-task install: installed_fmt_file
+desc 'Show the log file'
+task :log do
+  print `cat #{log_file}`
+end
 
 CLEAN << fmt_file
 CLEAN << log_file
