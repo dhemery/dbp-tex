@@ -1,3 +1,70 @@
 \def\break{\penalty-10000 }
 \def\nobreak{\penalty10000 }
 \def\allowbreak{\penalty0 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Paragraph Builder Parameters
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Tolerance for line badness before hyphenation.
+\pretolerance=100
+
+% Tolerance for line badness after hyphenation.
+\tolerance=200
+
+% Penalty for each line in a paragraph.
+\linepenalty=10
+
+% Penalty for breaking a line after a discretionary hyphen.
+\hyphenpenalty=10
+
+% Penalty for breaking a line after an explicit hyphen.
+\exhyphenpenalty=50
+
+% Penalty for breaking a line after a binary operation.
+\binoppenalty=700
+
+% Penalty for breaking a line after a math relation.
+\relpenalty=500
+
+% Demerits for visually incompatible adjacent lines.
+\adjdemerits=10000
+
+% Demerits for ending consecutive lines in hyphens.
+\doublehyphendemerits=10000
+
+% Demerits for breaking the last line of a paragraph at a
+% hyphen.
+\finalhyphendemerits=5000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+%
+% Page Builder Parameters
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+
+% Penalty for breaking a page just after a line that ends
+% with a hyphen.
+\brokenpenalty=100
+
+% Penalty for breaking a page between lines of a paragraph.
+\interlinepenalty=0
+
+% Penalty for breaking a page between the first two lines
+% of a paragraph.
+\clubpenalty=0 % Bringhurst says don't worry about these.
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph.
+\widowpenalty=700
+
+% Penalty for breaking a page just before a display.
+\predisplaypenalty=10000
+
+% Penalty for breaking a page between the last two lines of
+% a paragraph that precedes a display.
+\displaywidowpenalty=50
+
+% \floatingpenalty % penalty for insertions that are split
