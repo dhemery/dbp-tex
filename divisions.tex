@@ -28,7 +28,11 @@
 
 % Places text in a box with its baseline \topheadskip from the top of the page.
 % \tophead works only when it is the first content added to a new page.
-\long\def\sink#1{{\topskip=\sinklines\leading{\vbox{\raggedspine#1}}}}
+\long\def\sink#1{{
+  \topskip=\sinklines\leading
+    \advance\topskip by -\maxdepth
+  {\vbox{\raggedspine#1}}
+}}
 
 \def\booktitle#1{{\style{booktitle}\tightbaselines\uppercase\expandafter{#1}\par}}
 \def\authorname#1{{\style{authorname}\tightbaselines\uppercase\expandafter{#1}\par}}

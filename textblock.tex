@@ -17,30 +17,27 @@
 % - \spinemargin
 % - \textblocklines
 % - \leading
-% TODO: Adjust \vsize to be a multiple of \leading
+% - \bodytextsize
 \def\fittextblock{
-  \vsize=\textblocklines\leading
   \edgemargin=\pdfpagewidth
     \advance\edgemargin by -\hsize
     \advance\edgemargin by -\spinemargin
-  \topskip=\leading
-  \splittopskip=\leading
+  \topskip=\bodytextsize
+  \splittopskip=\topskip
   \maxdepth=\leading
     \advance\maxdepth by -\bodytextsize
   \splitmaxdepth=\maxdepth
+  \vsize=\textblocklines\leading
+    \advance\vsize by -\maxdepth
 }
 
 \def\showtextblock{
+  \message{\string\voffset: \the\voffset}
+  \message{\string\spinemargin: \the\spinemargin}
+  \message{\string\edgemargin: \the\edgemargin}
   \message{\string\hsize: \the\hsize}
   \message{\string\textblocklines: \the\textblocklines}
   \message{\string\vsize: \the\vsize}
-  \message{\string\voffset: \the\voffset}
-  \dimen0=\pdfpageheight
-    \advance\dimen0 by -\vsize
-    \advance\dimen0 by -\voffset
-  \message{(bottom margin: \the\dimen0)}
-  \message{\string\spinemargin: \the\spinemargin}
-  \message{\string\edgemargin: \the\edgemargin}
-  \message{\string\topskip: \the\topskip}
   \message{\string\maxdepth: \the\maxdepth}
+  \message{\string\topskip: \the\topskip}
 }
