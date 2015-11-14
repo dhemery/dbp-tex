@@ -34,7 +34,7 @@
 %     Also show commands that follow a prefix (e.g. \global)
 \tracingcommands=0
 
-\tracinglostchars=1 % positive if showing characters not in the font
+\tracinglostchars=0 % positive if showing characters not in the font
 \tracingonline=0 % positive if showing diagnostic info on the terminal
 \tracingmacros=0 % positive if showing macros as they are expanded
 \tracingoutput=0 % positive if showing boxes that are shipped out
@@ -53,10 +53,3 @@
 \tracingassigns=0 % (enabled only when compiled to show stats)
 \tracingifs=0
 \tracinggroups=0
-
-% e-TeX
-% 0: batch mode (nonstop + don't log to terminal)
-% 1: nonstop mode (scroll mode + continue after error)
-% 2: scroll mode (error stop mode + continue after message)
-% 3: error stop mode (stop at errors)
-\interactionmode=1 % nonstop mode

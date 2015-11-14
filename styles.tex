@@ -1,19 +1,18 @@
-
-\def\aheadsize{36pt} % Book and part titles
-\def\bheadsize{24pt} % Author name
-\def\cheadsize{18pt} % Chapter titles and publisher logo
-\def\bodytextsize{11pt}
-\def\fineprintsize{10pt}
-\def\runningheadsize{8pt}
+\newdimen\aheadsize
+\newdimen\bheadsize
+\newdimen\cheadsize
+\newdimen\bodytextsize
+\newdimen\fineprintsize
+\newdimen\runningheadsize
 
 \def\definestyles{%
-  \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\aheadsize}%
-  \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\bheadsize}%
-  \newstyle{parttitle}{\parttitlefamily}{\aheadopticalsize}{osf}{\aheadsize}%
-  \newstyle{chaptertitle}{\chaptertitlefamily}{\cheadopticalsize}{osf}{\cheadsize}%
-  \newstyle{bodytext}{\bodytextfamily}{\bodytextopticalsize}{osf}{\bodytextsize}%
-  \newstyle{fineprint}{\fineprintfamily}{\fineprintopticalsize}{tlf}{\fineprintsize}%
-  \newstyle{runninghead}{\runningheadfamily}{\runningheadopticalsize}{osf}{\runningheadsize}%
+  \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\the\aheadsize}%
+  \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\the\bheadsize}%
+  \newstyle{parttitle}{\parttitlefamily}{\aheadopticalsize}{osf}{\the\aheadsize}%
+  \newstyle{chaptertitle}{\chaptertitlefamily}{\cheadopticalsize}{osf}{\the\cheadsize}%
+  \newstyle{bodytext}{\bodytextfamily}{\bodytextopticalsize}{osf}{\the\bodytextsize}%
+  \newstyle{fineprint}{\fineprintfamily}{\fineprintopticalsize}{tlf}{\the\fineprintsize}%
+  \newstyle{runninghead}{\runningheadfamily}{\runningheadopticalsize}{osf}{\the\runningheadsize}%
 }
 
 \def\leadin#1{\skipline\nobreak\noindent{\sc #1}}

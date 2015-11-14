@@ -1,14 +1,13 @@
-% Spacing lines
 \newdimen\leading
 
-\def\linespacing#1{\baselineskip=#1em}
 \def\nointerlineskip{\prevdepth=-1000pt}
 \def\offinterlineskip{\baselineskip=-1000pt\lineskip=0pt\lineskiplimit=\maxdimen}
-\def\titleleading{\linespacing1}
+\def\normalbaselines{\baselineskip=\leading}
+\def\tightbaselines{\baselineskip=1.1em}
 
 % Skipping lines
-\def\skipline{\vskip\leading plus 0pt minus 0pt}
-\def\skiphalfline{\vskip.5\leading plus 0pt minus 0pt}
+\def\skipline{\vskip\baselineskip}
+\def\skiphalfline{\vskip.5\baselineskip}
 
 % Making single line boxes
 \def\line{\hbox to\hsize}
@@ -16,10 +15,16 @@
 \def\centerline#1{\line{\hss#1\hss}}
 \def\rightline#1{\line{\hss#1}}
 
-% TODO: Define this elsewhere.
-\leading=15pt
-\baselineskip=\leading % desired glue between baselines
 \lineskip=0pt % interline glue if \baselineskip isn't feasible
 \lineskiplimit=0pt % threshold where \baselineskip changes to \lineskip
 \leftskip=0pt % glue at left of justified lines
 \rightskip=0pt % glue at right of justified lines
+
+\def\setleading#1{
+  \leading=#1
+  \parindent=\leading
+  \emergencystretch=1.5\leading
+  \topskip=\leading
+  \splittopskip=\leading
+  \normalbaselines
+}

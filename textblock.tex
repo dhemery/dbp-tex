@@ -1,19 +1,27 @@
 \newdimen\edgemargin
 \newdimen\spinemargin
 
-\def\setspinemargin#1{
-  \edgemargin=#1
-  \spinemargin=\pdfpagewidth
-    \advance\spinemargin by -\hsize
-    \advance\spinemargin by -#1
+\def\leftmargin{\ifodd\pageno\spinemargin\else\edgemargin\fi}
+
+% width, height, top margin, spine margin
+\def\settextblock#1#2#3#4{
+  \hsize=#1
+  \vsize=#2
+  \voffset=#3
+  \spinemargin=#4
+  \edgemargin=\pdfpagewidth
+    \advance\edgemargin by -\hsize
+    \advance\edgemargin by -\spinemargin
 }
 
-% Use edge margin for left/even pages,
-% spine margin for odd/right pages
-\def\leftmargin{\ifodd\pageno\edgemargin\else\spinemargin\fi}
-
-\hsize=22pc % textblock width
-\vsize=28\leading % textblock height
-\voffset=\pdfpageheight \advance\voffset by -\vsize \divide\voffset by 2
-\topskip=\leading % glue at top of main pages
-\setspinemargin{4.5pc} % textblock spine margin
+\def\showtextblock{
+  \message{textblock (width \the\hsize,}
+  \message{height \the\vsize)}
+  \message{margins (top \the\voffset,}
+  \dimen0=\pdfpageheight
+    \advance\dimen0 by -\vsize
+    \advance\dimen0 by -\voffset
+  \message{bottom \the\dimen0,}
+  \message{edge \the\edgemargin,}
+  \message{spine \the\spinemargin)}
+}

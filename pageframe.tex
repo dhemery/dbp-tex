@@ -1,14 +1,14 @@
 \newtoks\head
 \newtoks\foot
-% Place head two lines above first baseline
-\newdimen\headskip \headskip=2\leading
-% Place foot two lines below the textblock's last baseline
-\newdimen\footskip \footskip=2\leading
 
 \def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
 \def\footline{\vbox to 0pt{\positionfoot\line{\the\foot}\vss\nointerlineskip}}
 \def\positionhead{\vskip.33333\leading\vskip-\headskip}
 \def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
+% Place head two lines above first baseline
+\def\headskip{2\leading}
+% Place foot two lines below the textblock's last baseline
+\def\footskip{2\leading}
 
 \def\runninghead{\line{}}
 \def\runningfoot{\line{}}
@@ -39,9 +39,9 @@
 \def\normalhead{\style{runninghead}\sc\ifodd\pageno\normalrectopagehead\else\normalversopagehead\fi}
 % No foot on normal pages
 \def\normalfoot{\line{}}
-% Odd (right) pages: title at inner margin, page number at outer margin
+% Recto pages: title at spine margin, page number at edge margin
 \def\normalrectopagehead{\style{runninghead}\sc\title\hfil\folio}
-% Even (left) pages: page number at outer margin, author name at inner margin
+% Verso pages: page number at edge margin, author name at spine margin
 \def\normalversopagehead{\style{runninghead}\sc\folio\hfil\author}
 
 \def\useemptypageframe{

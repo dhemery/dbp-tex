@@ -1,10 +1,6 @@
-% TODO: Problem: Requires that \cheadsize is already defined.
-\newdimen\logotextsize \logotextsize=\cheadsize
-\newfamily{proxima}{ProximaNova}{Regular}{It}{Bold}{Regular}
-\newstyle{logo}{proxima}{}{osf}{\the\logotextsize}
-
-\newdimen\logolinespacing \logolinespacing=.25\logotextsize
-\newdimen\logobarthickness \logobarthickness=0.25\logolinespacing
+\newdimen\logotextsize
+\newdimen\logolinespacing
+\newdimen\logobarthickness
 
 \def\logobar{\hrule height\logobarthickness}
 \def\logolineskip{\vskip\logolinespacing}
@@ -36,3 +32,11 @@
 \def\centerlogo{\logo{\logostack{\hss}{\hss}}}
 \def\rightlogo{\logo{\logostack{\hss}{}}}
 \def\linelogo{\logo{\hbox{DRISCOLL BROOK PRESS}}}
+
+\def\setlogosize#1{
+  \logotextsize=#1
+  \logolinespacing=.25\logotextsize
+  \logobarthickness=0.25\logolinespacing
+  \newfamily{proxima}{ProximaNova}{Regular}{It}{Bold}{Regular}
+  \newstyle{logo}{proxima}{}{osf}{\the\logotextsize}
+}

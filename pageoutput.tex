@@ -1,6 +1,3 @@
-\def\facingpages{\shipout\positionedpagebox\userunningpageframe\advancepageno}
-\def\positionedpagebox{\vbox{\moveright\leftmargin\pagebox}}
+\def\facingpages{\hoffset=\leftmargin\shipout\pagebox\userunningpageframe\advancepageno}
 \def\pagebox{\vbox{\headline\pagebody\footline}}
 \def\pagebody{\vbox to\vsize{\unvbox255}}
-
-\output{\facingpages}
