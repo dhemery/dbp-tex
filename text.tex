@@ -5,6 +5,12 @@
 \newdimen\fineprintsize
 \newdimen\runningheadsize
 
+\def\leadin#1{\skipline\nobreak\noindent{\sc #1}}
+\def\emph#1{{\it #1\/}}
+
+% Render as lowercase small caps
+\def\allsmallcaps#1{{\sc\lowercase{#1}}}
+
 \def\definestyles{%
   \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\the\aheadsize}%
   \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\the\bheadsize}%
@@ -15,8 +21,20 @@
   \newstyle{runninghead}{\runningheadfamily}{\runningheadopticalsize}{osf}{\the\runningheadsize}%
 }
 
-\def\leadin#1{\skipline\nobreak\noindent{\sc #1}}
-\def\emph#1{{\it #1\/}}
+% Adjust layout parameters to fit the current values of:
+% - \leading
+% - \bodytextsize
+\def\fittext{
+  \topskip=\leading
+  \splittopskip=\leading
 
-% Render as lowercase small caps
-\def\allsmallcaps#1{{\sc\lowercase{#1}}}
+  \maxdepth=\leading
+    \advance\maxdepth by -\bodytextsize
+  \splitmaxdepth=\maxdepth
+
+  \parindent=\leading
+  % TODO: Parameter for emergency stretch factor
+  \emergencystretch=1.5\leading
+  \fittextblock
+  \fitlogo
+}

@@ -1,12 +1,6 @@
-\pdfhorigin=0 true in
-\pdfvorigin=0 true in
-
-\def\setpaper#1#2{
-  \pdfpagewidth=#1
-  \pdfpageheight=#2
-}
-
 \def\showpaper{
-  \message{paper (width \the\pdfpagewidth,}
-  \message{height \the\pdfpageheight)}
+  \message{\string\pdfhorigin: \the\pdfhorigin}
+  \message{\string\pdfvorigin: \the\pdfvorigin}
+  \message{\string\pdfpagewidth: \the\pdfpagewidth}
+  \message{\string\pdfpageheight: \the\pdfpageheight}
 }

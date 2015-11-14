@@ -1,27 +1,32 @@
-\newdimen\edgemargin
+% The margin at the spine of each page.
+% After setting this, call \fittextblock
 \newdimen\spinemargin
+
+% The margin at the outer edge of each page.
+% This is set by \fittextblock
+\newdimen\edgemargin
 
 \def\leftmargin{\ifodd\pageno\spinemargin\else\edgemargin\fi}
 
-% width, height, top margin, spine margin
-\def\settextblock#1#2#3#4{
-  \hsize=#1
-  \vsize=#2
-  \voffset=#3
-  \spinemargin=#4
+% Adjust the textblock to fit the current values of:
+% - \pdfpagewidth
+% - \hsize
+% - \spinemargin
+% TODO: Adjust \vsize to be a multiple of \leading
+\def\fittextblock{
   \edgemargin=\pdfpagewidth
     \advance\edgemargin by -\hsize
     \advance\edgemargin by -\spinemargin
 }
 
 \def\showtextblock{
-  \message{textblock (width \the\hsize,}
-  \message{height \the\vsize)}
-  \message{margins (top \the\voffset,}
+  \message{\string\hsize: \the\hsize}
+  \message{\string\vsize: \the\vsize}
+  \message{\string\voffset: \the\voffset}
   \dimen0=\pdfpageheight
     \advance\dimen0 by -\vsize
     \advance\dimen0 by -\voffset
-  \message{bottom \the\dimen0,}
-  \message{edge \the\edgemargin,}
-  \message{spine \the\spinemargin)}
+  \message{(bottom margin: \the\dimen0)}
+  \message{\string\spinemargin: \the\spinemargin}
+  \message{\string\edgemargin: \the\edgemargin}
 }
