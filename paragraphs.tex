@@ -13,3 +13,11 @@
 \parfillskip=0pt plus 1fil % additional rightskip at end of paragraphs
 \hangindent=0pt % amount of hanging indentation
 \hangafter=0 % hanging indentation changes after this many lines
+
+% Adjust paragraph formatting to fit the current values of:
+% - \leading
+\def\fitparagraphs{
+  \parindent=\leading
+  % TODO: Parameter for emergency stretch factor
+  \emergencystretch=1.5\leading
+}

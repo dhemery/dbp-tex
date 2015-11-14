@@ -6,21 +6,33 @@
 % This is set by \fittextblock
 \newdimen\edgemargin
 
+% The number of lines of text in each textblock
+\newcount\textblocklines
+
 \def\leftmargin{\ifodd\pageno\spinemargin\else\edgemargin\fi}
 
 % Adjust the textblock to fit the current values of:
 % - \pdfpagewidth
 % - \hsize
 % - \spinemargin
+% - \textblocklines
+% - \leading
 % TODO: Adjust \vsize to be a multiple of \leading
 \def\fittextblock{
+  \vsize=\textblocklines\leading
   \edgemargin=\pdfpagewidth
     \advance\edgemargin by -\hsize
     \advance\edgemargin by -\spinemargin
+  \topskip=\leading
+  \splittopskip=\leading
+  \maxdepth=\leading
+    \advance\maxdepth by -\bodytextsize
+  \splitmaxdepth=\maxdepth
 }
 
 \def\showtextblock{
   \message{\string\hsize: \the\hsize}
+  \message{\string\textblocklines: \the\textblocklines}
   \message{\string\vsize: \the\vsize}
   \message{\string\voffset: \the\voffset}
   \dimen0=\pdfpageheight
@@ -29,4 +41,6 @@
   \message{(bottom margin: \the\dimen0)}
   \message{\string\spinemargin: \the\spinemargin}
   \message{\string\edgemargin: \the\edgemargin}
+  \message{\string\topskip: \the\topskip}
+  \message{\string\maxdepth: \the\maxdepth}
 }

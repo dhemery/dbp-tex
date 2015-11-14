@@ -25,16 +25,7 @@
 % - \leading
 % - \bodytextsize
 \def\fittext{
-  \topskip=\leading
-  \splittopskip=\leading
-
-  \maxdepth=\leading
-    \advance\maxdepth by -\bodytextsize
-  \splitmaxdepth=\maxdepth
-
-  \parindent=\leading
-  % TODO: Parameter for emergency stretch factor
-  \emergencystretch=1.5\leading
+  \fitparagraphs
   \fittextblock
   \fitlogo
 }
