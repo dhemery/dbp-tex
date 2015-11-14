@@ -1,5 +1,4 @@
-% \copyrightpage{title}{publication rights}{book identification}
-\def\copyrightpage#1#2#3{{
+\def\copyrightpage{{
   \nextpage
   \bookinfo{\title}
 
@@ -13,10 +12,10 @@
   \linespacing{1.1}
 
   \skipline
-  #2
+  \pubrights
 
   \skipline
-  #3
+  \pubisbns
 
   \skipline
   All rights reserved.
@@ -35,5 +34,5 @@
   is purely coincidental.
 
   \skipline
-  \timestamp
+  \timestamp\par
 }}
