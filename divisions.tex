@@ -1,4 +1,4 @@
-\newskip\topheadtopskip
+\newskip\sinktopskip
 
 \def\frontmatter{\nextrectopage\global\pageno=-1\global\pagenoincrement=-1\useemptypageframe}
 \def\mainmatter{\nextrectopage\global\pageno=1\global\pagenoincrement=1\usenormalpageframe}
@@ -8,14 +8,14 @@
 
 \def\part#1{
   \nextpartpage
-  \tophead{\parttitle{#1}}
+  \sink{\parttitle{#1}}
 }
 \def\nextpartpage{\nextrectopage}
 
 \def\chapter#1{
   \nextchapterpage
   \usedisplayframethispage
-  \tophead{\chaptertitle{#1}}
+  \sink{\chaptertitle{#1}}
 }
 \def\nextchapterpage{\nextpage}
 \def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
@@ -30,12 +30,12 @@
 
 % Places text in a box with its baseline \topheadskip from the top of the page.
 % \tophead works only when it is the first content added to a new page.
-\long\def\tophead#1{{\topskip=\topheadtopskip{\vbox{\raggedspine#1}}}}
+\long\def\sink#1{{\topskip=\sinktopskip{\vbox{\raggedspine#1}}}}
 
 \def\booktitle#1{{\style{booktitle}\titleleading\uppercase\expandafter{#1}\par}}
 \def\authorname#1{{\style{authorname}\titleleading\uppercase\expandafter{#1}\par}}
 \def\parttitle#1{{\style{parttitle}\sc\titleleading#1\par}}
 \def\chaptertitle#1{{\style{chaptertitle}\sc\titleleading#1\par}}
 
-% How far down the page to place \tophead titles.
-\topheadtopskip=10\leading
+% How far down the page to place \sink titles.
+\sinktopskip=10\leading

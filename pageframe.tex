@@ -25,7 +25,7 @@
 % Running head and foot for display pages
 % (pages that begin with a major display item such as a part or chapter title)
 \def\displayhead{\line{}}
-\def\displayfoot{\style{runningheader}\sc\hfil\folio\hfil}
+\def\displayfoot{\style{runninghead}\sc\hfil\folio\hfil}
 
 % Running head and foot after user calls \useemptypageframe.
 % By default, this format uses empty frames for frontmatter and backmatter pages.
@@ -36,13 +36,13 @@
 % Running head and foot for most content pages.
 % We use different heads on even and odd pages.
 % Redefine to suit your formatting needs.
-\def\normalhead{\style{runningheader}\sc\ifodd\pageno\normalrectopagehead\else\normalversopagehead\fi}
+\def\normalhead{\style{runninghead}\sc\ifodd\pageno\normalrectopagehead\else\normalversopagehead\fi}
 % No foot on normal pages
 \def\normalfoot{\line{}}
 % Odd (right) pages: title at inner margin, page number at outer margin
-\def\normalrectopagehead{\style{runningheader}\sc\title\hfil\folio}
+\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\folio}
 % Even (left) pages: page number at outer margin, author name at inner margin
-\def\normalversopagehead{\style{runningheader}\sc\folio\hfil\author}
+\def\normalversopagehead{\style{runninghead}\sc\folio\hfil\author}
 
 \def\useemptypageframe{
   \gdef\runninghead{\emptyhead}

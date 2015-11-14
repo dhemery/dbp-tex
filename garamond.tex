@@ -1,0 +1,32 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Garamond Titling and Text Fonts
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Garamond Premier Pro Optical Sizes
+% - Caption 8 (5.9-8.9)
+% - Regular 11 (8.9-14.9)
+% - Subhead 18 (14.9-22.9)
+% - Display 36 (22.9-72)
+
+\def\garamond{
+  \newfamily{garamond}{GaramondPremrPro}{}{It}{Bd}{}
+
+  \gdef\aheadopticalsize{Disp}
+  \gdef\bheadopticalsize{Disp}
+  \gdef\cheadopticalsize{Subh}
+  \gdef\bodytextopticalsize{}
+  \gdef\fineprintopticalsize{}
+  \gdef\runningheadopticalsize{Capt}
+
+  \gdef\booktitlefamily{garamond}
+  \gdef\authornamefamily{garamond}
+  \gdef\parttitlefamily{garamond}
+  \gdef\chaptertitlefamily{garamond}
+  \gdef\bodytextfamily{garamond}
+  \gdef\fineprintfamily{garamond}
+  \gdef\runningheadfamily{garamond}
+  \definestyles
+  \style{bodytext}
+}
