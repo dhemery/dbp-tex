@@ -5,13 +5,6 @@
 \newdimen\fineprintsize
 \newdimen\runningheadsize
 
-\def\setheadingsizes#1#2#3{
-  \aheadsize=#1
-  \bheadsize=#2
-  \cheadsize=#3
-  \setlogosize{\cheadsize}
-}
-
 \def\definestyles{%
   \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\the\aheadsize}%
   \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\the\bheadsize}%
