@@ -1,0 +1,17 @@
+% Adjust tne layout to fit the current values of:
+% - \leading
+% - \bodytextsize
+\def\fitlines{
+  \topskip=\leading
+  \splittopskip=\leading
+
+  \maxdepth=\leading
+    \advance\maxdepth by -\bodytextsize
+  \splitmaxdepth=\maxdepth
+
+  \parindent=\leading
+  % TODO: Parameter for emergency stretch factor
+  \emergencystretch=1.5\leading
+
+  \normalbaselines
+}
