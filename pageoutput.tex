@@ -1,3 +1,21 @@
-\def\facingpages{\hoffset=\leftmargin\shipout\pagebox\userunningpageframe\advancepageno}
-\def\pagebox{\vbox{\headline\pagebody\footline}}
-\def\pagebody{\vbox to\vsize{\unvbox255}}
+\def\facingpages{
+  \hoffset=\leftmargin
+  \shipout\page
+  \userunningpageframe
+  \advancepageno
+}
+
+\def\page{
+  \vbox{
+    \headline
+    \textblock
+    \footline
+  }
+}
+
+\def\textblock{
+  \vbox to \vsize{
+    \boxmaxdepth=\maxdepth
+    \unvbox255
+  }
+}
