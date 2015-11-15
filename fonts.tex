@@ -1,3 +1,7 @@
+\newcount\maxfontshrink
+\newcount\maxfontstretch
+\newcount\fontexpandstep
+
 \def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding1\optionalwithprefix{ at }{\fontsize\relax}}
 \def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
 \def\fonttag{\fontstyle\expandafter\fontshape\fontfigures\fontvariant\fontencoding font}
@@ -62,9 +66,4 @@
 \def\tl{\withfontvariant{titling}\withfontfigures{tlf}\selectfont}
 \def\sym{\withfontencoding{ts}\selectfont}
 
-% TODO: Parameterize this
-\def\makeexpandable#1{\pdffontexpand#1 30 30 10 autoexpand}
-
-\pdfadjustspacing=2
-\pdfprotrudechars=2
-\mag=1000 % magnification ratio, times 1000
+\def\makeexpandable#1{\pdffontexpand#1 \maxfontstretch \maxfontshrink \fontexpandstep autoexpand}

@@ -3,7 +3,6 @@
 \pdfvorigin=0pt
 \pdfpagewidth=5 true in
 \pdfpageheight=8 true in
-\fitpaper
 
 % Text
 \aheadsize=36pt
@@ -15,13 +14,22 @@
 \leading=15pt
 
 % Text Block
-\hsize=22pc % width
+\hsize=22pc
 \textblocklines=28
-\voffset=6.5pc % top margin
-\spinemargin=4.5pc % inner margin
+\voffset=6.5pc
+\spinemargin=4.5pc
 
 \fittext
 
-\sinklines=10
+\sinklines=11
+
+\pdfadjustspacing=2
+
+% TODO: Determine reasonable protrusions and turn this on
+\pdfprotrudechars=0
+
+\maxfontshrink=30
+\maxfontstretch=30
+\fontexpandstep=5
 
 \output{\facingpages}
