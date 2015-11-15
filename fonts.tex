@@ -1,5 +1,3 @@
-\def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
-\def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
 \def\fontfilename{\fontbasename\optionalwithprefix{-}{\fontshape}-\fontfigures\optionalwithprefix{-}{\fontvariant}-\fontencoding1\optionalwithprefix{ at }{\fontsize\relax}}
 \def\fontshape{\optionalwithdefault{\fontweight\fontslant\fontopticalsize}{\fontdefaultshape}}
 \def\fonttag{\fontstyle\expandafter\fontshape\fontfigures\fontvariant\fontencoding font}

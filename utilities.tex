@@ -12,9 +12,7 @@
 \def\newskip#1{\global\skipdef#1=\nextskipregister \advance\nextskipregister by 1}
 \def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1}
 
-\newdimen\maxdimen \maxdimen=16383.99999pt
-
-\def\timestamp{
+\def\timestamp{{
   \count0=\time % Minutes since midnight
   \divide\count0 by 60 % Hours since midnight
   \count1=\count0 % Hours since midnight
@@ -22,8 +20,11 @@
   \count2=\time
   \advance\count2 by -\count0 % Minutes since the hour
   \the\year-\twodigits{\month}-\twodigits{\day} \twodigits{\count1}:\twodigits{\count2}
-}
+}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1\relax}
+
+\def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
+\def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
 
 % utf8-t1 requires \bgroup and \loop
 \let\bgroup={ \let\egroup=}
