@@ -14,17 +14,15 @@
 
 \newdimen\maxdimen \maxdimen=16383.99999pt
 
-\def\timestamp{\the\year-\twodigits{\month}-\twodigits{\day} \hoursminutes{\time}}
-\def\hoursminutes#1{{%
-  \count0=#1% Minutes since midnight
-  \count1=\count0 %
+\def\timestamp{
+  \count0=\time % Minutes since midnight
   \divide\count0 by 60 % Hours since midnight
-  \twodigits{\count0}%
-  \multiply\count0 by 60% The minute when this hour started
-  \advance\count1 by -\count0% Minutes since this hour started
-  :\twodigits{\count1}%
-}}
-
+  \count1=\count0 % Hours since midnight
+  \multiply\count0 by 60 % Minutes from midnight to top of hour
+  \count2=\time
+  \advance\count2 by -\count0 % Minutes since the hour
+  \the\year-\twodigits{\month}-\twodigits{\day} \twodigits{\count1}:\twodigits{\count2}
+}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1\relax}
 
 % utf8-t1 requires \bgroup and \loop
