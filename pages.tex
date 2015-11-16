@@ -2,12 +2,12 @@
 
 \def\nextpage{\vfil\eject\useclearedframethispage}
 \def\nextrectopage{\nextpage\onrectopage}
-\def\nextversopage{\nextpage\ifodd\pageno\line{}\nextpage\else\fi}
-\def\onrectopage{\ifodd\pageno\else\line{}\nextpage\fi}
+\def\nextversopage{\nextpage\ifodd\pageno \line{}\nextpage\else\fi}
+\def\onrectopage{\ifodd\pageno \else\line{}\nextpage\fi}
 
 \def\eject{\par\break}
 
-\def\advancepageno{\ifnum\pageno<0\global\advance\pageno by -1\else\global\advance\pageno by 1\fi}
+\def\advancepageno{\ifnum\pageno<0 \global\advance\pageno by -1 \else\global\advance\pageno by 1 \fi}
 \def\folio{\number\pageno}
 
 \def\facingpages{

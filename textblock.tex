@@ -9,7 +9,7 @@
 % The number of lines of text in each textblock
 \newcount\textblocklines
 
-\def\leftmargin{\ifodd\pageno\spinemargin\else\edgemargin\fi}
+\def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
 % Adjust the textblock to fit the current values of:
 % - \pdfpagewidth

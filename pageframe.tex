@@ -36,11 +36,11 @@
 % Running head and foot for most content pages.
 % We use different heads on even and odd pages.
 % Redefine to suit your formatting needs.
-\def\normalhead{\style{runninghead}\sc\ifodd\pageno\normalrectopagehead\else\normalversopagehead\fi}
+\def\normalhead{\style{runninghead}\sc\ifodd\pageno \normalrectopagehead\else\normalversopagehead\fi}
 % No foot on normal pages
 \def\normalfoot{\line{}}
 % Recto pages: title at spine margin, page number at edge margin
-\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\folio}
+\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\folio }
 % Verso pages: page number at edge margin, author name at spine margin
 \def\normalversopagehead{\style{runninghead}\sc\folio\hfil\author}
 
