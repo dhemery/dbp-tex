@@ -5,6 +5,13 @@
 \newdimen\fineprintsize
 \newdimen\runningheadsize
 
+\def\space{ }
+\def\nbsp{~}
+\def\enspace{\hskip.5em\relax} \def\nbenspace{\kern.5em }
+\def\thinspace{\hskip.2em\relax} \def\nbthinspace{\kern.2em }
+\def\hairspace{\hskip.1em\relax} \def\nbhairspace{\kern.1em }
+\def\,{\thinspace}
+
 \def\leadin#1{\skipline\nobreak\noindent{\sc #1}}
 \def\emph#1{{\it #1\/}}
 
@@ -21,6 +28,23 @@
   \newstyle{runninghead}{\runningheadfamily}{\runningheadopticalsize}{osf}{\the\runningheadsize}%
 }
 
+\def\englishspacing{
+  \sfcode`\.=3000
+  \sfcode`\?=3000
+  \sfcode`\!=3000
+  \sfcode`\:=2000
+  \sfcode`\;=1500
+  \sfcode`\,=1250
+}
+
+\def\frenchspacing{
+  \sfcode`\.=1000
+  \sfcode`\?=1000
+  \sfcode`\!=1000
+  \sfcode`\:=1000
+  \sfcode`\;=1000
+  \sfcode`\,=1000
+}
 % Adjust layout parameters to fit the current values of:
 % - \leading
 % - \bodytextsize
@@ -29,3 +53,11 @@
   \fittextblock
   \fitlogo
 }
+
+\aheadsize=36pt
+\bheadsize=24pt
+\cheadsize=18pt
+\fineprintsize=10pt
+\runningheadsize=8pt
+
+\frenchspacing

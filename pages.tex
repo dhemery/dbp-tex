@@ -5,12 +5,39 @@
 \def\nextversopage{\nextpage\ifodd\pageno\line{}\nextpage\else\fi}
 \def\onrectopage{\ifodd\pageno\else\line{}\nextpage\fi}
 
-% Breaking pages
-\def\break{\penalty-10000 }
-\def\nobreak{\penalty10000 }
 \def\eject{\par\break}
 
 \def\advancepageno{\ifnum\pageno<0\global\advance\pageno by -1\else\global\advance\pageno by 1\fi}
 \def\folio{\number\pageno}
 
+\def\facingpages{
+  \hoffset=\leftmargin
+  \shipout\page
+  \userunningpageframe
+  \advancepageno
+}
+
+\def\page{
+  \vbox{
+    \headline
+    \textblock
+    \footline
+  }
+}
+
+\def\textblock{
+  \vbox to \vsize{
+    \boxmaxdepth=\maxdepth
+    \unvbox255
+  }
+}
+
 \pageno=1
+\output{\facingpages}
+
+\brokenpenalty=100
+\interlinepenalty=0
+\clubpenalty=0 % Bringhurst says don't worry about these.
+\widowpenalty=700
+\predisplaypenalty=10000
+\displaywidowpenalty=50
