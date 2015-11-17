@@ -1,4 +1,8 @@
-\countdef\pageno=0 % TeX writes \count0 to the log when shipping a page out
+% TeX writes \count0 and \count1 to the log when it ships a
+% page. So the log will give the current page number and
+% the total page count.
+\countdef\pageno=0
+\countdef\pagecount=1
 
 \def\nextpage{\vfil\eject\useclearedframethispage}
 \def\nextrectopage{\nextpage\onrectopage}
@@ -7,34 +11,11 @@
 
 \def\eject{\par\break}
 
-\def\advancepageno{\ifnum\pageno<0 \global\advance\pageno by -1 \else\global\advance\pageno by 1 \fi}
+\def\advancepageno{\global\advance\pageno by 1 \global\advance\pagecount by 1 }
 \def\folio{\number\pageno}
 
-\def\facingpages{
-  \hoffset=\leftmargin
-  \shipout\page
-  \userunningpageframe
-  \advancepageno
-  \afteroutput
-}
-
-\def\page{
-  \vbox{
-    \headline
-    \textblock
-    \footline
-  }
-}
-
-\def\textblock{
-  \vbox to \vsize{
-    \boxmaxdepth=\maxdepth
-    \unvbox255
-  }
-}
-
-\pageno=1
-\output{\facingpages}
+\pageno=0
+\pagecount=0
 
 \brokenpenalty=100
 \interlinepenalty=0

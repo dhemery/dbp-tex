@@ -2,23 +2,26 @@
 \newcount\sinklines
 
 \def\frontmatter{
-  \nextrectopage
   \normalbaselines
-  \global\pageno=-1
+  \global\pageno=1
+  \global\pagecount=1
   \useemptypageframe
 }
 
 \def\mainmatter{
-  \beginspreads
   \nextrectopage
+  \beginbalancedspreads
   \normalbaselines
   \global\pageno=1
   \usenormalpageframe
 }
 
 \def\backmatter{
-  \endspreads
-  \frontmatter
+  \nextrectopage
+  \global\pageno=\pagecount
+  \endbalancedspreads
+  \normalbaselines
+  \useemptypageframe
 }
 
 \def\endbook{\nextrectopage\end}

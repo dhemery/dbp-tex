@@ -1,0 +1,50 @@
+\def\facingpages{
+  \hoffset=\leftmargin
+  \shipout\page
+  \userunningpageframe
+  \advancepageno
+  \afteroutput
+}
+
+\def\page{
+  \vbox{
+    \headline
+    \textblock
+    \footline
+  }
+}
+
+\def\textblock{
+  \vbox to \vsize{
+    \boxmaxdepth=\maxdepth
+    \unvbox255
+  }
+}
+
+\def\balancedspreads{
+  \facingpages
+}
+
+\def\switchoutput#1{
+  \output={#1}
+  \message{\string#1 begun}
+  \gdef\afteroutput{}
+}
+
+\def\requestoutput#1{
+  \message{\string#1 requested}
+  \nextpage
+  \ifodd\pageno
+    \gdef\afteroutput{\switchoutput#1}
+  \else
+    \switchoutput#1
+  \fi
+}
+
+\def\afteroutput{}
+
+\def\beginbalancedspreads{\requestoutput\balancedspreads}
+
+\def\endbalancedspreads{\requestoutput\facingpages}
+
+\output{\facingpages}

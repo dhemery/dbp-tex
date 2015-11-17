@@ -17,10 +17,11 @@
   \previewtitleblock{#1}{#2}
   \centerline{Turn the page for a preview}
   \vfil
+  \beginbalancedspreads
 }
 
 \def\availablenow#1#2{
-  \beginspreads
+  \endbalancedspreads
   \nextrectopage
   \line{}
   \vfil
@@ -29,5 +30,4 @@
   \vfil
   \centerline{\linelogo}
   \vfil
-  \endspreads
 }
