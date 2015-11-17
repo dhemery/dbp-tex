@@ -1,9 +1,26 @@
 % How many lines down the page to place \sink titles.
 \newcount\sinklines
 
-\def\frontmatter{\nextrectopage\normalbaselines\global\pageno=-1 \useemptypageframe}
-\def\mainmatter{\nextrectopage\normalbaselines\global\pageno=1 \usenormalpageframe}
-\def\backmatter{\frontmatter}
+\def\frontmatter{
+  \nextrectopage
+  \normalbaselines
+  \global\pageno=-1
+  \useemptypageframe
+}
+
+\def\mainmatter{
+  \beginspreads
+  \nextrectopage
+  \normalbaselines
+  \global\pageno=1
+  \usenormalpageframe
+}
+
+\def\backmatter{
+  \endspreads
+  \frontmatter
+}
+
 \def\endbook{\nextrectopage\end}
 
 \def\part#1{

@@ -1,0 +1,37 @@
+\def\continuingoutputroutine{
+  \gdef\afteroutput{}
+}
+\def\afteroutput{}
+
+\def\balancedspreads{
+  \facingpages
+}
+
+\def\beginspreads{
+  \nextpage
+  \ifodd\pageno % Spreads must begin on an even page
+    \message{Beginning balanced spreads after page \the\pageno}
+    \gdef\afteroutput{
+      \output={\balancedspreads}
+      \gdef\afteroutput{\continuingoutputroutine}
+    }
+  \else
+    \message{Beginning balanced spreads on page \the\pageno}
+    \output={\balancedspreads}
+    \gdef\afteroutput{\continuingoutputroutine}
+  \fi
+}
+
+\def\endspreads{
+  \ifodd\pageno % spreads must end on an even page
+    \message{Resuming facing pages after page \the\pageno }
+    \gdef\afteroutput{
+      \output={\facingpages}
+      \gdef\afternextoutput{\continuingoutputroutine}
+    }
+  \else
+    \message{Resuming facing pages on page \the\pageno }
+    \output={\balancedspreads}
+    \gdef\afteroutput{\continuingoutputroutine}
+  \fi
+}
