@@ -1,10 +1,6 @@
 \newtoks\head
 \newtoks\foot
 
-\def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
-\def\footline{\vbox to 0pt{\positionfoot\line{\the\foot}\vss\nointerlineskip}}
-\def\positionhead{\vskip.33333\leading\vskip-\headskip}
-\def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
 % Place head two lines above first baseline
 \def\headskip{2\leading}
 % Place foot two lines below the textblock's last baseline

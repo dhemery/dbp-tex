@@ -25,9 +25,15 @@
   \facingpages
 }
 
-\def\switchoutput#1{
+\def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
+\def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\style{runninghead}\routinename\hss}\the\foot}\vss\nointerlineskip}}
+\def\positionhead{\vskip.33333\leading\vskip-\headskip}
+\def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
+
+\def\setoutput#1{
   \output={#1}
-  \message{\string#1 begun}
+  \gdef\routinename{\string#1}
+  \message{\routinename\ begun}
   \gdef\afteroutput{}
 }
 
@@ -35,9 +41,9 @@
   \message{\string#1 requested}
   \nextpage
   \ifodd\pageno
-    \gdef\afteroutput{\switchoutput#1}
+    \gdef\afteroutput{\setoutput#1}
   \else
-    \switchoutput#1
+    \setoutput#1
   \fi
 }
 
@@ -47,4 +53,4 @@
 
 \def\endbalancedspreads{\requestoutput\facingpages}
 
-\output{\facingpages}
+\setoutput{\facingpages}
