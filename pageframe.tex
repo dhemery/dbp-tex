@@ -25,7 +25,7 @@
 % Running head and foot for display pages
 % (pages that begin with a major display item such as a part or chapter title)
 \def\displayhead{\line{}}
-\def\displayfoot{\style{runninghead}\sc\hfil\folio\hfil}
+\def\displayfoot{\style{runninghead}\sc\hfil\the\folio\hfil}
 
 % Running head and foot after user calls \useemptypageframe.
 % By default, this format uses empty frames for frontmatter and backmatter pages.
@@ -40,9 +40,9 @@
 % No foot on normal pages
 \def\normalfoot{\line{}}
 % Recto pages: title at spine margin, page number at edge margin
-\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\folio }
+\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\the\folio }
 % Verso pages: page number at edge margin, author name at spine margin
-\def\normalversopagehead{\style{runninghead}\sc\folio\hfil\author}
+\def\normalversopagehead{\style{runninghead}\sc\the\folio\hfil\author}
 
 \def\useemptypageframe{
   \gdef\runninghead{\emptyhead}

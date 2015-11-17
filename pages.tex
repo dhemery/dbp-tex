@@ -3,6 +3,7 @@
 % the total page count.
 \countdef\pageno=0
 \countdef\pagecount=1
+\newtoks\folio
 
 \def\nextpage{\vfil\eject\useclearedframethispage}
 \def\nextrectopage{\nextpage\onrectopage}
@@ -12,10 +13,6 @@
 \def\eject{\par\break}
 
 \def\advancepageno{\global\advance\pageno by 1 \global\advance\pagecount by 1 }
-\def\folio{\number\pageno}
-
-\pageno=0
-\pagecount=0
 
 \brokenpenalty=100
 \interlinepenalty=0
