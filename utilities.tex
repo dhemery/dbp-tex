@@ -1,25 +1,11 @@
-\countdef\nextcountregister=10 \nextcountregister=11
-
-% TODO: Before allocating a register, verify that it is available
-\def\newcount#1{\global\countdef#1=\nextcountregister \advance\nextcountregister by 1}
-\newcount\nextboxregister \nextboxregister=10
-\newcount\nextdimenregister \nextdimenregister=10
-\newcount\nextskipregister \nextskipregister=10
-\newcount\nexttoksregister \nexttoksregister=10
-
-% TODO: Before allocating a register, verify that it is available
-\def\newdimen#1{\global\dimendef#1=\nextdimenregister \advance\nextdimenregister by 1}
-\def\newskip#1{\global\skipdef#1=\nextskipregister \advance\nextskipregister by 1}
-\def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1}
-
 \def\timestamp{{
   \count0=\time % Minutes since midnight
   \divide\count0 by 60 % Hours since midnight
   \count1=\count0 % Hours since midnight
   \multiply\count0 by 60 % Minutes from midnight to top of hour
   \count2=\time
-  \advance\count2 by -\count0 % Minutes since the hour
-  \the\year-\twodigits{\month}-\twodigits{\day} \twodigits{\count1}:\twodigits{\count2}
+  \advance\count2 by -\count0 % Minutes since top of hour
+  \the\year-\twodigits{\month}-\twodigits{\day} \twodigits{\count1 }:\twodigits{\count2 }
 }}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1\relax}
 

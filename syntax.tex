@@ -13,7 +13,6 @@
 
 \catcode`\^^M=5   % treat return as end of line
 \catcode`\^^@=9   % char 0 is ignored
-\catcode`\^^?=15  % char 255 is invalid TODO: Why?
 \catcode`\^^I=10  % tab acts as space
 \catcode`\^^L=13  % form feed is a control symbol
 
@@ -27,7 +26,6 @@
 % Tilde acts as nonbreaking space (aka "tie")
  \def~{\penalty10000\ }
 
-% TODO: What other basic syntax macros should I borrow from plain TeX?
 \def\'#1{{\accent"13 #1}}
 \chardef\$=`\$
 
