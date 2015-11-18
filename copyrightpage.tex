@@ -1,30 +1,24 @@
 \def\copyrightpage{{
   \nextpage
-  \bookinfo{\title}
+  \parskip=\leading
+  \bookinfo{\the\title}
 
   \centered
 
-  \skipline
-  Published by Driscoll Brook Press\par
-  www.DriscollBrookPress.com
+  Published by \the\publisher\break
+  \the\publisherurl
 
   \style{fineprint}
   \tightbaselines
 
-  \skipline
-  \pubrights
+  \the\copyrightinfo
 
-  \skipline
-  \pubisbns
-
-  \skipline
   All rights reserved.
   No part of this book may be reproduced or used in any manner
   without the express written permission of the publisher
   except for the use of brief
   quotations in a book review.
 
-  \skipline
   This is a work of fiction.
   Names, characters, businesses, places, events and incidents
   are either the products of the author's imagination
@@ -33,6 +27,5 @@
   or actual events
   is purely coincidental.
 
-  \skipline
   \timestamp\par
 }}

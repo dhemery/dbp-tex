@@ -1,16 +1,21 @@
-\def\sinkbooktitle{\sink{\raggedspine\booktitle{\title}}}
+\def\titlepageline#1#2{{
+  \style{#1}
+  \raggedspine
+  \tightbaselines
+  \tl
+  \uppercase\expandafter{#2}
+  \par
+}}
 
 \def\halftitlepage{
   \nextrectopage
-  \sinkbooktitle
+  \sink{\titlepageline{booktitle}{\the\title}}
   \vfil
 }
 
 \def\titlepage{
-  \nextrectopage
-  \sinkbooktitle
-  \vfil
-  \rightline{\authorname{\author}}
+  \halftitlepage
+  \titlepageline{authorname}{\the\author}
   \vfil
   \rightline{\rightlogo}
 }

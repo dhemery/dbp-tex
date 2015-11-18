@@ -36,9 +36,9 @@
 % No foot on normal pages
 \def\normalfoot{\line{}}
 % Recto pages: title at spine margin, page number at edge margin
-\def\normalrectopagehead{\style{runninghead}\sc\title\hfil\the\folio }
+\def\normalrectopagehead{\style{runninghead}\sc\the\title\hfil\the\folio }
 % Verso pages: page number at edge margin, author name at spine margin
-\def\normalversopagehead{\style{runninghead}\sc\the\folio\hfil\author}
+\def\normalversopagehead{\style{runninghead}\sc\the\folio\hfil\the\author}
 
 \def\useemptypageframe{
   \gdef\runninghead{\emptyhead}

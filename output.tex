@@ -3,7 +3,6 @@
   \shipout\page
   \userunningpageframe
   \advancepageno
-  \afteroutput
 }
 
 \def\page{
@@ -33,24 +32,4 @@
 \def\setoutput#1{
   \output={#1}
   \gdef\routinename{\string#1}
-  \message{\routinename\ begun}
-  \gdef\afteroutput{}
 }
-
-\def\requestoutput#1{
-  \message{\string#1 requested}
-  \nextpage
-  \ifodd\pageno
-    \gdef\afteroutput{\setoutput#1}
-  \else
-    \setoutput#1
-  \fi
-}
-
-\def\afteroutput{}
-
-\def\beginbalancedspreads{\requestoutput\balancedspreads}
-
-\def\endbalancedspreads{\requestoutput\facingpages}
-
-\setoutput{\facingpages}

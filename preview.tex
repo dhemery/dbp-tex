@@ -1,33 +1,50 @@
-\def\previewtitleblock#1#2{
+\newtoks\previewtitle
+\newtoks\previewauthor
+
+\def\previewtitleline#1#2{{
+  \style{#1}
+  \centered
+  \tightbaselines
+  \tl
+  \uppercase\expandafter{#2}
+  \par
+}}
+
+\def\previewtitleblock{
   \vfil
-  {\centered\booktitle{#1}\par}
+  \previewtitleline{booktitle}{\the\previewtitle}
   \skipline
   \centerline{by}
   \skipline
-  \centerline{\authorname{#2}}
+  \previewtitleline{authorname}{\the\previewauthor}
   \vfil
 }
 
-\def\announcing#1#2{
+\def\beginpreview{
   \nextrectopage
   \line{}
   \vfil
   \centerline{\sc Driscoll Brook Press}
   \centerline{proudly presents}
-  \previewtitleblock{#1}{#2}
+  \previewtitleblock
   \centerline{Turn the page for a preview}
   \vfil
-  \beginbalancedspreads
+  \setoutput\balancedspreads
+  \nextrectopage
+  \sink{\chaptertitle{\the\previewtitle}}
 }
 
-\def\availablenow#1#2{
-  \endbalancedspreads
+\def\endpreview{
+  \setoutput\facingpages
   \nextrectopage
   \line{}
   \vfil
-  \previewtitleblock{#1}{#2}
+  \previewtitleblock
   \centerline{Available now at your favorite retailers}
   \vfil
   \centerline{\linelogo}
   \vfil
 }
+
+\previewtitle={\string\previewtitle TBD}
+\previewauthor={\string\previewauthor TBD}

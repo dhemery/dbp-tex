@@ -5,27 +5,27 @@
 \def\logobar{\hrule height\logobarthickness}
 \def\logolineskip{\vskip\logolinespacing}
 
-\def\logostack#1#2{%
-  \halign{##&#1###2&##\cr%
-    &DRISCOLL&\cr%
-    &BROOK&\cr%
-    &PRESS&\cr%
-  }%
+\def\logostack#1#2{
+  \halign{##&#1###2&##\cr
+    &DRISCOLL&\cr
+    &BROOK&\cr
+    &PRESS&\cr
+  }
 }
 
 \def\logo#1{
-  \begingroup%
-  \style{logo}%
-  \offinterlineskip%
-  \lineskip=\logolinespacing%
-  \vbox{%
-    \logobar%
-    \logolineskip%
-    #1%
-    \logolineskip%
-    \logobar%
-    }%
-  \endgroup%
+  \begingroup
+  \style{logo}
+  \offinterlineskip
+  \lineskip=\logolinespacing
+  \vbox{
+    \logobar
+    \logolineskip
+    #1
+    \logolineskip
+    \logobar
+    }
+  \endgroup
 }
 
 \def\leftlogo{\logo{\logostack{}{\hss}}}

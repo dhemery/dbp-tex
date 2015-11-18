@@ -5,13 +5,14 @@
   \global\pageno=1
   \global\pagecount=1
   \global\folio={\romannumeral\pageno }
+  \setoutput\facingpages
   \useemptypageframe
   \normalbaselines
 }
 
 \def\mainmatter{
+  \setoutput\balancedspreads
   \nextrectopage
-  \beginbalancedspreads
   \global\pageno=1
   \global\folio={\number\pageno }
   \usenormalpageframe
@@ -19,8 +20,8 @@
 }
 
 \def\backmatter{
+  \setoutput\facingpages
   \nextrectopage
-  \endbalancedspreads
   \global\pageno=\pagecount
   \global\folio={\romannumeral\pageno }
   \useemptypageframe
@@ -31,7 +32,7 @@
 
 \def\part#1{
   \nextpartpage
-  \sink{\raggedspine\parttitle{#1}}
+  \sink{\parttitle{#1}}
   \nextrectopage
 }
 \def\nextpartpage{\nextrectopage}
@@ -39,7 +40,7 @@
 \def\chapter#1{
   \nextchapterpage
   \usedisplayframethispage
-  \sink{\raggedspine\chaptertitle{#1}}
+  \sink{\chaptertitle{#1}}
 }
 \def\nextchapterpage{\nextpage}
 \def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
@@ -48,7 +49,7 @@
 \def\bookinfo#1{
   \nextpage
   \useemptypageframe
-  {\centered\chaptertitle{#1}}
+  \infopagetitle{#1}
 }
 
 % Boxes the given content and sinks its baseline \sinklines
@@ -61,9 +62,8 @@
   \vbox{#1}
 }}
 
-\def\booktitle#1{{\style{booktitle}\tightbaselines\uppercase\expandafter{#1}\par}}
-\def\authorname#1{{\style{authorname}\tightbaselines\uppercase\expandafter{#1}\par}}
-\def\parttitle#1{{\style{parttitle}\sc\tightbaselines#1\par}}
-\def\chaptertitle#1{{\style{chaptertitle}\sc\tightbaselines#1\par}}
+\def\parttitle#1{{\raggedspine\style{parttitle}\sc\tightbaselines#1\par}}
+\def\chaptertitle#1{{\raggedspine\style{chaptertitle}\sc\tightbaselines#1\par}}
+\def\infopagetitle#1{{\centered\style{chaptertitle}\sc\tightbaselines#1\par}}
 
 \sinklines=11
