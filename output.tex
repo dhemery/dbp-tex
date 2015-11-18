@@ -1,4 +1,4 @@
-\def\facingpages{
+\def\shiponepage{
   \hoffset=\leftmargin
   \shipout\page
   \userunningpageframe
@@ -20,16 +20,17 @@
   }
 }
 
+\def\facingpages{
+  \gdef\routinename{\string\facingpages}
+  \shiponepage
+}
+
 \def\balancedspreads{
-  \facingpages
+  \gdef\routinename{\string\balancedspreads}
+  \shiponepage
 }
 
 \def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
 \def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\style{runninghead}\routinename\hss}\the\foot}\vss\nointerlineskip}}
 \def\positionhead{\vskip.33333\leading\vskip-\headskip}
 \def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
-
-\def\setoutput#1{
-  \output={#1}
-  \gdef\routinename{\string#1}
-}

@@ -29,13 +29,13 @@
   \previewtitleblock
   \centerline{Turn the page for a preview}
   \vfil
-  \setoutput\balancedspreads
+  \output={\balancedspreads}
   \nextrectopage
   \sink{\chaptertitle{\the\previewtitle}}
 }
 
 \def\endpreview{
-  \setoutput\facingpages
+  \output={\facingpages}
   \nextrectopage
   \line{}
   \vfil

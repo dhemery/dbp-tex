@@ -5,13 +5,13 @@
   \global\pageno=1
   \global\pagecount=1
   \global\folio={\romannumeral\pageno }
-  \setoutput\facingpages
+  \output={\facingpages}
   \useemptypageframe
   \normalbaselines
 }
 
 \def\mainmatter{
-  \setoutput\balancedspreads
+  \output={\balancedspreads}
   \nextrectopage
   \global\pageno=1
   \global\folio={\number\pageno }
@@ -20,7 +20,7 @@
 }
 
 \def\backmatter{
-  \setoutput\facingpages
+  \output={\facingpages}
   \nextrectopage
   \global\pageno=\pagecount
   \global\folio={\romannumeral\pageno }
