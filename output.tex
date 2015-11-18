@@ -27,10 +27,16 @@
 
 \def\balancedspreads{
   \gdef\routinename{\string\balancedspreads}
+  \ifnum\outputpenalty>0
+    \ifnum\outputpenalty<10000
+      \gdef\sadness{\the\outputpenalty}
+    \fi
+  \fi
   \shiponepage
+  \gdef\sadness{}
 }
 
 \def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
-\def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\style{runninghead}\routinename\hss}\the\foot}\vss\nointerlineskip}}
+\def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\style{runninghead}\routinename\ \sadness\hss}\the\foot}\vss\nointerlineskip}}
 \def\positionhead{\vskip.33333\leading\vskip-\headskip}
 \def\positionfoot{\vskip-1.33333\leading\vskip\footskip}

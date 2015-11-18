@@ -14,9 +14,7 @@
 
 \def\advancepageno{\global\advance\pageno by 1 \global\advance\pagecount by 1 }
 
-\brokenpenalty=100
-\interlinepenalty=0
-\clubpenalty=0 % Bringhurst says don't worry about these.
-\widowpenalty=700
-\predisplaypenalty=10000
-\displaywidowpenalty=50
+\interlinepenalty=1 % Okay to break between lines
+\clubpenalty=2 % Bringhurst says don't worry about these
+\brokenpenalty=4 % For leaving hyphen on last line of page
+\widowpenalty=8 % For breaking before last line of par
