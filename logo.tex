@@ -15,7 +15,7 @@
 
 \def\logo#1{
   \begingroup
-  \style{logo}
+  \logostyle
   \offinterlineskip
   \lineskip=\logolinespacing
   \vbox{
@@ -38,5 +38,6 @@
   \logolinespacing=.25\logotextsize
   \logobarthickness=0.25\logolinespacing
   \newfamily{proxima}{ProximaNova}{Regular}{It}{Bold}{Regular}
-  \newstyle{logo}{proxima}{}{osf}{\the\logotextsize}
+  \newintent{logotext}{proxima}{}{\logotextsize}
+  \newstyle{logostyle}{logotext}{rg}{rm}{mv}{os}
 }

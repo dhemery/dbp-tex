@@ -1,9 +1,9 @@
 \newdimen\aheadsize
 \newdimen\bheadsize
 \newdimen\cheadsize
-\newdimen\bodytextsize
-\newdimen\fineprintsize
-\newdimen\runningheadsize
+\newdimen\textsize
+\newdimen\smalltextsize
+\newdimen\captionsize
 
 \def\space{ }
 \def\nbsp{~}
@@ -17,16 +17,6 @@
 
 % Render as lowercase small caps
 \def\allsmallcaps#1{{\sc\lowercase{#1}}}
-
-\def\definestyles{%
-  \newstyle{booktitle}{\booktitlefamily}{\aheadopticalsize}{tlf}{\the\aheadsize}
-  \newstyle{authorname}{\authornamefamily}{\bheadopticalsize}{tlf}{\the\bheadsize}
-  \newstyle{parttitle}{\parttitlefamily}{\aheadopticalsize}{osf}{\the\aheadsize}
-  \newstyle{chaptertitle}{\chaptertitlefamily}{\cheadopticalsize}{osf}{\the\cheadsize}
-  \newstyle{bodytext}{\bodytextfamily}{\bodytextopticalsize}{osf}{\the\bodytextsize}
-  \newstyle{fineprint}{\fineprintfamily}{\fineprintopticalsize}{tlf}{\the\fineprintsize}
-  \newstyle{runninghead}{\runningheadfamily}{\runningheadopticalsize}{osf}{\the\runningheadsize}
-}
 
 \def\englishspacing{
   \sfcode`\.=3000
@@ -45,9 +35,10 @@
   \sfcode`\;=1000
   \sfcode`\,=1000
 }
+
 % Adjust layout parameters to fit the current values of:
 % - \leading
-% - \bodytextsize
+% - \textsize
 \def\fittext{
   \fitparagraphs
   \fittextblock
@@ -57,7 +48,8 @@
 \aheadsize=36pt
 \bheadsize=24pt
 \cheadsize=18pt
-\fineprintsize=10pt
-\runningheadsize=8pt
+\textsize=11pt
+\smalltextsize=10pt
+\captionsize=8pt
 
 \frenchspacing

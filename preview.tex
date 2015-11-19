@@ -2,21 +2,19 @@
 \newtoks\previewauthor
 
 \def\previewtitleline#1#2{{
-  \style{#1}
   \centered
   \tightbaselines
-  \tl
   \uppercase\expandafter{#2}
   \par
 }}
 
 \def\previewtitleblock{
   \vfil
-  \previewtitleline{booktitle}{\the\previewtitle}
+  \previewtitleline{\booktitlestyle\the\previewtitle}
   \skipline
   \centerline{by}
   \skipline
-  \previewtitleline{authorname}{\the\previewauthor}
+  \previewtitleline{\authornamestyle\the\previewauthor}
   \vfil
 }
 

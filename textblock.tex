@@ -17,15 +17,15 @@
 % - \spinemargin
 % - \textblocklines
 % - \leading
-% - \bodytextsize
+% - \textsize
 \def\fittextblock{
   \edgemargin=\pdfpagewidth
     \advance\edgemargin by -\hsize
     \advance\edgemargin by -\spinemargin
-  \topskip=\bodytextsize
+  \topskip=\textsize
   \splittopskip=\topskip
   \maxdepth=\leading
-    \advance\maxdepth by -\bodytextsize
+    \advance\maxdepth by -\textsize
   \splitmaxdepth=\maxdepth
   \vsize=\textblocklines\leading
     \advance\vsize by -\maxdepth

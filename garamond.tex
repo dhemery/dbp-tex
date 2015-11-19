@@ -13,20 +13,18 @@
 \def\garamond{
   \newfamily{garamond}{GaramondPremrPro}{}{It}{Bd}{}
 
-  \gdef\aheadopticalsize{Disp}
-  \gdef\bheadopticalsize{Disp}
-  \gdef\cheadopticalsize{Subh}
-  \gdef\bodytextopticalsize{}
-  \gdef\fineprintopticalsize{}
-  \gdef\runningheadopticalsize{Capt}
+  \newintent{ahead}{garamond}{Disp}{\aheadsize}
+  \newintent{bhead}{garamond}{Disp}{\bheadsize}
+  \newintent{chead}{garamond}{Subh}{\cheadsize}
+  \newintent{text}{garamond}{}{\textsize}
+  \newintent{smalltext}{garamond}{}{\smalltextsize}
+  \newintent{caption}{garamond}{Capt}{\captionsize}
 
-  \gdef\booktitlefamily{garamond}
-  \gdef\authornamefamily{garamond}
-  \gdef\parttitlefamily{garamond}
-  \gdef\chaptertitlefamily{garamond}
-  \gdef\bodytextfamily{garamond}
-  \gdef\fineprintfamily{garamond}
-  \gdef\runningheadfamily{garamond}
-  \definestyles
-  \style{bodytext}
+  \newstyle{booktitlestyle}{ahead}{rg}{rm}{nv}{os}
+  \newstyle{authornamestyle}{bhead}{rg}{rm}{nv}{os}
+  \newstyle{parttitlestyle}{ahead}{rg}{rm}{nv}{os}
+  \newstyle{chaptertitlestyle}{chead}{rg}{rm}{nv}{os}
+  \newstyle{bodystyle}{text}{rg}{rm}{nv}{os}
+  \newstyle{fineprintstyle}{smalltext}{rg}{rm}{nv}{os}
+  \newstyle{runningheadstyle}{caption}{rg}{rm}{nv}{os}
 }
