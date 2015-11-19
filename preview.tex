@@ -1,22 +1,21 @@
 \newtoks\previewtitle
 \newtoks\previewauthor
 
-\def\previewtitleline#1#2{{
+\def\previewtitleblock{{
+  \vfil
   \centered
   \tightbaselines
-  \uppercase\expandafter{#2}
+  \booktitlestyle
+  \uppercase\expandafter{\the\previewtitle}
   \par
-}}
-
-\def\previewtitleblock{
-  \vfil
-  \previewtitleline{\booktitlestyle\the\previewtitle}
   \skipline
+  \bodystyle
   \centerline{by}
   \skipline
-  \previewtitleline{\authornamestyle\the\previewauthor}
+  \authornamestyle
+  \the\previewauthor
   \vfil
-}
+}}
 
 \def\beginpreview{
   \nextrectopage

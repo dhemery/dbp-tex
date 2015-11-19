@@ -6,7 +6,7 @@
 \countdef\nextskipregister=13 \nextskipregister=256
 \countdef\nexttoksregister=14 \nexttoksregister=256
 
-\def\newcount#1{\global\countdef#1=\nextcountregister \advance\nextcountregister by 1 }
-\def\newdimen#1{\global\dimendef#1=\nextdimenregister \advance\nextdimenregister by 1 }
-\def\newskip#1{\global\skipdef#1=\nextskipregister \advance\nextskipregister by 1 }
-\def\newtoks#1{\global\toksdef#1=\nexttoksregister \advance\nexttoksregister by 1 }
+\def\newcount#1{\global\countdef#1=\nextcountregister \global\advance\nextcountregister by 1 }
+\def\newdimen#1{\global\dimendef#1=\nextdimenregister \global\advance\nextdimenregister by 1 }
+\def\newskip#1{\global\skipdef#1=\nextskipregister \global\advance\nextskipregister by 1 }
+\def\newtoks#1{\global\toksdef#1=\nexttoksregister \global\advance\nexttoksregister by 1 }
