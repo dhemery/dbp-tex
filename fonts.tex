@@ -5,7 +5,7 @@
 
 \catcode`\@=11
 
-\def\fonttag{\fontintent W\fontweight S\fontslant V\fontvariant F\fontfigures E\fontencoding}
+\def\fonttag{\scheme W\fontweight S\fontslant V\fontvariant F\fontfigures E\fontencoding}
 \def\fontspec{\fontfilename\optionalwithprefix{ at }{\fontsize}}
 \def\fontfilename{%
   \typefaceftag%
@@ -14,7 +14,7 @@
   \optionalwithprefix{-}{\fontvariantftag}%
   -\fontencodingftag%
 }
-\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\fontintentftag}{\fontrgrmftag}}
+\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\schemeftag}{\fontrgrmftag}}
 \def\fontweightftag{\csname @\typeface @\fontweight @ftag\endcsname}
 \def\fontslantftag{\csname @\typeface @\fontslant @ftag\endcsname}
 \def\fontvariantftag{\csname\fontvariant variantftag\endcsname}
@@ -45,27 +45,27 @@
   \expandafter\xdef\csname @#1@rm@ftag\endcsname{}
 }
 
-% #1: the intent name
-% #2: the typeface to use for this intent
-% #3: the tag that identifies the intent's optical size in font file names
+% #1: the scheme name
+% #2: the typeface to use for this scheme
+% #3: the tag that identifies the scheme's optical size in font file names
 % #4: the font size (empty to use the font file's default size)
-\def\newintent#1#2#3#4{
+\def\newscheme#1#2#3#4{
   \expandafter\xdef\csname @#1@typeface\endcsname{#2}
   \expandafter\xdef\csname @#1@ftag\endcsname{#3}
   \expandafter\xdef\csname @#1@size\endcsname{\the#4}
 }
 
 % #1: the style name
-% #2: the intent to use for this style
+% #2: the scheme to use for this style
 % #3: the style's default font weight
 % #4: the style's default font slant
 % #5: the style's default variant
 % #6: the style's default figure style
 \def\newstyle#1#2#3#4#5#6{ % #1: a name for this style
-  \expandafter\xdef\csname @#1@intent\endcsname{#2}
+  \expandafter\xdef\csname @#1@scheme\endcsname{#2}
   \expandafter\gdef\csname#1\endcsname{%
     \edef\fontstyle{#1}%
-    \withfontintent{\csname @\fontstyle @intent\endcsname}%
+    \withscheme{\csname @\fontstyle @scheme\endcsname}%
     \withfontweight{#3}%
     \withfontslant{#4}%
     \withfontvariant{#5}%
@@ -75,11 +75,11 @@
   }
 }
 
-\def\withfontintent#1{%
-  \edef\fontintent{#1}%
-  \edef\fontintentftag{\csname @\fontintent @ftag\endcsname}%
-  \withfontsize{\csname @\fontintent @size\endcsname}%
-  \withtypeface{\csname @\fontintent @typeface\endcsname}%
+\def\withscheme#1{%
+  \edef\scheme{#1}%
+  \edef\schemeftag{\csname @\scheme @ftag\endcsname}%
+  \withfontsize{\csname @\scheme @size\endcsname}%
+  \withtypeface{\csname @\scheme @typeface\endcsname}%
 }
 
 \def\withtypeface#1{
