@@ -8,15 +8,15 @@
 \def\fonttag{\fontintent W\fontweight S\fontslant V\fontvariant F\fontfigures E\fontencoding}
 \def\fontspec{\fontfilename\optionalwithprefix{ at }{\fontsize}}
 \def\fontfilename{%
-  \fontfamilyftag%
+  \typefaceftag%
   \optionalwithprefix{-}{\fontshapeftag}%
   -\fontfiguresftag%
   \optionalwithprefix{-}{\fontvariantftag}%
   -\fontencodingftag%
 }
 \def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\fontintentftag}{\fontrgrmftag}}
-\def\fontweightftag{\csname @\fontfamily @\fontweight @ftag\endcsname}
-\def\fontslantftag{\csname @\fontfamily @\fontslant @ftag\endcsname}
+\def\fontweightftag{\csname @\typeface @\fontweight @ftag\endcsname}
+\def\fontslantftag{\csname @\typeface @\fontslant @ftag\endcsname}
 \def\fontvariantftag{\csname\fontvariant variantftag\endcsname}
 \def\fontfiguresftag{\csname\fontfigures figuresftag\endcsname}
 \def\fontencodingftag{\csname\fontencoding encodingftag\endcsname}
@@ -30,13 +30,13 @@
 \def\txencodingftag{t1}
 \def\syencodingftag{ts1}
 
-% #1: the family name
-% #2: the tag that identifies the family in font file names
-% #3: the tag (if any) that identifies the regular weight in the family's font file names
-% #4: the tag that identifies italic slant in the family's font file names
-% #5: the tag that identifies bold weight in the family's font file names
-% #6: the tag (if any) that identifies regular roman book style in the family's font file names
-\def\newfamily#1#2#3#4#5#6{
+% #1: the typeface name
+% #2: the tag that identifies the typeface in font file names
+% #3: the tag (if any) that identifies the regular weight in the typeface's font file names
+% #4: the tag that identifies italic slant in the typeface's font file names
+% #5: the tag that identifies bold weight in the typeface's font file names
+% #6: the tag (if any) that identifies regular roman book style in the typeface's font file names
+\def\newtypeface#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@ftag\endcsname{#2}
   \expandafter\xdef\csname @#1@rg@ftag\endcsname{#3}
   \expandafter\xdef\csname @#1@it@ftag\endcsname{#4}
@@ -46,11 +46,11 @@
 }
 
 % #1: the intent name
-% #2: the font family to use for this intent
+% #2: the typeface to use for this intent
 % #3: the tag that identifies the intent's optical size in font file names
 % #4: the font size (empty to use the font file's default size)
 \def\newintent#1#2#3#4{
-  \expandafter\xdef\csname @#1@family\endcsname{#2}
+  \expandafter\xdef\csname @#1@typeface\endcsname{#2}
   \expandafter\xdef\csname @#1@ftag\endcsname{#3}
   \expandafter\xdef\csname @#1@size\endcsname{\the#4}
 }
@@ -79,16 +79,16 @@
   \edef\fontintent{#1}%
   \edef\fontintentftag{\csname @\fontintent @ftag\endcsname}%
   \withfontsize{\csname @\fontintent @size\endcsname}%
-  \withfontfamily{\csname @\fontintent @family\endcsname}%
+  \withtypeface{\csname @\fontintent @typeface\endcsname}%
 }
 
-\def\withfontfamily#1{
-  \edef\fontfamily{#1}%
-  \edef\fontfamilyftag{\csname @\fontfamily @ftag\endcsname}%
-  \edef\fontrgftag{\csname @\fontfamily @rg@ftag\endcsname}%
-  \edef\fontbfftag{\csname @\fontfamily @bf@ftag\endcsname}%
-  \edef\fontitftag{\csname @\fontfamily @it@ftag\endcsname}%
-  \edef\fontrgrmftag{\csname @\fontfamily @rgrm@ftag\endcsname}%
+\def\withtypeface#1{
+  \edef\typeface{#1}%
+  \edef\typefaceftag{\csname @\typeface @ftag\endcsname}%
+  \edef\fontrgftag{\csname @\typeface @rg@ftag\endcsname}%
+  \edef\fontbfftag{\csname @\typeface @bf@ftag\endcsname}%
+  \edef\fontitftag{\csname @\typeface @it@ftag\endcsname}%
+  \edef\fontrgrmftag{\csname @\typeface @rgrm@ftag\endcsname}%
 }
 
 \def\withfontweight#1{\edef\fontweight{#1}}
