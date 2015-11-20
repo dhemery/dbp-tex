@@ -21,13 +21,16 @@
 \def\^^M={\ } % Return
 
 % Form feed acts as \par
- \outer\def\^^L{\par}
-
-% Tilde acts as nonbreaking space (aka "tie")
- \def~{\penalty10000\ }
+\outer\def\^^L{\par}
 
 \def\'#1{{\accent"13 #1}}
 \chardef\$=`\$
+
+\def\break{\penalty-10000 }
+\def\nobreak{\penalty10000 }
+\def\allowbreak{\penalty0 }
+
+\def~{\nobreak\ }
 
 % =0: assignments obey \global prefix
 % <0: all assignments are local (\global prefix ignored)

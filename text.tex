@@ -5,12 +5,15 @@
 \newdimen\smalltextsize
 \newdimen\captionsize
 
+\def\hairspace{\hskip.1em\relax}
+  \def\nbhairspace{\kern.1em }
+\def\thinspace{\hskip.2em\relax}
+  \def\nbthinspace{\kern.2em }
+  \def\,{\thinspace}
 \def\space{ }
-\def\nbsp{~}
-\def\enspace{\hskip.5em\relax} \def\nbenspace{\kern.5em }
-\def\thinspace{\hskip.2em\relax} \def\nbthinspace{\kern.2em }
-\def\hairspace{\hskip.1em\relax} \def\nbhairspace{\kern.1em }
-\def\,{\thinspace}
+\def\quad{\hskip1em\relax}
+\def\enspace{\hskip.5em\relax}
+  \def\nbenspace{\kern.5em }
 
 \def\leadin#1{\skipline\nobreak\noindent{\sc #1}}
 \def\emph#1{{\it #1\/}}
