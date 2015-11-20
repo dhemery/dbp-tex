@@ -8,7 +8,7 @@
   - Intent (caption, text, subhead, display)
 - **family** << style
     - Remove the need for a suffix on these
-    - `\bodystyle` --> `\body`
+    - `\textfont` --> `\body`
     - `\chaptertitle`
     - `\booktitle`
 - **style** = font settings + paragraph settings + …
