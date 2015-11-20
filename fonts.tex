@@ -30,11 +30,11 @@
 \def\syencodingftag{ts1}
 
 % #1: typeface name
-% #2: ftag to select the scheme's typeface
-% #3: ftag (if any) to select the typefac's regular weight (rg)
-% #4: ftag to select the typefac's italic slant (it)
-% #5: ftag to select the typefac's bold weight (bf)
-% #6: ftag (if any) to select the typefac's regular weight, roman slant (rg, rm)
+% #2: ftag to select the typeface
+% #3: ftag (if any) to select the typeface's regular weight (rg)
+% #4: ftag to select the typeface's italic slant (it)
+% #5: ftag to select the typeface's bold weight (bf)
+% #6: ftag (if any) to select the typeface's regular weight, roman slant (rg, rm)
 \def\newtypeface#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@ftag\endcsname{#2}
   \expandafter\xdef\csname @#1@rg@ftag\endcsname{#3}
