@@ -32,38 +32,37 @@
 
 \def\part#1{
   \nextpartpage
-  \sink{\parttitle{#1}}
+  \sink{\parttitlestyle #1}
   \nextrectopage
 }
 \def\nextpartpage{\nextrectopage}
+\def\parttitlestyle{\raggedspine\parttitlefont\tightbaselines}
 
 \def\chapter#1{
   \nextchapterpage
   \usedisplayframethispage
-  \sink{\chaptertitle{#1}}
+  \sink{\chaptertitlestyle #1}
 }
-\def\nextchapterpage{\nextpage}
 \def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
+\def\nextchapterpage{\nextpage}
+\def\chaptertitlestyle{\raggedspine\chaptertitlefont\tightbaselines}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{
   \nextpage
   \useemptypageframe
-  \infopagetitle{#1}
+  {\infopagetitlestyle #1\par}
 }
+\def\infopagetitlestyle{\centered\chaptertitlefont\tightbaselines}
 
 % Boxes the given content and sinks its baseline \sinklines
 % text lines down the page.
 %
 % \sink works only when it is the first content added to a new page.
-\long\def\sink#1{{
+\def\sink#1{{
   \topskip=\sinklines\leading
     \advance\topskip by -\maxdepth
-  \vbox{#1}
+  \vbox{#1\par}
 }}
-
-\def\parttitle#1{{\raggedspine\parttitlefont\tightbaselines#1\par}}
-\def\chaptertitle#1{{\raggedspine\chaptertitlefont\tightbaselines#1\par}}
-\def\infopagetitle#1{{\centered\chaptertitlefont\tightbaselines#1\par}}
 
 \sinklines=11

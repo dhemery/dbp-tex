@@ -1,21 +1,15 @@
-\def\titlepageline#1{
-  \raggedspine
-  \tightbaselines
-  \uppercase\expandafter{#1}
-  \par
-}
-
 \def\halftitlepage{{
   \nextrectopage
-  \booktitlefont
-  \sink{\titlepageline{\the\title}}
+  \raggedspine
+  \sink{\booktitlefont\tightbaselines\uppercase\expandafter{\the\title}}
   \vfil
 }}
 
 \def\titlepage{{
   \halftitlepage
+  \raggedspine
   \authornamefont
-  \titlepageline{\the\author}
+  \uppercase\expandafter{\the\author}
   \vfil
   \rightline{\rightlogo}
 }}

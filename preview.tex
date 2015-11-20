@@ -4,16 +4,11 @@
 \def\previewtitleblock{{
   \vfil
   \centered
-  \tightbaselines
-  \booktitlefont
-  \uppercase\expandafter{\the\previewtitle}
-  \par
+  {\booktitlefont \tightbaselines \the\previewtitle}
   \skipline
-  \textfont
-  \centerline{by}
+  \centerline{\textfont by}
   \skipline
-  \authornamefont
-  \the\previewauthor
+  {\authornamefont \the\previewauthor}
   \vfil
 }}
 
@@ -28,7 +23,7 @@
   \vfil
   \output={\balancedspreads}
   \nextrectopage
-  \sink{\chaptertitle{\the\previewtitle}}
+  \sink{\chaptertitlestyle \the\previewtitle}
 }
 
 \def\endpreview{
