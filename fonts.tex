@@ -35,7 +35,7 @@
 % #3: the tag (if any) that identifies the regular weight in the typeface's font file names
 % #4: the tag that identifies italic slant in the typeface's font file names
 % #5: the tag that identifies bold weight in the typeface's font file names
-% #6: the tag (if any) that identifies regular roman book style in the typeface's font file names
+% #6: the tag (if any) that identifies regular roman book fonts in the typeface's font file names
 \def\newtypeface#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@ftag\endcsname{#2}
   \expandafter\xdef\csname @#1@rg@ftag\endcsname{#3}
@@ -55,17 +55,17 @@
   \expandafter\xdef\csname @#1@size\endcsname{\the#4}
 }
 
-% #1: the style name
-% #2: the scheme to use for this style
-% #3: the style's default font weight
-% #4: the style's default font slant
-% #5: the style's default variant
-% #6: the style's default figure style
-\def\newstyle#1#2#3#4#5#6{ % #1: a name for this style
+% #1: the family name
+% #2: the scheme to use for this family
+% #3: the family's default font weight
+% #4: the family's default font slant
+% #5: the family's default variant
+% #6: the family's default figure style
+\def\newfamily#1#2#3#4#5#6{ % #1: a name for this family
   \expandafter\xdef\csname @#1@scheme\endcsname{#2}
   \expandafter\gdef\csname#1\endcsname{%
-    \edef\fontstyle{#1}%
-    \withscheme{\csname @\fontstyle @scheme\endcsname}%
+    \edef\family{#1}%
+    \withscheme{\csname @\family @scheme\endcsname}%
     \withfontweight{#3}%
     \withfontslant{#4}%
     \withfontvariant{#5}%
@@ -101,8 +101,7 @@
 \def\loadfont#1{%
   \ifcsname#1\endcsname%
   \else%
-    \message{Loading #1 \fontspec}%
-    \global\expandafter\font\csname#1\endcsname=\fontspec %
+    \global\expandafter\font\csname#1\endcsname=\fontspec%
     \makeexpandable{\csname#1\endcsname}%
   \fi%
 }
