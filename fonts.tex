@@ -14,7 +14,7 @@
   \optionalwithprefix{-}{\fontvariantftag}%
   -\fontencodingftag%
 }
-\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\schemeftag}{\fontrgrmftag}}
+\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\schemeftag}{\fontdefaultftag}}
 \def\fontweightftag{\csname @\typeface @\fontweight @ftag\endcsname}
 \def\fontslantftag{\csname @\typeface @\fontslant @ftag\endcsname}
 \def\fontvariantftag{\csname\fontvariant variantftag\endcsname}
@@ -41,9 +41,19 @@
   \expandafter\xdef\csname @#1@rg@ftag\endcsname{#3}
   \expandafter\xdef\csname @#1@it@ftag\endcsname{#4}
   \expandafter\xdef\csname @#1@bf@ftag\endcsname{#5}
-  \expandafter\xdef\csname @#1@rgrm@ftag\endcsname{#6}
+  \expandafter\xdef\csname @#1@default@ftag\endcsname{#6}
   \expandafter\xdef\csname @#1@rm@ftag\endcsname{}
 }
+
+\def\withtypeface#1{
+  \edef\typeface{#1}%
+  \edef\typefaceftag{\csname @\typeface @ftag\endcsname}%
+  \edef\fontrgftag{\csname @\typeface @rg@ftag\endcsname}%
+  \edef\fontbfftag{\csname @\typeface @bf@ftag\endcsname}%
+  \edef\fontitftag{\csname @\typeface @it@ftag\endcsname}%
+  \edef\fontdefaultftag{\csname @\typeface @default@ftag\endcsname}%
+}
+
 
 % #1: the scheme name
 % #2: the typeface to use for this scheme
@@ -53,6 +63,13 @@
   \expandafter\xdef\csname @#1@typeface\endcsname{#2}
   \expandafter\xdef\csname @#1@ftag\endcsname{#3}
   \expandafter\xdef\csname @#1@size\endcsname{\the#4}
+}
+
+\def\withscheme#1{%
+  \edef\scheme{#1}%
+  \edef\schemeftag{\csname @\scheme @ftag\endcsname}%
+  \withfontsize{\csname @\scheme @size\endcsname}%
+  \withtypeface{\csname @\scheme @typeface\endcsname}%
 }
 
 % #1: the family name
@@ -73,22 +90,6 @@
     \withfontencoding{tx}%
     \selectfont%
   }
-}
-
-\def\withscheme#1{%
-  \edef\scheme{#1}%
-  \edef\schemeftag{\csname @\scheme @ftag\endcsname}%
-  \withfontsize{\csname @\scheme @size\endcsname}%
-  \withtypeface{\csname @\scheme @typeface\endcsname}%
-}
-
-\def\withtypeface#1{
-  \edef\typeface{#1}%
-  \edef\typefaceftag{\csname @\typeface @ftag\endcsname}%
-  \edef\fontrgftag{\csname @\typeface @rg@ftag\endcsname}%
-  \edef\fontbfftag{\csname @\typeface @bf@ftag\endcsname}%
-  \edef\fontitftag{\csname @\typeface @it@ftag\endcsname}%
-  \edef\fontrgrmftag{\csname @\typeface @rgrm@ftag\endcsname}%
 }
 
 \def\withfontweight#1{\edef\fontweight{#1}}
