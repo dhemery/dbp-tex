@@ -29,12 +29,12 @@
 \def\txencodingftag{t1}
 \def\syencodingftag{ts1}
 
-% #1: the typeface name
-% #2: the tag that identifies the typeface in font file names
-% #3: the tag (if any) that identifies the regular weight in the typeface's font file names
-% #4: the tag that identifies italic slant in the typeface's font file names
-% #5: the tag that identifies bold weight in the typeface's font file names
-% #6: the tag (if any) that identifies regular roman book fonts in the typeface's font file names
+% #1: typeface name
+% #2: ftag to select the scheme's typeface
+% #3: ftag (if any) to select the typefac's regular weight (rg)
+% #4: ftag to select the typefac's italic slant (it)
+% #5: ftag to select the typefac's bold weight (bf)
+% #6: ftag (if any) to select the typefac's regular weight, roman slant (rg, rm)
 \def\newtypeface#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@ftag\endcsname{#2}
   \expandafter\xdef\csname @#1@rg@ftag\endcsname{#3}
@@ -44,7 +44,7 @@
   \expandafter\xdef\csname @#1@rm@ftag\endcsname{}
 }
 
-\def\withtypeface#1{
+\def\withtypeface#1{%
   \edef\typeface{#1}%
   \edef\typefaceftag{\csname @\typeface @ftag\endcsname}%
   \edef\fontrgftag{\csname @\typeface @rg@ftag\endcsname}%
@@ -53,11 +53,10 @@
   \edef\fontdefaultftag{\csname @\typeface @default@ftag\endcsname}%
 }
 
-
-% #1: the scheme name
-% #2: the typeface to use for this scheme
-% #3: the tag that identifies the scheme's optical size in font file names
-% #4: the font size
+% #1: scheme name
+% #2: name of the scheme's typeface
+% #3: ftag (if any) to select the scheme's optical size
+% #4: font size
 \def\newscheme#1#2#3#4{
   \expandafter\xdef\csname @#1@typeface\endcsname{#2}
   \expandafter\xdef\csname @#1@ftag\endcsname{#3}
@@ -71,13 +70,13 @@
   \withtypeface{\csname @\scheme @typeface\endcsname}%
 }
 
-% #1: the family name
-% #2: the scheme to use for this family
-% #3: the family's default font weight
-% #4: the family's default font slant
-% #5: the family's default variant
-% #6: the family's default figure style
-\def\newfamily#1#2#3#4#5#6{ % #1: a name for this family
+% #1: family name
+% #2: name of the family's scheme
+% #3: default weight (rg or bf)
+% #4: default slant (rm or it)
+% #5: default variant (nv, sc, tt)
+% #6: default figure style (ls, lf, tf, lt)
+\def\newfamily#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@scheme\endcsname{#2}
   \expandafter\gdef\csname#1\endcsname{%
     \edef\family{#1}%
@@ -128,7 +127,7 @@
 \def\bf{\withfontweight{bf}\selectfont}
 \def\rm{\withfontslant{rm}\selectfont}
 \def\it{\withfontslant{it}\selectfont}
-\def\nv{\withfontvariant{nm}\selectfont}
+\def\nv{\withfontvariant{nv}\selectfont}
 \def\sc{\withfontvariant{sc}\selectfont}
 \def\tt{\withfontvariant{tt}\selectfont}
 \def\os{\withfontfigures{os}\selectfont}
