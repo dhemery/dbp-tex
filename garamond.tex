@@ -28,3 +28,7 @@
   \newfamily{smalltextfont}{smalltext}{rg}{rm}{nv}{os}
   \newfamily{runningheadfont}{caption}{rg}{rm}{sc}{os}
 }
+
+% expand text and smalltext fonts, but not others
+\def\ontextschemeload#1{\expandtextfont#1}
+\def\onsmalltextschemeload#1{\expandtextfont#1}

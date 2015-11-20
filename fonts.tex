@@ -101,12 +101,26 @@
 \def\loadfont#1{%
   \ifcsname#1\endcsname%
   \else%
-    \global\expandafter\font\csname#1\endcsname=\fontspec%
-    \makeexpandable{\csname#1\endcsname}%
+    \edef\new@font@name{\csname#1\endcsname}
+    \global\expandafter\font\new@font@name=\fontspec%
+    \on@font@load{typeface}{\new@font@name}%
+    \on@font@load{scheme}{\new@font@name}%
+    \on@font@load{family}{\new@font@name}%
+  \fi%
+}
+
+\def\on@font@load#1#2{%
+  \edef\@scope{\csname#1\endcsname}
+  \ifcsname on\@scope#1load\endcsname%
+    \csname on\@scope#1load\endcsname{#2}%
   \fi%
 }
 
 \catcode`\@=12
+
+% #1 the scope of the notification. This will the the name
+%     of the typeface, scheme, or family of the loaded font
+% #2 the name of the font
 
 \def\selectfont{%
   \xdef\selectedfonttag{\fonttag}%
@@ -128,7 +142,7 @@
 \def\tx{\withfontencoding{tx}\selectfont}
 \def\sy{\withfontencoding{sy}\selectfont}
 
-\def\makeexpandable#1{\pdffontexpand#1 \maxfontstretch \maxfontshrink \fontexpandstep autoexpand}
+\def\expandtextfont#1{\pdffontexpand#1 \maxfontstretch \maxfontshrink \fontexpandstep autoexpand}
 
 \pdfadjustspacing=2
 
