@@ -43,20 +43,24 @@
 
 \def\chapter#1{
   \chapterpage
-  \usedisplayframethispage
+  \chapterpageframe
   \sink{\chapterheading{#1}}
 }
 \def\chapterpage{\nextpage}
+\def\chapterpageframe{\usedisplayframethispage}
 \def\chapterheading#1{\heading{\chaptertitletype}{#1}}
 \def\rectochapters{\gdef\chapterpage{\nextrectopage}}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{
-  \nextpage
-  \useemptypageframe
-  {\infopagetitlestyle #1\par}
+  \bookinfopage
+  \bookinfopageframe
+  \bookinfotitle{#1}
 }
-\def\infopagetitlestyle{\centered\chaptertitletype\tightbaselines}
+\def\bookinfopage{\nextpage}
+\def\bookinfopageframe{\useemptyframethispage}
+\def\bookinfotitletype{\chaptertitletype}
+\def\bookinfotitle#1{\centeredheading{\bookinfotitletype}{#1}}
 
 % Boxes the given content and sinks its baseline \sinklines
 % text lines down the page.
