@@ -3,8 +3,8 @@
 \def\heading#1#2{\headingalignment #1 \headingspacing #2 \par}
 \def\centeredheading#1#2{{\centered #1 \headingspacing #2 \par}}
 
-\def\authorinfoheading#1{\skipline\skipline{\sc\centered#1\par}}
-\def\authorinfoitem#1{\skiphalfline{\centered#1\par}}
+\def\authorinfoheading#1{\centeredheading{}{\skipline \skipline \sc #1}}
+\def\authorinfoitem#1{\centeredheading{}{\skiphalfline #1}}
 \def\connect#1#2{\authorinfoheading{#1}\authorinfoitem{#2}}
 \def\genre#1{\authorinfoheading{#1}}
 \def\genrebook#1{\authorinfoitem{\emph{#1}}}

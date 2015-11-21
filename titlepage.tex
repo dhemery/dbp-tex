@@ -1,12 +1,12 @@
 \def\halftitlepage{{
   \nextrectopage
-  \sink{\heading{\booktitletype}{\uppercase\expandafter{\the\title}}}
+  \sink{\heading{\booktitletype}{\titlecase{\the\title}}}
   \vfil
 }}
 
 \def\titlepage{{
   \halftitlepage
-  \heading{\authornametype}{\uppercase\expandafter{\the\author}}
+  \heading{\authornametype}{\titlecase{\the\author}}
   \vfil
   \rightline{\rightlogo}
 }}
