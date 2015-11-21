@@ -1,15 +1,12 @@
 \def\halftitlepage{{
   \nextrectopage
-  \raggedspine
-  \sink{\booktitletype\tightbaselines\uppercase\expandafter{\the\title}}
+  \sink{\heading{\booktitletype}{\uppercase\expandafter{\the\title}}}
   \vfil
 }}
 
 \def\titlepage{{
   \halftitlepage
-  \raggedspine
-  \authornametype
-  \uppercase\expandafter{\the\author}
+  \heading{\authornametype}{\uppercase\expandafter{\the\author}}
   \vfil
   \rightline{\rightlogo}
 }}
