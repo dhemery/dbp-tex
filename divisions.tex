@@ -36,7 +36,7 @@
   \nextrectopage
 }
 \def\nextpartpage{\nextrectopage}
-\def\parttitlestyle{\raggedspine\parttitlefont\tightbaselines}
+\def\parttitlestyle{\raggedspine\parttitletype\tightbaselines}
 
 \def\chapter#1{
   \nextchapterpage
@@ -45,7 +45,7 @@
 }
 \def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
 \def\nextchapterpage{\nextpage}
-\def\chaptertitlestyle{\raggedspine\chaptertitlefont\tightbaselines}
+\def\chaptertitlestyle{\raggedspine\chaptertitletype\tightbaselines}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{
@@ -53,7 +53,7 @@
   \useemptypageframe
   {\infopagetitlestyle #1\par}
 }
-\def\infopagetitlestyle{\centered\chaptertitlefont\tightbaselines}
+\def\infopagetitlestyle{\centered\chaptertitletype\tightbaselines}
 
 % Boxes the given content and sinks its baseline \sinklines
 % text lines down the page.

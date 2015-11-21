@@ -16,19 +16,19 @@
   \newscheme{ahead}{garamond}{Disp}{\aheadsize}
   \newscheme{bhead}{garamond}{Disp}{\bheadsize}
   \newscheme{chead}{garamond}{Subh}{\cheadsize}
-  \newscheme{text}{garamond}{}{\textsize}
-  \newscheme{smalltext}{garamond}{}{\smalltextsize}
+  \newscheme{body}{garamond}{}{\textsize}
+  \newscheme{small}{garamond}{}{\smalltextsize}
   \newscheme{caption}{garamond}{Capt}{\captionsize}
 
-  \newfamily{booktitlefont}{ahead}{rg}{rm}{sc}{os}
-  \newfamily{authornamefont}{bhead}{rg}{rm}{sc}{os}
-  \newfamily{parttitlefont}{ahead}{rg}{rm}{sc}{os}
-  \newfamily{chaptertitlefont}{chead}{rg}{rm}{sc}{os}
-  \newfamily{textfont}{text}{rg}{rm}{nv}{os}
-  \newfamily{smalltextfont}{smalltext}{rg}{rm}{nv}{os}
-  \newfamily{runningheadfont}{caption}{rg}{rm}{sc}{os}
+  \newtype{booktitle}{ahead}{rg}{rm}{sc}{os}
+  \newtype{authorname}{bhead}{rg}{rm}{sc}{os}
+  \newtype{parttitle}{ahead}{rg}{rm}{sc}{os}
+  \newtype{chaptertitle}{chead}{rg}{rm}{sc}{os}
+  \newtype{body}{body}{rg}{rm}{nv}{os}
+  \newtype{small}{small}{rg}{rm}{nv}{os}
+  \newtype{runninghead}{caption}{rg}{rm}{sc}{os}
 }
 
-% expand text and smalltext fonts, but not others
-\def\ontextschemeload#1{\expandtextfont#1}
-\def\onsmalltextschemeload#1{\expandtextfont#1}
+% expand body and small fonts, but not others
+\def\onbodyschemeload#1{\expandtextfont#1}
+\def\onsmallschemeload#1{\expandtextfont#1}

@@ -70,17 +70,17 @@
   \withtypeface{\csname @\scheme @typeface\endcsname}%
 }
 
-% #1: family name
-% #2: name of the family's scheme
+% #1: type name
+% #2: name of the type's scheme
 % #3: default weight (rg or bf)
 % #4: default slant (rm or it)
 % #5: default variant (nv, sc, tt)
 % #6: default figure style (ls, lf, tf, lt)
-\def\newfamily#1#2#3#4#5#6{
+\def\newtype#1#2#3#4#5#6{
   \expandafter\xdef\csname @#1@scheme\endcsname{#2}
-  \expandafter\gdef\csname#1\endcsname{%
-    \edef\family{#1}%
-    \withscheme{\csname @\family @scheme\endcsname}%
+  \expandafter\gdef\csname#1type\endcsname{%
+    \edef\type{#1}%
+    \withscheme{\csname @\type @scheme\endcsname}%
     \withfontweight{#3}%
     \withfontslant{#4}%
     \withfontvariant{#5}%
@@ -104,7 +104,7 @@
     \global\expandafter\font\new@font@name=\fontspec%
     \on@font@load{typeface}{\new@font@name}%
     \on@font@load{scheme}{\new@font@name}%
-    \on@font@load{family}{\new@font@name}%
+    \on@font@load{type}{\new@font@name}%
   \fi%
 }
 
