@@ -42,13 +42,13 @@
 \def\afterpartpage{\nextrectopage}
 
 \def\chapter#1{
-  \nextchapterpage
+  \chapterpage
   \usedisplayframethispage
-  \sink{\chaptertitlestyle #1}
+  \sink{\chapterheading{#1}}
 }
-\def\rectochapters{\gdef\nextchapterpage{\nextrectopage}}
-\def\nextchapterpage{\nextpage}
-\def\chaptertitlestyle{\raggedspine\chaptertitletype\tightbaselines}
+\def\chapterpage{\nextpage}
+\def\chapterheading#1{\heading{\chaptertitletype}{#1}}
+\def\rectochapters{\gdef\chapterpage{\nextrectopage}}
 
 % \bookinfo is a title division in frontmatter or backmatter.
 \def\bookinfo#1{

@@ -1,6 +1,7 @@
 \def\headingalignment{\raggedspine}
 \def\headingspacing{\tightbaselines}
-\def\heading#1#2{\headingalignment #1 \headingspacing #2\par}
+\def\heading#1#2{\headingalignment #1 \headingspacing #2 \par}
+\def\centeredheading#1#2{{\centered #1 \headingspacing #2 \par}}
 
 \def\authorinfoheading#1{\skipline\skipline{\sc\centered#1\par}}
 \def\authorinfoitem#1{\skiphalfline{\centered#1\par}}
