@@ -31,12 +31,15 @@
 \def\endbook{\nextrectopage\end}
 
 \def\part#1{
-  \nextpartpage
-  \sink{\parttitlestyle #1}
-  \nextrectopage
+  \partpage
+  \partpageframe
+  \sink{\partheading{#1}}
+  \afterpartpage
 }
-\def\nextpartpage{\nextrectopage}
-\def\parttitlestyle{\raggedspine\parttitletype\tightbaselines}
+\def\partpage{\nextrectopage}
+\def\partpageframe{\useemptyframethispage}
+\def\partheading#1{\heading{\parttitletype}{#1}}
+\def\afterpartpage{\nextrectopage}
 
 \def\chapter#1{
   \nextchapterpage
