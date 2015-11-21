@@ -36,8 +36,8 @@
   \gdef\sadness{}
 }
 
-\def\headline{\vbox to 0pt{\positionhead\line{\the\head}\vss\nointerlineskip}}
-\def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\runningheadtype\routinename\ \sadness\hss}\the\foot}\vss\nointerlineskip}}
+\def\headline{\vbox to 0pt{\positionhead\line{\runningheadtype\the\head}\vss\nointerlineskip}}
+\def\footline{\vbox to 0pt{\positionfoot\line{\hbox to 0pt{\runningheadtype\routinename\ \sadness\hss}\runningheadtype\the\foot}\vss\nointerlineskip}}
 \def\positionhead{\vskip.33333\leading\vskip-\headskip}
 \def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
 \def\sadness{}
