@@ -1,5 +1,6 @@
 \let\ifpageguides=\iffalse
 \let\ifoutputnotes=\iffalse
+\newcount\diagnosis
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
@@ -17,10 +18,26 @@
 }
 
 \def\outputnotes{
+  \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\outputpenalty
+    broke
+    \ifnum\diagnosis=-10000
+      at request
+    \else
+      \ifnum\diagnosis=10000
+        between paragraphs
+      \else
+        paragraph (\the\diagnosis)
+        \divide\diagnosis by 2
+        \ifodd\diagnosis club \fi
+        \divide\diagnosis by 2
+        \ifodd\diagnosis hyphen \fi
+        \divide\diagnosis by 2
+        \ifodd\diagnosis widow \fi
+      \fi
+    \fi
     \hss
   }
 }
