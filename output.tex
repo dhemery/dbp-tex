@@ -22,23 +22,28 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    broke
     \ifnum\diagnosis=-10000
-      at request
+      new page
     \else
       \ifnum\diagnosis=10000
         between paragraphs
       \else
-        paragraph (\the\diagnosis)
-        \divide\diagnosis by 2
-        \ifodd\diagnosis club \fi
-        \divide\diagnosis by 2
-        \ifodd\diagnosis hyphen \fi
-        \divide\diagnosis by 2
-        \ifodd\diagnosis widow \fi
+        \ifnum\diagnosis=1
+          paragraph
+        \else
+          \bodytype \bf\sc
+          bad break
+          \hfill
+          \divide\diagnosis by 2
+          \ifodd\diagnosis club \fi
+          \divide\diagnosis by 2
+          \ifodd\diagnosis hyphen \fi
+          \divide\diagnosis by 2
+          \ifodd\diagnosis widow \fi
+        \fi
       \fi
     \fi
-    \hss
+    \hfil
   }
 }
 
