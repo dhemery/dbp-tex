@@ -1,8 +1,8 @@
-\countdef\pagescore=4
+\countdef\pagebreakpenalty=4
 \let\ifpageguides=\iffalse
 
 \def\shiponepage{
-  \pagescore=\outputpenalty
+  \pagebreakpenalty=\outputpenalty
   \hoffset=\leftmargin
   \shipout\page
   \userunningpageframe
