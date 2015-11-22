@@ -1,4 +1,4 @@
-\let\ifoutlinetextblock=\iffalse
+\let\ifpageguides=\iffalse
 
 \def\shiponepage{
   \hoffset=\leftmargin
@@ -7,16 +7,11 @@
   \advancepageno
 }
 
-\def\page{
-  \vbox{
-    \headline
-    \textblock
-    \footline
-  }
-}
+\def\page{\vbox{\headline \textblock \footline}}
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
-\def\outlinetextblock{
+
+\def\drawpageguides{
   \dimen0=-\headskip \advance\dimen0 by \topskip
   \hruleat{\dimen0} % headline
   \hrule width \hsize \kern-0.4pt % top
@@ -30,7 +25,7 @@
 }
 
 \def\textblock{
-  \ifoutlinetextblock\outlinetextblock\fi
+  \ifpageguies\drawpageguides\fi
   \vbox to \vsize{
     \boxmaxdepth=\maxdepth
     \unvbox255
@@ -53,8 +48,6 @@
   \gdef\sadness{}
 }
 
-\def\headline{\vbox to 0pt{\positionhead\line{\vbox to \textsize{}\runningheadtype\the\head}\vss}\nointerlineskip}
-\def\footline{\vbox to 0pt{\positionfoot\line{\runningheadtype\the\foot}\vss\nointerlineskip}}
-\def\positionhead{\kern-\headskip}
-\def\positionfoot{\vskip-1.33333\leading\vskip\footskip}
+\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \textsize{}\runningheadtype\the\head}\vss}\nointerlineskip}
+\def\footline{\baselineskip=\footskip \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
 \def\sadness{}
