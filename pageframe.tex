@@ -1,10 +1,10 @@
 \newtoks\head
 \newtoks\foot
+\newdimen\headskip
+\newdimen\footskip
 
-% Place head two lines above first baseline
-\def\headskip{2\leading}
-% Place foot two lines below the textblock's last baseline
-\def\footskip{2\leading}
+\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \topskip{}\runningheadtype\the\head}\vss}\nointerlineskip}
+\def\footline{\baselineskip=\footskip \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
 
 \def\runninghead{\line{}}
 \def\runningfoot{\line{}}
@@ -51,4 +51,9 @@
   \gdef\runninghead{\normalhead}
   \gdef\runningfoot{\normalfoot}
   \userunningpageframe
+}
+
+\def\fitpageframe{
+  \global\headskip=2\leading
+  \global\footskip=2\leading
 }
