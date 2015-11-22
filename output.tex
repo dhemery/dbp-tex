@@ -1,15 +1,5 @@
-\countdef\pagebreakpenalty=4
 \let\ifpageguides=\iffalse
-
-\def\shiponepage{
-  \pagebreakpenalty=\outputpenalty
-  \hoffset=\leftmargin
-  \shipout\page
-  \userunningpageframe
-  \advancepageno
-}
-
-\def\page{\vbox{\headline \textblock \footline}}
+\let\ifoutputnotes=\iffalse
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
@@ -26,8 +16,31 @@
   \hruleat{\dimen0} % footline
 }
 
+\def\outputnotes{
+  \baselineskip=\leading
+  \line{
+    \runningheadtype \nv
+    \the\outputpenalty
+    \hss
+  }
+}
+
+\def\shiponepage{
+  \hoffset=\leftmargin
+  \shipout\page
+  \userunningpageframe
+  \advancepageno
+}
+
+\def\page{\vbox{
+  \ifpageguides \pageguides \fi
+  \headline
+  \textblock
+  \footline
+  \ifoutputnotes \outputnotes \fi
+}}
+
 \def\textblock{
-  \ifpageguides\pageguides\fi
   \vbox to \vsize{
     \boxmaxdepth=\maxdepth
     \unvbox255
