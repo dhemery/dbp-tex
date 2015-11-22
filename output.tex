@@ -18,15 +18,15 @@
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 \def\outlinetextblock{
   \dimen0=-\headskip \advance\dimen0 by \topskip
-  \hruleat\dimen0 % headline
+  \hruleat{\dimen0} % headline
   \hrule width \hsize \kern-0.4pt % top
   \hruleat\topskip % first baseline
   \dimen0=\vsize
-  \hruleat\dimen0 % last baseline
+  \hruleat{\dimen0} % last baseline
   \advance\dimen0 by \maxdepth
-  \hruleat\dimen0 % bottom
+  \hruleat{\dimen0} % bottom
   \dimen0=\vsize \advance\dimen0 by \footskip
-  \hruleat\dimen0 % footline
+  \hruleat{\dimen0} % footline
 }
 
 \def\textblock{
