@@ -1,3 +1,5 @@
+\let\outlinetextblock=\iffalse
+
 \def\shiponepage{
   \hoffset=\leftmargin
   \shipout\page
@@ -13,7 +15,16 @@
   }
 }
 
+\def\outlinetextblock{
+  \vbox to 0pt{
+    \hrule width \hsize
+    \kern\vsize
+    \hrule width \hsize
+  }
+}
+
 \def\textblock{
+  \ifoutlinetextblock\outlinetextblock\fi
   \vbox to \vsize{
     \boxmaxdepth=\maxdepth
     \unvbox255
