@@ -1,6 +1,8 @@
+\countdef\pagescore=4
 \let\ifpageguides=\iffalse
 
 \def\shiponepage{
+  \pagescore=\outputpenalty
   \hoffset=\leftmargin
   \shipout\page
   \userunningpageframe
@@ -33,19 +35,9 @@
 }
 
 \def\facingpages{
-  \gdef\routinename{\string\facingpages}
   \shiponepage
 }
 
 \def\balancedspreads{
-  \gdef\routinename{\string\balancedspreads}
-  \ifnum\outputpenalty>0
-    \ifnum\outputpenalty<10000
-      \gdef\sadness{\the\outputpenalty}
-    \fi
-  \fi
   \shiponepage
-  \gdef\sadness{}
 }
-
-\def\sadness{}

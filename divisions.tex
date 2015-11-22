@@ -1,5 +1,7 @@
 % How many lines down the page to place \sink titles.
 \newcount\sinklines
+\countdef\partno=2
+\countdef\chapterno=3
 
 \def\frontmatter{
   \global\pageno=1
@@ -31,6 +33,7 @@
 \def\endbook{\nextrectopage\end}
 
 \def\part#1{
+  \global\advance\partno by 1
   \partpage
   \partpageframe
   \sink{\partheading{#1}}
@@ -42,6 +45,7 @@
 \def\afterpartpage{\nextrectopage}
 
 \def\chapter#1{
+  \global\advance\chapterno by 1
   \chapterpage
   \chapterpageframe
   \sink{\chapterheading{#1}}
