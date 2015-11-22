@@ -11,7 +11,7 @@
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
-\def\drawpageguides{
+\def\pageguides{
   \dimen0=-\headskip \advance\dimen0 by \topskip
   \hruleat{\dimen0} % headline
   \hrule width \hsize \kern-0.4pt % top
@@ -25,7 +25,7 @@
 }
 
 \def\textblock{
-  \ifpageguies\drawpageguides\fi
+  \ifpageguides\pageguides\fi
   \vbox to \vsize{
     \boxmaxdepth=\maxdepth
     \unvbox255
@@ -48,6 +48,6 @@
   \gdef\sadness{}
 }
 
-\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \textsize{}\runningheadtype\the\head}\vss}\nointerlineskip}
+\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \topskip{}\runningheadtype\the\head}\vss}\nointerlineskip}
 \def\footline{\baselineskip=\footskip \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
 \def\sadness{}
