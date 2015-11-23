@@ -51,12 +51,11 @@
   \global\vsize=\thistextblockheight
 }
 
-\def\runthispagelong{
+\def\runthispage#1{
   \global\thistextblockheight=\textblockheight
-    \global\advance\thistextblockheight by \leading
+    \global\advance\thistextblockheight by #1
 }
 
-\def\runthispageshort{
-  \global\thistextblockheight=\textblockheight
-    \global\advance\thistextblockheight by -\leading
-}
+\def\runthispagelong{\runthispage{\leading}}
+
+\def\runthispageshort{\runthispage{-\leading}}
