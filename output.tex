@@ -9,11 +9,11 @@
   \hruleat{\dimen0} % headline
   \hrule width \hsize \kern-0.4pt % top
   \hruleat\topskip % first baseline
-  \dimen0=\vsize
+  \dimen0=\textblockheight
   \hruleat{\dimen0} % last baseline
   \advance\dimen0 by \maxdepth
   \hruleat{\dimen0} % bottom
-  \dimen0=\vsize \advance\dimen0 by \footskip
+  \dimen0=\textblockheight \advance\dimen0 by \footskip
   \hruleat{\dimen0} % footline
 }
 
@@ -22,7 +22,7 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\thistextblockheight
+    \the\vsize
     \hfil
     \ifnum\diagnosis=-10000
       new page
@@ -58,14 +58,13 @@
 \def\textblock{\box255 }
 
 \def\facingpages{
-  \ifdim\ht255=\thistextblockheight
+  \ifdim\ht255=\vsize
     \hoffset=\leftmargin
     \shipout\page
     \advancepageno
     \normaltextblock
     \userunningpageframe
-  \else
-    \global\vsize=\thistextblockheight
+  \else % \vsize was changed during the page. Break again using \vsize
     \unvbox255
     \penalty\outputpenalty
   \fi

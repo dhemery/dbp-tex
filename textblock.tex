@@ -9,7 +9,6 @@
 % The number of lines of text in each textblock
 \newcount\textblocklines
 \newdimen\textblockheight
-\newdimen\thistextblockheight
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -46,16 +45,11 @@
   \message{\string\vsize: \the\vsize}
 }
 
-\def\normaltextblock{
-  \global\thistextblockheight=\textblockheight
-  \global\vsize=\thistextblockheight
+\def\normaltextblock{\adjusttextblockheight{0pt}}
+\def\runthispagelong{\adjusttextblockheight{\leading}}
+\def\runthispageshort{\adjusttextblockheight{-\leading}}
+
+\def\adjusttextblockheight#1{
+  \global\vsize=\textblockheight
+    \global\advance\vsize by #1
 }
-
-\def\runthispage#1{
-  \global\thistextblockheight=\textblockheight
-    \global\advance\thistextblockheight by #1
-}
-
-\def\runthispagelong{\runthispage{\leading}}
-
-\def\runthispageshort{\runthispage{-\leading}}
