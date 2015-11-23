@@ -57,8 +57,21 @@
 
 \def\textblock{\box255 }
 
-\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \topskip{}\runningheadtype\the\head}\vss}\nointerlineskip}
-\def\footline{\baselineskip=\footskip \advance\baselineskip by -\textblockheightadjustment \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
+\def\headline{
+  \vbox to 0pt{
+    \kern-\headskip
+    \line{\vbox to \topskip{}\runningheadtype \the\head}
+    \vss
+  }
+  \nointerlineskip
+}
+
+\def\footline{
+  \baselineskip=\footskip
+    \advance\baselineskip by -\textblockheightadjustment
+  \lineskiplimit=0pt
+  \line{\runningheadtype\the\foot}
+}
 
 \def\facingpages{
   \ifdim\ht255=\vsize
