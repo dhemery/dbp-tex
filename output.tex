@@ -3,7 +3,7 @@
 \newcount\diagnosis
 \newcount\bestpass
 \newcount\bestbreak
-\newdimen\bestheight
+\newdimen\bestadjustment
 \newtoks\breaknote
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
@@ -78,6 +78,25 @@
   \shiponepage
 }
 
+\def\rememberpagebreak{
+  \global\bestpass=\deadcycles
+  \global\bestbreak=\diagnosis
+  \global\bestadjustment=\vsize
+  \global\advance\bestadjustment by -\textblockheight
+}
+
+\def\rememberbestpagebreak{
+  \ifnum\diagnosis<\bestbreak
+    \rememberpagebreak
+  \fi
+}
+
+\def\tryagainwithtextblock#1{
+  \global\vsize=\textblockheight
+  \global\advance\vsize by #1
+  \unvbox255
+}
+
 \def\balancedspreads{
   \diagnosis=\outputpenalty
   \ifnum\diagnosis<2 \diagnosis=0 \fi
@@ -89,29 +108,14 @@
   \else
     \message{bad break (\the\diagnosis, pass \the\deadcycles, \the\vsize)}
     \ifcase\deadcycles % 1: normal textblock failed
-      \global\bestpass=\deadcycles
-      \global\bestbreak=\diagnosis
-      \global\bestheight=\vsize
-      \global\vsize=\textblockheight
-        \global\advance\vsize by -\leading
-      \unvbox255
+      \rememberpagebreak
+      \tryagainwithtextblock{-\leading} % one line short
     \or % 2: short textblock failed
-      \ifnum\diagnosis<\bestbreak
-        \global\bestpass=\deadcycles
-        \global\bestbreak=\diagnosis
-        \global\bestheight=\vsize
-      \fi
-      \global\vsize=\textblockheight
-        \global\advance\vsize by \leading
-      \unvbox255
+      \rememberbestpagebreak
+      \tryagainwithtextblock{\leading} % one line long
     \or % 3: long textblock failed
-      \ifnum\diagnosis<\bestbreak
-        \global\bestpass=\deadcycles
-        \global\bestbreak=\diagnosis
-        \global\bestheight=\vsize
-      \fi
-      \global\vsize=\bestheight
-      \unvbox255
+      \rememberbestpagebreak
+      \tryagainwithtextblock{\bestadjustment} % best one so far
     \or % 4: settling for least bad
       \message{shipping anyway (from pass \the\bestpass)}
       \breaknote={:\the\bestpass}
