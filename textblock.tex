@@ -8,6 +8,7 @@
 
 % The number of lines of text in each textblock
 \newcount\textblocklines
+\newdimen\textblockheight
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -27,17 +28,19 @@
   \maxdepth=\leading
     \advance\maxdepth by -\textsize
   \splitmaxdepth=\maxdepth
-  \vsize=\textblocklines\leading
-    \advance\vsize by -\maxdepth
+  \textblockheight=\textblocklines\leading
+    \advance\textblockheight by -\maxdepth
+  \vsize=\textblockheight
 }
 
 \def\showtextblock{
   \message{\string\voffset: \the\voffset}
   \message{\string\spinemargin: \the\spinemargin}
   \message{\string\edgemargin: \the\edgemargin}
-  \message{\string\hsize: \the\hsize}
   \message{\string\textblocklines: \the\textblocklines}
-  \message{\string\vsize: \the\vsize}
+  \message{\string\textblockheight: \the\textblockheight}
   \message{\string\maxdepth: \the\maxdepth}
   \message{\string\topskip: \the\topskip}
+  \message{\string\hsize: \the\hsize}
+  \message{\string\vsize: \the\vsize}
 }
