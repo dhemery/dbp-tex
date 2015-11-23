@@ -1,10 +1,6 @@
 \let\ifpageguides=\iffalse
 \let\ifoutputnotes=\iffalse
-\newcount\diagnosis
-\newcount\bestpass
-\newcount\bestdiagnosis
-\newdimen\bestadjustment
-\newtoks\breaknote
+\countdef\diagnosis=4
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
@@ -22,22 +18,23 @@
 }
 
 \def\outputnotes{
-  \diagnosis=\outputpenalty
+  \global\diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    (pass \the\deadcycles \the\breaknote, \the\vsize)
     \ifnum\diagnosis=-10000
       new page
     \else
+      broke
       \ifnum\diagnosis=10000
         between paragraphs
       \else
+        paragraph
         \ifnum\diagnosis=1
-          paragraph
+          nicely
         \else
           \bodytype \bf\sc
-          bad break
+          badly
           \hfill
           \divide\diagnosis by 2
           \ifodd\diagnosis club \fi
@@ -52,13 +49,6 @@
   }
 }
 
-\def\shiponepage{
-  \hoffset=\leftmargin
-  \shipout\page
-  \userunningpageframe
-  \advancepageno
-}
-
 \def\page{\vbox{
   \ifpageguides \pageguides \fi
   \headline
@@ -67,66 +57,13 @@
   \ifoutputnotes \outputnotes \fi
 }}
 
-\def\textblock{
-  \message{^^Jshipping textblock at \the\vsize (content \the\ht255+\the\dp255)^^J}
-  \box255
-}
+\def\textblock{\box255 }
 
 \def\facingpages{
-  \shiponepage
+  \hoffset=\leftmargin
+  \shipout\page
+  \userunningpageframe
+  \advancepageno
 }
 
-\def\rememberpagebreak{
-  \global\bestpass=\deadcycles
-  \global\bestdiagnosis=\diagnosis
-  \global\bestadjustment=\vsize
-  \global\advance\bestadjustment by -\textblockheight
-  \message{, saving pass \the\deadcycles, \the\bestdiagnosis, \the\bestadjustment}
-}
-
-\def\rememberbestpagebreak{
-  \ifnum\diagnosis<\bestdiagnosis
-    \rememberpagebreak
-  \fi
-}
-
-\def\tryagainwithtextblock#1{
-  \global\vsize=\textblockheight
-  \global\advance\vsize by #1
-  \message{, will try \the\vsize}
-  \unvbox255
-  \penalty\outputpenalty
-}
-
-\def\balancedspreads{
-  \message{^^Jpage \the\pageno, pass \the\deadcycles, \the\vsize, \the\outputpenalty, content \the\ht255+\the\dp255}
-  \diagnosis=\outputpenalty
-  \ifnum\diagnosis<2 \diagnosis=0 \fi
-  \ifnum\diagnosis=10000 \diagnosis=0 \fi
-  \ifnum\diagnosis=0
-    \message{good break}
-    \shiponepage
-    \global\vsize=\textblockheight
-    \global\bestpass=0
-  \else
-    \message{bad break}
-    \ifcase\deadcycles
-    \or % 1: normal textblock failed
-      \rememberpagebreak
-      \tryagainwithtextblock{-\leading} % one line short
-    \or % 2: short textblock failed
-      \rememberbestpagebreak
-      \tryagainwithtextblock{\leading} % one line long
-    \or % 3: long textblock failed
-      \rememberbestpagebreak
-      \tryagainwithtextblock{\bestadjustment} % best one so far
-    \or % 4: settling for least bad
-      \message{, shipping anyway, using pass \the\bestpass}
-      \breaknote={:\the\bestpass}
-      \shiponepage
-      \global\vsize=\textblockheight
-      \breaknote={}
-    \fi
-  \fi
-  \message{^^J}
-}
+\output={\facingpages}
