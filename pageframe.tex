@@ -3,9 +3,6 @@
 \newdimen\headskip
 \newdimen\footskip
 
-\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \topskip{}\runningheadtype\the\head}\vss}\nointerlineskip}
-\def\footline{\baselineskip=\footskip \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
-
 \def\runninghead{\line{}}
 \def\runningfoot{\line{}}
 \def\useclearedframethispage{\global\head={\clearedhead}\global\foot={\clearedfoot}}

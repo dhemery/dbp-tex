@@ -9,6 +9,7 @@
 % The number of lines of text in each textblock
 \newcount\textblocklines
 \newdimen\textblockheight
+\newdimen\textblockheightadjustment
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -50,6 +51,7 @@
 \def\runthispageshort{\adjusttextblockheight{-\leading}}
 
 \def\adjusttextblockheight#1{
+  \global\textblockheightadjustment=#1
   \global\vsize=\textblockheight
-    \global\advance\vsize by #1
+    \global\advance\vsize by \textblockheightadjustment
 }

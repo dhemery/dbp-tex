@@ -22,7 +22,7 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\vsize
+    \the\vsize\ (\the\textblockheightadjustment)
     \hfil
     \ifnum\diagnosis=-10000
       new page
@@ -56,6 +56,9 @@
 }}
 
 \def\textblock{\box255 }
+
+\def\headline{\vbox to 0pt{\kern-\headskip\line{\vbox to \topskip{}\runningheadtype\the\head}\vss}\nointerlineskip}
+\def\footline{\baselineskip=\footskip \advance\baselineskip by -\textblockheightadjustment \lineskiplimit=0pt \line{\runningheadtype\the\foot}}
 
 \def\facingpages{
   \ifdim\ht255=\vsize
