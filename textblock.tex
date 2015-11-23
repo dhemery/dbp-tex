@@ -9,6 +9,7 @@
 % The number of lines of text in each textblock
 \newcount\textblocklines
 \newdimen\textblockheight
+\newdimen\normaltopskip
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -23,8 +24,9 @@
   \edgemargin=\pdfpagewidth
     \advance\edgemargin by -\hsize
     \advance\edgemargin by -\spinemargin
-  \topskip=\textsize
-  \splittopskip=\topskip
+  \normaltopskip=\textsize
+  \topskip=\normaltopskip
+  \splittopskip=\normaltopskip
   \maxdepth=\leading
     \advance\maxdepth by -\textsize
   \splitmaxdepth=\maxdepth

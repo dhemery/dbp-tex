@@ -70,10 +70,10 @@
 % text lines down the page.
 %
 % \sink works only when it is the first content added to a new page.
-\def\sink#1{{
+\def\sink#1{
   \topskip=\sinklines\leading
     \advance\topskip by -\maxdepth
   \vbox{#1}
-}}
+}
 
 \sinklines=11
