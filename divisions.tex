@@ -71,9 +71,9 @@
 %
 % \sink works only when it is the first content added to a new page.
 \def\sink#1{
-  \topskip=\sinklines\leading
-    \advance\topskip by -\maxdepth
-  \vbox{#1}
+  \dimen0=\sinklines\leading
+    \advance\dimen0 by -\maxdepth
+  \vbox to \dimen0{\vss#1}
 }
 
 \sinklines=11
