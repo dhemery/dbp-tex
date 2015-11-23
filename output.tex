@@ -22,20 +22,19 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
+    \the\thistextblockheight
+    \hfil
     \ifnum\diagnosis=-10000
       new page
     \else
-      broke
       \ifnum\diagnosis=10000
-        between paragraphs
+        broke between paragraphs
       \else
-        paragraph
         \ifnum\diagnosis=1
-          nicely
+          good paragraph break
         \else
           \bodytype \bf\sc
-          badly
-          \hfill
+          bad:
           \divide\diagnosis by 2
           \ifodd\diagnosis club \fi
           \divide\diagnosis by 2
@@ -45,7 +44,6 @@
         \fi
       \fi
     \fi
-    \hfil
   }
 }
 
@@ -60,10 +58,17 @@
 \def\textblock{\box255 }
 
 \def\facingpages{
-  \hoffset=\leftmargin
-  \shipout\page
-  \userunningpageframe
-  \advancepageno
+  \ifdim\ht255=\thistextblockheight
+    \hoffset=\leftmargin
+    \shipout\page
+    \advancepageno
+    \normaltextblock
+    \userunningpageframe
+  \else
+    \global\vsize=\thistextblockheight
+    \box255
+    \penalty\outputpenalty
+  \fi
 }
 
 \output={\facingpages}

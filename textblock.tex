@@ -9,6 +9,7 @@
 % The number of lines of text in each textblock
 \newcount\textblocklines
 \newdimen\textblockheight
+\newdimen\thistextblockheight
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -30,7 +31,7 @@
   \splitmaxdepth=\maxdepth
   \textblockheight=\textblocklines\leading
     \advance\textblockheight by -\maxdepth
-  \vsize=\textblockheight
+  \normaltextblock
 }
 
 \def\showtextblock{
@@ -43,4 +44,14 @@
   \message{\string\topskip: \the\topskip}
   \message{\string\hsize: \the\hsize}
   \message{\string\vsize: \the\vsize}
+}
+
+\def\normaltextblock{
+  \global\thistextblockheight=\textblockheight
+  \global\vsize=\thistextblockheight
+}
+
+\def\runthispagelong{
+  \global\thistextblockheight=\textblockheight
+    \global\advance\thistextblockheight by \leading
 }
