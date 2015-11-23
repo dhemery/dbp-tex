@@ -1,6 +1,10 @@
 \let\ifpageguides=\iffalse
 \let\ifoutputnotes=\iffalse
 \newcount\diagnosis
+\newcount\bestpass
+\newcount\bestbreak
+\newdimen\bestheight
+\newtoks\breaknote
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
@@ -22,6 +26,7 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
+    (pass \the\deadcycles \the\breaknote, \the\vsize)
     \ifnum\diagnosis=-10000
       new page
     \else
@@ -74,5 +79,45 @@
 }
 
 \def\balancedspreads{
-  \shiponepage
+  \diagnosis=\outputpenalty
+  \ifnum\diagnosis<2 \diagnosis=0 \fi
+  \ifnum\diagnosis=10000 \diagnosis=0 \fi
+  \ifnum\diagnosis=0
+    \shiponepage
+    \global\vsize=\textblockheight
+    \global\bestpass=0
+  \else
+    \message{bad break (\the\diagnosis, pass \the\deadcycles, \the\vsize)}
+    \ifcase\deadcycles % 1: normal textblock failed
+      \global\bestpass=\deadcycles
+      \global\bestbreak=\diagnosis
+      \global\bestheight=\vsize
+      \global\vsize=\textblockheight
+        \global\advance\vsize by -\leading
+      \unvbox255
+    \or % 2: short textblock failed
+      \ifnum\diagnosis<\bestbreak
+        \global\bestpass=\deadcycles
+        \global\bestbreak=\diagnosis
+        \global\bestheight=\vsize
+      \fi
+      \global\vsize=\textblockheight
+        \global\advance\vsize by \leading
+      \unvbox255
+    \or % 3: long textblock failed
+      \ifnum\diagnosis<\bestbreak
+        \global\bestpass=\deadcycles
+        \global\bestbreak=\diagnosis
+        \global\bestheight=\vsize
+      \fi
+      \global\vsize=\bestheight
+      \unvbox255
+    \or % 4: settling for least bad
+      \message{shipping anyway (from pass \the\bestpass)}
+      \breaknote={:\the\bestpass}
+      \shiponepage
+      \global\vsize=\textblockheight
+      \breaknote={}
+    \fi
+  \fi
 }
