@@ -2,7 +2,7 @@
 \let\ifoutputnotes=\iffalse
 \newcount\diagnosis
 \newcount\bestpass
-\newcount\bestbreak
+\newcount\bestdiagnosis
 \newdimen\bestadjustment
 \newtoks\breaknote
 
@@ -80,13 +80,13 @@
 
 \def\rememberpagebreak{
   \global\bestpass=\deadcycles
-  \global\bestbreak=\diagnosis
+  \global\bestdiagnosis=\diagnosis
   \global\bestadjustment=\vsize
   \global\advance\bestadjustment by -\textblockheight
 }
 
 \def\rememberbestpagebreak{
-  \ifnum\diagnosis<\bestbreak
+  \ifnum\diagnosis<\bestdiagnosis
     \rememberpagebreak
   \fi
 }
