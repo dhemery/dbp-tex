@@ -6,7 +6,7 @@
 \def\frontmatter{
   \global\pageno=1
   \global\pagecount=1
-  \global\folio={\romannumeral\pageno }
+  \normalpages
   \emptypageframes
   \normalbaselines
 }
@@ -14,7 +14,7 @@
 \def\mainmatter{
   \nextrectopage
   \global\pageno=1
-  \global\folio={\number\pageno }
+  \normalpages
   \normalpageframes
   \normalbaselines
 }
@@ -22,7 +22,7 @@
 \def\backmatter{
   \nextrectopage
   \global\pageno=\pagecount
-  \global\folio={\romannumeral\pageno }
+  \normalpages
   \emptypageframes
   \normalbaselines
 }
@@ -70,7 +70,7 @@
 \def\sink#1{
   \dimen0=\sinklines\leading
     \advance\dimen0 by -\maxdepth
-  \vbox to \dimen0{\vss#1}
+  \vbox to \dimen0{\vfil#1}
 }
 
 \sinklines=11

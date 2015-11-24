@@ -3,7 +3,6 @@
 % the total page count.
 \countdef\pagecount=0
 \countdef\pageno=1
-\newtoks\folio
 
 \def\nextpage{\vfil\eject\clearedframethispage}
 \def\nextrectopage{\nextpage\onrectopage}
@@ -14,6 +13,7 @@
 
 \def\advancepageno{\global\advance\pageno by 1 \global\advance\pagecount by 1 }
 
+\def\normalpages{\adjusttextblockheight{0pt}{0}}
 \def\longpages#1{\adjusttextblockheight{\leading}{#1}}
 \def\shortpages#1{\adjusttextblockheight{-\leading}{#1}}
 \def\longpage{\longpages{1}}

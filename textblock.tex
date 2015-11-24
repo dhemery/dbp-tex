@@ -32,7 +32,7 @@
   \splitmaxdepth=\maxdepth
   \textblockheight=\textblocklines\leading
     \advance\textblockheight by -\maxdepth
-  \normaltextblocks
+  \adjusttextblockheight{0pt}{0}
 }
 
 \def\showtextblock{
@@ -46,8 +46,6 @@
   \message{\string\hsize: \the\hsize}
   \message{\string\vsize: \the\vsize}
 }
-
-\def\normaltextblocks{\adjusttextblockheight{0pt}{0}}
 
 \def\adjusttextblockheight#1#2{
   \global\textblockheightadjustment=#1
