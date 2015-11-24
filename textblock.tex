@@ -49,12 +49,6 @@
 
 \def\normaltextblocks{\adjusttextblockheight{0pt}{0}}
 
-\def\longpages#1{\adjusttextblockheight{\leading}{#1}}
-\def\shortpages#1{\adjusttextblockheight{-\leading}{#1}}
-\def\longpage{\longpages{1}}
-\def\shortpage{\shortpages{1}}
-
-
 \def\adjusttextblockheight#1#2{
   \global\textblockheightadjustment=#1
   \global\vsize=\textblockheight

@@ -14,6 +14,11 @@
 
 \def\advancepageno{\global\advance\pageno by 1 \global\advance\pagecount by 1 }
 
+\def\longpages#1{\adjusttextblockheight{\leading}{#1}}
+\def\shortpages#1{\adjusttextblockheight{-\leading}{#1}}
+\def\longpage{\longpages{1}}
+\def\shortpage{\shortpages{1}}
+
 \interlinepenalty=1 % Okay to break between lines
 \clubpenalty=2 % Bringhurst says don't worry about these
 \brokenpenalty=4 % For leaving hyphen on last line of page
