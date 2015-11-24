@@ -22,7 +22,7 @@
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\vsize\ (\the\textblockheightadjustment)
+    \the\vsize\ (\the\textblockheightadjustment, \the\adjustedpagesremaining)
     \hfil
     \ifnum\diagnosis=-10000
       new page
@@ -78,8 +78,11 @@
     \hoffset=\leftmargin
     \shipout\page
     \advancepageno
-    \normaltextblock
     \userunningpageframe
+    \ifnum\adjustedpagesremaining>0
+      \global\advance\adjustedpagesremaining by -1
+      \ifnum\adjustedpagesremaining=0 \normaltextblock \fi
+    \fi
   \else % \vsize was changed during the page. Break again using \vsize
     \unvbox255
     \penalty\outputpenalty

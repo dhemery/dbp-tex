@@ -10,6 +10,7 @@
 \newcount\textblocklines
 \newdimen\textblockheight
 \newdimen\textblockheightadjustment
+\newcount\adjustedpagesremaining
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
@@ -46,12 +47,17 @@
   \message{\string\vsize: \the\vsize}
 }
 
-\def\normaltextblock{\adjusttextblockheight{0pt}}
-\def\runthispagelong{\adjusttextblockheight{\leading}}
-\def\runthispageshort{\adjusttextblockheight{-\leading}}
+\def\normaltextblock{\adjusttextblockheight{0pt}{0}}
 
-\def\adjusttextblockheight#1{
+\def\runpageslong#1{\adjusttextblockheight{\leading}{#1}}
+\def\runpagesshort#1{\adjusttextblockheight{-\leading}{#1}}
+\def\runthispagelong{\runpageslong{1}}
+\def\runthispageshort{\runpagesshort{1}}
+
+
+\def\adjusttextblockheight#1#2{
   \global\textblockheightadjustment=#1
   \global\vsize=\textblockheight
     \global\advance\vsize by \textblockheightadjustment
+  \global\adjustedpagesremaining=#2
 }
