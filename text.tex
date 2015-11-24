@@ -18,9 +18,10 @@
 \def\leadin#1{\skipline\nobreak\noindent{\sc #1}}
 \def\emph#1{{\it #1\/}}
 
-\def\abbr#1{{\sc\lowercase\expandafter{#1}}}
-
-\def\titlecase#1{\uppercase\expandafter{#1}}
+\def\abbr#1{{\sc \tolower{#1}}}
+\def\titlecase#1{\toupper{#1}}
+\def\tolower#1{\lowercase\expandafter{#1}}
+\def\toupper#1{\uppercase\expandafter{#1}}
 
 \def\englishspacing{
   \sfcode`\.=3000
