@@ -49,10 +49,10 @@
 
 \def\normaltextblock{\adjusttextblockheight{0pt}{0}}
 
-\def\runpageslong#1{\adjusttextblockheight{\leading}{#1}}
-\def\runpagesshort#1{\adjusttextblockheight{-\leading}{#1}}
-\def\runthispagelong{\runpageslong{1}}
-\def\runthispageshort{\runpagesshort{1}}
+\def\longpages#1{\adjusttextblockheight{\leading}{#1}}
+\def\shortpages#1{\adjusttextblockheight{-\leading}{#1}}
+\def\longpage{\longpages{1}}
+\def\shortpage{\shortpages{1}}
 
 
 \def\adjusttextblockheight#1#2{
