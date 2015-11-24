@@ -17,17 +17,26 @@
   \hruleat{\dimen0} % footline
 }
 
+\def\pageadjustmentnotes{
+  \ifnum\adjustedpagesremaining>0
+    (\the\textblockheightadjustment, \the\adjustedpagesremaining)
+  \fi
+}
+
 \def\outputnotes{
   \global\diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\vsize\ (\the\textblockheightadjustment, \the\adjustedpagesremaining)
+    \the\vsize
+    \pageadjustmentnotes
     \hfil
     \ifnum\diagnosis=-10000
+      \global\diagnosis=-2
       new page
     \else
       \ifnum\diagnosis=10000
+        \global\diagnosis=-1
         broke between paragraphs
       \else
         \ifnum\diagnosis=1
