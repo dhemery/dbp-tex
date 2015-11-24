@@ -5,7 +5,7 @@
 \countdef\pageno=1
 \newtoks\folio
 
-\def\nextpage{\vfil\eject\useclearedframethispage}
+\def\nextpage{\vfil\eject\clearedframethispage}
 \def\nextrectopage{\nextpage\onrectopage}
 \def\nextversopage{\nextpage\ifodd\pageno \line{}\nextpage\else\fi}
 \def\onrectopage{\ifodd\pageno \else\line{}\nextpage\fi}

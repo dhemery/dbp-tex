@@ -5,10 +5,6 @@
 
 \def\runninghead{\line{}}
 \def\runningfoot{\line{}}
-\def\useclearedframethispage{\global\head={\clearedhead}\global\foot={\clearedfoot}}
-\def\usedisplayframethispage{\global\head={\displayhead}\global\foot={\displayfoot}}
-\def\useemptyframethispage{\global\head={\emptyhead}\global\foot={\emptyfoot}}
-\def\userunningpageframe{\global\head={\runninghead}\global\foot={\runningfoot}}
 
 % Running head and foot for cleared pages
 % (pages begun by \nextpage, \nextrectopage, and \nextversopage).
@@ -21,7 +17,7 @@
 \def\displayhead{\line{}}
 \def\displayfoot{\hfil\the\folio\hfil}
 
-% Running head and foot after user calls \useemptypageframe.
+% Running head and foot after user calls \emptypageframes.
 % By default, this format uses empty frames for frontmatter and backmatter pages.
 % You may want to change these for debugging.
 \def\emptyhead{\line{}}
@@ -38,17 +34,26 @@
 % Verso pages: page number at edge margin, author name at spine margin
 \def\normalversopagehead{\the\folio\hfil\the\author}
 
-\def\useemptypageframe{
-  \gdef\runninghead{\emptyhead}
-  \gdef\runningfoot{\emptyfoot}
-  \userunningpageframe
+\def\runningpageframes{
+  \global\head={\runninghead}
+  \global\foot={\runningfoot}
 }
 
-\def\usenormalpageframe{
+\def\emptypageframes{
+  \gdef\runninghead{\emptyhead}
+  \gdef\runningfoot{\emptyfoot}
+  \runningpageframes
+}
+
+\def\normalpageframes{
   \gdef\runninghead{\normalhead}
   \gdef\runningfoot{\normalfoot}
-  \userunningpageframe
+  \runningpageframes
 }
+
+\def\clearedframethispage{\global\head={\clearedhead} \global\foot={\clearedfoot}}
+\def\displayframethispage{\global\head={\displayhead} \global\foot={\displayfoot}}
+\def\emptyframethispage{\global\head={\emptyhead} \global\foot={\emptyfoot}}
 
 \def\fitpageframe{
   \global\headskip=2\leading

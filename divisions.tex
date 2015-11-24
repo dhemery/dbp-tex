@@ -7,7 +7,7 @@
   \global\pageno=1
   \global\pagecount=1
   \global\folio={\romannumeral\pageno }
-  \useemptypageframe
+  \emptypageframes
   \normalbaselines
 }
 
@@ -15,7 +15,7 @@
   \nextrectopage
   \global\pageno=1
   \global\folio={\number\pageno }
-  \usenormalpageframe
+  \normalpageframes
   \normalbaselines
 }
 
@@ -23,7 +23,7 @@
   \nextrectopage
   \global\pageno=\pagecount
   \global\folio={\romannumeral\pageno }
-  \useemptypageframe
+  \emptypageframes
   \normalbaselines
 }
 
@@ -37,7 +37,7 @@
   \afterpartpage
 }
 \def\partpage{\nextrectopage}
-\def\partpageframe{\useemptyframethispage}
+\def\partpageframe{\emptyframethispage}
 \def\partheading#1{\heading{\parttitletype}{#1}}
 \def\afterpartpage{\nextrectopage}
 
@@ -48,7 +48,7 @@
   \sink{\chapterheading{#1}}
 }
 \def\chapterpage{\nextpage}
-\def\chapterpageframe{\usedisplayframethispage}
+\def\chapterpageframe{\displayframethispage}
 \def\chapterheading#1{\heading{\chaptertitletype}{#1}}
 \def\rectochapters{\gdef\chapterpage{\nextrectopage}}
 
@@ -59,7 +59,7 @@
   \bookinfotitle{#1}
 }
 \def\bookinfopage{\nextpage}
-\def\bookinfopageframe{\useemptyframethispage}
+\def\bookinfopageframe{\emptyframethispage}
 \def\bookinfotitletype{\chaptertitletype}
 \def\bookinfotitle#1{\centeredheading{\bookinfotitletype}{#1}}
 
