@@ -32,36 +32,34 @@
 \def\part#1{
   \global\advance\partno by 1
   \partpage
-  \partpageframe
-  \sink{\partheading{#1}}
-  \afterpartpage
+  \partheading{#1}
+  \afterpartheading
 }
-\def\partpage{\nextrectopage}
-\def\partpageframe{\emptyframethispage}
-\def\partheading#1{\heading{\parttitletype}{#1}}
-\def\afterpartpage{\nextrectopage}
+\def\partpage{\nextrectopage \emptyframethispage}
+\def\partheading#1{\sink{\heading{\parttitletype}{#1}}}
+\def\afterpartheading{\nextrectopage}
 
 \def\chapter#1{
   \global\advance\chapterno by 1
   \chapterpage
-  \chapterpageframe
-  \sink{\chapterheading{#1}}
+  \chapterheading{#1}
+  \afterchapterheading
 }
-\def\chapterpage{\nextpage}
-\def\chapterpageframe{\displayframethispage}
-\def\chapterheading#1{\heading{\chaptertitletype}{#1}}
+\def\chapterpage{\nextpage \displayframethispage}
+\def\chapterheading#1{\sink{\heading{\chaptertitletype}{#1}}}
+\def\afterchapterheading{\skipline}
 \def\rectochapters{\gdef\chapterpage{\nextrectopage}}
 
-% \bookinfo is a title division in frontmatter or backmatter.
+% \bookinfo is division in frontmatter or backmatter.
 \def\bookinfo#1{
   \bookinfopage
-  \bookinfopageframe
-  \bookinfotitle{#1}
+  \bookinfoheading{#1}
+  \afterbookinfoheading
 }
 \def\bookinfopage{\nextpage}
-\def\bookinfopageframe{\emptyframethispage}
 \def\bookinfotitletype{\chaptertitletype}
-\def\bookinfotitle#1{\centeredheading{\bookinfotitletype}{#1}}
+\def\bookinfoheading#1{\centeredheading{\bookinfotitletype}{#1}}
+\def\afterbookinfoheading{\skipline}
 
 % Boxes the given content and sinks its baseline \sinklines
 % text lines down the page.
