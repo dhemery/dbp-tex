@@ -1,6 +1,14 @@
 \let\ifpageguides=\iffalse
 \let\ifoutputnotes=\iffalse
-\countdef\diagnosis=4
+\newcount\diagnosis
+
+\def\colorize#1#2{
+  \pdfcolorstack0 push {#1 rg}
+  #2
+  \pdfcolorstack0 pop {}
+}
+\def\pagenote#1{\colorize{0 0 1}{#1}}
+\def\pagewarning#1{\colorize{1 0 0}{#1} \message{#1}}
 
 \def\hruleat#1{\kern#1 \hrule width \hsize height .2pt \kern-0.2pt \kern-#1 }
 
@@ -19,37 +27,34 @@
 
 \def\pageadjustmentnotes{
   \ifnum\adjustedpagesremaining>0
-    (\the\textblockheightadjustment, \the\adjustedpagesremaining)
+    \pagenote{(\the\textblockheightadjustment, \the\adjustedpagesremaining)}
   \fi
 }
 
-\def\outputnotes{
-  \global\diagnosis=\outputpenalty
+\def\pagenotes{
+  \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
     \runningheadtype \nv
-    \the\vsize
+    \pagenote{\the\vsize}
     \pageadjustmentnotes
     \hfil
     \ifnum\diagnosis=-10000
-      \global\diagnosis=-2
-      new page
+      \pagenote{new page}
     \else
       \ifnum\diagnosis=10000
-        \global\diagnosis=-1
-        broke between paragraphs
+        \pagenote{broke between paragraphs}
       \else
         \ifnum\diagnosis=1
-          good paragraph break
+          \pagenote{good paragraph break}
         \else
           \bodytype \bf\sc
-          bad:
           \divide\diagnosis by 2
-          \ifodd\diagnosis club \fi
+          \ifodd\diagnosis \pagewarning{club} \fi
           \divide\diagnosis by 2
-          \ifodd\diagnosis hyphen \fi
+          \ifodd\diagnosis \pagewarning{hyphen} \fi
           \divide\diagnosis by 2
-          \ifodd\diagnosis widow \fi
+          \ifodd\diagnosis \pagewarning{widow} \fi
         \fi
       \fi
     \fi
@@ -61,7 +66,7 @@
   \headline
   \textblock
   \footline
-  \ifoutputnotes \outputnotes \fi
+  \ifoutputnotes \pagenotes \fi
 }}
 
 \def\textblock{\box255 }
