@@ -32,7 +32,7 @@
   \splitmaxdepth=\maxdepth
   \textblockheight=\textblocklines\leading
     \advance\textblockheight by -\maxdepth
-  \normaltextblock
+  \normaltextblocks
 }
 
 \def\showtextblock{
@@ -47,7 +47,7 @@
   \message{\string\vsize: \the\vsize}
 }
 
-\def\normaltextblock{\adjusttextblockheight{0pt}{0}}
+\def\normaltextblocks{\adjusttextblockheight{0pt}{0}}
 
 \def\longpages#1{\adjusttextblockheight{\leading}{#1}}
 \def\shortpages#1{\adjusttextblockheight{-\leading}{#1}}

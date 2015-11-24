@@ -73,20 +73,34 @@
   \line{\runningheadtype\the\foot}
 }
 
-\def\facingpages{
-  \ifdim\ht255=\vsize
-    \hoffset=\leftmargin
-    \shipout\page
-    \advancepageno
-    \runningpageframes
-    \ifnum\adjustedpagesremaining>0
-      \global\advance\adjustedpagesremaining by -1
-      \ifnum\adjustedpagesremaining=0 \normaltextblock \fi
-    \fi
-  \else % \vsize was changed during the page. Break again using \vsize
-    \unvbox255
-    \penalty\outputpenalty
+\def\rebuildpage{\unvbox255 \penalty\outputpenalty}
+
+\def\shiponepage{
+  \hoffset=\leftmargin
+  \shipout\page
+  \advancepageno
+  \runningpageframes
+  \setnexttextblocklength
+}
+
+\def\setnexttextblocklength{
+  \ifcase\adjustedpagesremaining
+    % Already using normal text blocks
+  \or
+    \normaltextblocks
+  \else
+    \global\advance\adjustedpagesremaining by -1
   \fi
 }
 
-\output={\facingpages}
+\def\adjustablepages{
+  \ifdim\ht255=\vsize
+    \shiponepage
+  \else
+    % \vsize at end of page differed from \vsize at start.
+    % Rebuild using the ending \vsize
+    \rebuildpage
+  \fi
+}
+
+\output={\adjustablepages}
