@@ -32,31 +32,36 @@
 \def\part#1{
   \global\advance\partno by 1
   \partpage
+  \partpageframe
   \partheading{#1}
   \afterpartheading
 }
-\def\partpage{\nextrectopage \emptyframethispage}
+\def\partpage{\nextrectopage}
+\def\partpageframe{\emptyframethispage}
 \def\partheading#1{\sink{\heading{\parttitletype}{#1}}}
 \def\afterpartheading{\nextrectopage}
 
 \def\chapter#1{
   \global\advance\chapterno by 1
   \chapterpage
+  \chapterpageframe
   \chapterheading{#1}
   \afterchapterheading
 }
-\def\chapterpage{\nextpage \displayframethispage}
+\def\chapterpage{\nextpage}
+\def\chapterpageframe{\displayframethispage}
 \def\chapterheading#1{\sink{\heading{\chaptertitletype}{#1}}}
 \def\afterchapterheading{\skipline}
-\def\rectochapters{\gdef\chapterpage{\nextrectopage}}
 
 % \bookinfo is division in frontmatter or backmatter.
 \def\bookinfo#1{
   \bookinfopage
+  \bookinfopageframe
   \bookinfoheading{#1}
   \afterbookinfoheading
 }
 \def\bookinfopage{\nextpage}
+\def\bookinfopageframe{}
 \def\bookinfotitletype{\chaptertitletype}
 \def\bookinfoheading#1{\centeredheading{\bookinfotitletype}{#1}}
 \def\afterbookinfoheading{\skipline}
