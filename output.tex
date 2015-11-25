@@ -80,8 +80,7 @@
 }
 
 \def\footline{
-  \baselineskip=\footskip
-    \advance\baselineskip by -\textblockheightadjustment
+  \baselineskip=\dimexpr \footskip - \textblockheightadjustment \relax
   \lineskiplimit=0pt
   \line{\pageframetype \the\foot}
 }
