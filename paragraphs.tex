@@ -7,7 +7,10 @@
 \def\authorinfoitem#1{\centeredheading{}{\skiphalfline #1}}
 \def\connect#1#2{\authorinfoheading{#1}\authorinfoitem{#2}}
 \def\genre#1{\authorinfoheading{#1}}
-\def\genrebook#1{\authorinfoitem{\emph{#1}}}
+\def\genrebook#1{\authorinfoitem{{\it #1}}}
+
+\def\longpar{\looseness1 }
+\def\shortpar{\looseness-1 }
 
 \def\raggedleft{\parindent=0pt\parfillskip=0pt\leftskip=0pt plus \hsize\relax}
 \def\raggedright{\parindent=0pt\parfillskip=0pt\rightskip=0pt plus \hsize\relax}
