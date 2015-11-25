@@ -67,12 +67,9 @@
 \def\afterbookinfoheading{\skipline}
 
 % Boxes the given content and sinks its baseline \sinklines
-% text lines down the page.
-%
-% \sink works only when it is the first content added to a new page.
+% text lines down the box.
 \def\sink#1{
-  \dimen0=\sinklines\leading
-    \advance\dimen0 by -\maxdepth
+  \dimen0=\dimexpr \sinklines\leading - \maxdepth \relax
   \vbox to \dimen0{\vfil#1}
 }
 
