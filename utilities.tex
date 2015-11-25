@@ -12,6 +12,8 @@
 \def\optionalwithdefault#1#2{\if\relax#1\relax#2\else#1\fi}
 \def\optionalwithprefix#1#2{\if\relax#2\relax\else#1#2\fi}
 
+\def\tbd#1{\string#1 TBD}
+
 % utf8-t1 requires \bgroup and \loop
 \let\bgroup={ \let\egroup=}
 \def\loop#1\repeat{\def\body{#1}\iterate}

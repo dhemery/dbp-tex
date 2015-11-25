@@ -1,39 +1,50 @@
 \newtoks\previewtitle
 \newtoks\previewauthor
+\newtoks\previewcontent
 
-\def\previewtitleblock{{
-  \vfil
-  \centeredheading{\booktitletype}{\the\previewtitle}
+\def\previewtitleblock#1#2{{
+  \centeredheading{\booktitletype}{#1}
   \skipline
   \centerline{\bodytype by}
   \skipline
-  \centeredheading{\authornametype}{\the\previewauthor}
-  \vfil
+  \centeredheading{\authornametype}{#2}
 }}
 
-\def\beginpreview{
+\def\announce#1#2{
   \nextrectopage
   \line{}
   \vfil
-  \centerline{\sc Driscoll Brook Press}
+  \centerline{\sc \the\publisher}
   \centerline{proudly presents}
-  \previewtitleblock
-  \centerline{Turn the page for a preview}
   \vfil
-  \nextrectopage
-  \sink{\chapterheading{\the\previewtitle}}
+  \previewtitleblock{#1}{#2}
+  \vfil
+  \centerline{Turn the page for a preview}
 }
 
-\def\endpreview{
+\def\available#1#2{
   \nextrectopage
   \line{}
   \vfil
-  \previewtitleblock
+  \previewtitleblock{#1}{#2}
+  \vfil
   \centerline{Available now at your favorite retailers}
   \vfil
   \centerline{\linelogo}
-  \vfil
 }
 
-\previewtitle={\string\previewtitle TBD}
-\previewauthor={\string\previewauthor TBD}
+\def\preview{
+  \announce{\the\previewtitle}{\the\previewauthor}
+
+  \nextrectopage
+  \chapterheading{\the\previewtitle}
+  \afterchapterheading
+
+  \input \the\previewcontent
+
+  \available{\the\previewtitle}{\the\previewauthor}
+}
+
+\previewtitle={\tbd\previewtitle}
+\previewauthor={\tbd\previewauthor}
+\previewcontent={\tbd\previewcontent}
