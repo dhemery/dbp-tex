@@ -22,16 +22,12 @@
 % - \leading
 % - \textsize
 \def\fittextblock{
-  \edgemargin=\pdfpagewidth
-    \advance\edgemargin by -\hsize
-    \advance\edgemargin by -\spinemargin
+  \edgemargin=\dimexpr \pdfpagewidth - \hsize - \spinemargin \relax
   \topskip=\textsize
   \splittopskip=\topskip
-  \maxdepth=\leading
-    \advance\maxdepth by -\textsize
+  \maxdepth=\dimexpr \leading - \textsize \relax
   \splitmaxdepth=\maxdepth
-  \textblockheight=\textblocklines\leading
-    \advance\textblockheight by -\maxdepth
+  \textblockheight=\dimexpr \textblocklines\leading - \maxdepth \relax
   \adjusttextblockheight{0pt}{0}
 }
 
@@ -49,7 +45,6 @@
 
 \def\adjusttextblockheight#1#2{
   \global\textblockheightadjustment=#1
-  \global\vsize=\textblockheight
-    \global\advance\vsize by \textblockheightadjustment
+  \global\vsize=\dimexpr \textblockheight + \textblockheightadjustment \relax
   \global\adjustedpagesremaining=#2
 }
