@@ -13,16 +13,12 @@
 \def\hruleat#1{\kern#1 \hrule height .2pt \kern-0.2pt \kern-#1 }
 
 \def\pageguides{
-  \dimen0=-\headskip \advance\dimen0 by \topskip
-  \hruleat{\dimen0} % headline
+  \hruleat{\dimexpr -\headskip + \topskip \relax} % headline
   \hruleat{0pt} % top
   \hruleat\topskip % first baseline
-  \dimen0=\textblockheight
-  \hruleat{\dimen0} % last baseline
-  \advance\dimen0 by \maxdepth
-  \hruleat{\dimen0} % bottom
-  \dimen0=\textblockheight \advance\dimen0 by \footskip
-  \hruleat{\dimen0} % footline
+  \hruleat{\dimexpr \textblockheight \relax} % last baseline
+  \hruleat{\dimexpr \textblockheight + \maxdepth \relax} % bottom
+  \hruleat{\dimexpr \textblockheight + \footskip \relax} % footline
 }
 
 \def\pageadjustmentnotes{
