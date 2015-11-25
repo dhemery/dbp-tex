@@ -16,35 +16,23 @@
 \newdimen\headskip
 \newdimen\footskip
 
-\def\runningpageframes{
-  \global\head=\runninghead
-  \global\foot=\runningfoot
+\def\pageframe#1#2{
+  \global\head=#1
+  \global\foot=#2
 }
 
-\def\emptypageframes{
-  \global\runninghead=\emptyhead
-  \global\runningfoot=\emptyfoot
-  \runningpageframes
+\def\pageframes#1#2{
+  \global\runninghead=#1
+  \global\runningfoot=#2
+  \pageframe{#1}{#2}
 }
 
-\def\normalpageframes{
-  \global\runninghead=\normalhead
-  \global\runningfoot=\normalfoot
-  \runningpageframes
-}
+\def\emptypageframes{\pageframes{\emptyhead}{\emptyfoot}}
+\def\normalpageframes{\pageframes{\normalhead}{\normalfoot}}
 
-\def\clearedframethispage{
-  \global\head=\clearedhead
-  \global\foot=\clearedfoot
-}
-\def\displayframethispage{
-  \global\head=\displayhead
-  \global\foot=\displayfoot
-}
-\def\emptyframethispage{
-  \global\head=\emptyhead
-  \global\foot=\emptyfoot
-}
+\def\clearedframethispage{\pageframe{\clearedhead}{\clearedfoot}}
+\def\displayframethispage{\pageframe{\displayhead}{\displayfoot}}
+\def\emptyframethispage{\pageframe{\emptyhead}{\emptyfoot}}
 
 \def\fitpageframe{
   \global\headskip=2\leading
@@ -75,6 +63,6 @@
 % No foot on normal pages
 \normalfoot={\hfil}
 % Recto pages: title at spine margin, page number at edge margin
-\normalrectohead={\the\title \hfil \number\pageno }
+\normalrectohead={\the\title \hfil \number\pageno}
 % Verso pages: page number at edge margin, author name at spine margin
 \normalversohead={\number\pageno \hfil \the\author}

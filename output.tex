@@ -35,7 +35,7 @@
   \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
-    \runningheadtype \nv
+    \pageframetype \nv
     \pagenote{\the\vsize}
     \pageadjustmentnotes
     \hfil
@@ -74,7 +74,7 @@
 \def\headline{
   \vbox to 0pt{
     \kern-\headskip
-    \line{\vbox to \topskip{}\runningheadtype \the\head}
+    \line{\vbox to \topskip{}\pageframetype \the\head}
     \vss
   }
   \nointerlineskip
@@ -84,7 +84,7 @@
   \baselineskip=\footskip
     \advance\baselineskip by -\textblockheightadjustment
   \lineskiplimit=0pt
-  \line{\runningheadtype\the\foot}
+  \line{\pageframetype \the\foot}
 }
 
 \def\rebuildpage{\unvbox255 \penalty\outputpenalty}
@@ -93,7 +93,7 @@
   \hoffset=\leftmargin
   \shipout\page
   \advancepageno
-  \runningpageframes
+  \pageframes{\runninghead}{\runningfoot}
   \setnexttextblocklength
 }
 
