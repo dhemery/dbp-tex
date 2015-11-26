@@ -1,5 +1,6 @@
 \newif\ifdrawpageguides
 \newif\ifdiagnosepagebreaks
+\newif\ifshippingpages
 \newcount\diagnosis
 
 \def\colorize#1#2{
@@ -87,14 +88,6 @@
 
 \def\rebuildpage{\unvbox255 \penalty\outputpenalty}
 
-\def\shiponepage{
-  \hoffset=\leftmargin
-  \shipout\page
-  \advancepageno
-  \pageframes{\runninghead}{\runningfoot}
-  \setnexttextblocklength
-}
-
 \def\setnexttextblocklength{
   \ifcase\adjustedpagesremaining
     % Already using normal text blocks
@@ -105,9 +98,21 @@
   \fi
 }
 
+\def\afteroutput{
+  \advancepageno
+  \pageframes{\runninghead}{\runningfoot}
+  \setnexttextblocklength
+}
+
+\def\shiponepage{
+  \hoffset=\leftmargin
+  \shipout\page
+  \afteroutput
+}
+
 \def\adjustablepages{
   \ifdim\ht255=\vsize
-    \shiponepage
+    \ifshippingpages \shiponepage \else \discardonepage \fi
   \else
     % \vsize at end of page differed from \vsize at start.
     % Rebuild using the ending \vsize
@@ -115,4 +120,11 @@
   \fi
 }
 
+\def\discardonepage{
+  \setbox0=\box255
+  \afteroutput
+  \deadcycles=0
+}
+
 \output={\adjustablepages}
+\shippingpagestrue
