@@ -62,7 +62,6 @@
 % #7: default variant (nv, sc, tt)
 % #8: default figure style (ls, lf, tf, lt)
 \def\newtype#1#2#3#4#5#6#7#8{
-  \expandafter\xdef\csname @#1@scheme\endcsname{#2}
   \expandafter\gdef\csname#1type\endcsname{%
     \edef\type{#1}%
     \withtypeface{#2}%
