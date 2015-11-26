@@ -5,4 +5,3 @@
 1.  Or maybe:
     - `\suspendoutput`
     - `\resumeoutput`
-1.  Commands instead of `\let\ifxxx=\iftrue`

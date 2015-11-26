@@ -14,8 +14,18 @@
 
 \def\tbd#1{\string#1 TBD}
 
-% utf8-t1 requires \bgroup and \loop
 \let\bgroup={ \let\egroup=}
 \def\loop#1\repeat{\def\body{#1}\iterate}
 \def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
 \let\repeat=\fi
+
+\catcode`@=11
+\outer\def\newif#1{\count255=\escapechar \escapechar-1
+  \expandafter\expandafter\expandafter
+   \def\@if#1{true}{\let#1=\iftrue}%
+  \expandafter\expandafter\expandafter
+   \def\@if#1{false}{\let#1=\iffalse}%
+  \@if#1{false}\escapechar=\count255 }
+\def\@if#1#2{\csname\expandafter\if@\string#1#2\endcsname}
+{\uccode`1=`i \uccode`2=`f \uppercase{\gdef\if@12{}}}
+\catcode`@=12

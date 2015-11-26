@@ -1,5 +1,5 @@
-\let\ifpageguides=\iffalse
-\let\ifoutputnotes=\iffalse
+\newif\ifdrawpageguides
+\newif\ifdiagnosepagebreaks
 \newcount\diagnosis
 
 \def\colorize#1#2{
@@ -12,7 +12,7 @@
 
 \def\hruleat#1{\kern#1 \hrule height .2pt \kern-0.2pt \kern-#1 }
 
-\def\pageguides{
+\def\drawpageguides{
   \hruleat{\dimexpr -\headskip + \topskip \relax} % headline
   \hruleat{0pt} % top
   \hruleat\topskip % first baseline
@@ -21,19 +21,19 @@
   \hruleat{\dimexpr \textblockheight + \footskip \relax} % footline
 }
 
-\def\pageadjustmentnotes{
+\def\diagnosepageadjustment{
   \ifnum\adjustedpagesremaining>0
     \pagenote{(\the\textblockheightadjustment, \the\adjustedpagesremaining)}
   \fi
 }
 
-\def\pagenotes{
+\def\diagnosepagebreaks{
   \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
     \pageframetype \nv
     \pagenote{\the\vsize}
-    \pageadjustmentnotes
+    \diagnosepageadjustment
     \hfil
     \ifnum\diagnosis=-10000
       \pagenote{new page}
@@ -58,11 +58,11 @@
 }
 
 \def\page{\vbox{
-  \ifpageguides \pageguides \fi
+  \ifdrawpageguides \drawpageguides \fi
   \headline
   \textblock
   \footline
-  \ifoutputnotes \pagenotes \fi
+  \ifdiagnosepagebreaks \diagnosepagebreaks \fi
 }}
 
 \def\textblock{\box255 }
