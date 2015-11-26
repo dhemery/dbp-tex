@@ -1,13 +1,16 @@
-% The margin at the spine of each page.
-% After setting this, call \fittextblock
-\newdimen\spinemargin
+% How much of the horizontal margin space to allocate to
+% the spine margin (thousandths)
+\newcount\spinemarginratio
 
-% The margin at the outer edge of each page.
-% This is set by \fittextblock
-\newdimen\edgemargin
+% How much of the vertical margin space to allocate to the
+% top margin (thousandths)
+\newcount\topmarginratio
 
-% The number of lines of text in each textblock
+% How many lines of text to put in each text block.
 \newcount\textblocklines
+
+\newdimen\spinemargin
+\newdimen\edgemargin
 \newdimen\textblockheight
 \newdimen\textblockheightadjustment
 \newcount\adjustedpagesremaining
@@ -22,25 +25,31 @@
 % - \leading
 % - \textsize
 \def\fittextblock{
-  \edgemargin=\dimexpr \pdfpagewidth - \hsize - \spinemargin \relax
-  \topskip=\textsize
-  \splittopskip=\topskip
-  \maxdepth=\dimexpr \leading - \textsize \relax
-  \splitmaxdepth=\maxdepth
-  \textblockheight=\dimexpr \textblocklines\leading - \maxdepth \relax
+  \dimen0=\dimexpr \pdfpagewidth - \hsize \relax % total horizontal margin space
+  \global\spinemargin=\dimexpr \dimen0 * \spinemarginratio / 1000 \relax
+  \global\edgemargin=\dimexpr \dimen0 - \spinemargin \relax
+  \global\topskip=\textsize
+  \global\splittopskip=\topskip
+  \global\maxdepth=\dimexpr \leading - \textsize \relax
+  \global\splitmaxdepth=\maxdepth
+  \global\textblockheight=\dimexpr \textblocklines\leading - \maxdepth \relax
   \adjusttextblockheight{0pt}{0}
+  \dimen0=\dimexpr \pdfpageheight - \textblockheight \relax % total vertical margin space
+  \global\voffset=\dimexpr \dimen0 * \topmarginratio / 1000 \relax
 }
 
 \def\showtextblock{
+  \message{\string\vsize: \the\vsize}
+  \message{\string\hsize: \the\hsize}
   \message{\string\voffset: \the\voffset}
   \message{\string\spinemargin: \the\spinemargin}
   \message{\string\edgemargin: \the\edgemargin}
-  \message{\string\textblocklines: \the\textblocklines}
   \message{\string\textblockheight: \the\textblockheight}
-  \message{\string\maxdepth: \the\maxdepth}
   \message{\string\topskip: \the\topskip}
-  \message{\string\hsize: \the\hsize}
-  \message{\string\vsize: \the\vsize}
+  \message{\string\maxdepth: \the\maxdepth}
+  \message{\string\textblocklines: \the\textblocklines}
+  \message{\string\spinemarginratio: \the\spinemarginratio}
+  \message{\string\topmarginratio: \the\topmarginratio}
 }
 
 \def\adjusttextblockheight#1#2{
@@ -48,3 +57,6 @@
   \global\vsize=\dimexpr \textblockheight + \textblockheightadjustment \relax
   \global\adjustedpagesremaining=#2
 }
+
+\spinemarginratio=618 % golden ratio
+\topmarginratio=382 % 1 - golden ratio
