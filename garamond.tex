@@ -13,22 +13,15 @@
 \def\garamond{
   \newtypeface{garamond}{GaramondPremrPro}{}{It}{Bd}{}
 
-  \newscheme{ahead}{garamond}{Disp}{\aheadsize}
-  \newscheme{bhead}{garamond}{Disp}{\bheadsize}
-  \newscheme{chead}{garamond}{Subh}{\cheadsize}
-  \newscheme{body}{garamond}{}{\textsize}
-  \newscheme{small}{garamond}{}{\smalltextsize}
-  \newscheme{caption}{garamond}{Capt}{\captionsize}
-
-  \newtype{booktitle}{ahead}{rg}{rm}{sc}{po}
-  \newtype{authorname}{bhead}{rg}{rm}{sc}{po}
-  \newtype{parttitle}{ahead}{rg}{rm}{sc}{po}
-  \newtype{chaptertitle}{chead}{rg}{rm}{sc}{po}
-  \newtype{body}{body}{rg}{rm}{nv}{po}
-  \newtype{small}{small}{rg}{rm}{nv}{po}
-  \newtype{pageframe}{caption}{rg}{rm}{sc}{po}
+  \newtype{booktitle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
+  \newtype{authorname}{garamond}{Disp}{\the\bheadsize}{rg}{rm}{sc}{po}
+  \newtype{parttitle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
+  \newtype{chaptertitle}{garamond}{Subh}{\the\cheadsize}{rg}{rm}{sc}{po}
+  \newtype{body}{garamond}{}{\the\textsize}{rg}{rm}{nv}{po}
+  \newtype{small}{garamond}{}{\the\smalltextsize}{rg}{rm}{nv}{po}
+  \newtype{pageframe}{garamond}{Capt}{\the\captionsize}{rg}{rm}{sc}{po}
 }
 
 % expand body and small fonts, but not others
-\def\onbodyschemeload#1{\expandtextfont#1}
-\def\onsmallschemeload#1{\expandtextfont#1}
+\def\onbodytypeload#1{\expandtextfont#1}
+\def\onsmalltypeload#1{\expandtextfont#1}

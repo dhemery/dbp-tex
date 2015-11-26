@@ -4,7 +4,7 @@
 
 \catcode`\@=11
 
-\def\fonttag{\scheme W\fontweight S\fontslant V\fontvariant F\fontfigures E\fontencoding}
+\def\fonttag{\type \fontweight \fontslant \fontvariant \fontfigures \fontencoding}
 \def\fontspec{\fontfilename\optionalwithprefix{ at }{\fontsize}}
 \def\fontfilename{%
   \typefaceftag%
@@ -13,7 +13,7 @@
   \optionalwithprefix{-}{\fontvariantftag}%
   -\fontencodingftag%
 }
-\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\schemeftag}{\fontdefaultftag}}
+\def\fontshapeftag{\optionalwithdefault{\fontweightftag\fontslantftag\fontopticalsize}{\fontdefaultftag}}
 \def\fontweightftag{\csname @\typeface @\fontweight @ftag\endcsname}
 \def\fontslantftag{\csname @\typeface @\fontslant @ftag\endcsname}
 \def\fontvariantftag{\csname\fontvariant variantftag\endcsname}
@@ -53,38 +53,25 @@
   \edef\fontdefaultftag{\csname @\typeface @default@ftag\endcsname}%
 }
 
-% #1: scheme name
-% #2: name of the scheme's typeface
-% #3: ftag (if any) to select the scheme's optical size
-% #4: font size
-\def\newscheme#1#2#3#4{
-  \expandafter\xdef\csname @#1@typeface\endcsname{#2}
-  \expandafter\xdef\csname @#1@ftag\endcsname{#3}
-  \expandafter\xdef\csname @#1@size\endcsname{\the#4}
-}
-
-\def\withscheme#1{%
-  \edef\scheme{#1}%
-  \edef\schemeftag{\csname @\scheme @ftag\endcsname}%
-  \withfontsize{\csname @\scheme @size\endcsname}%
-  \withtypeface{\csname @\scheme @typeface\endcsname}%
-}
-
 % #1: type name
-% #2: name of the type's scheme
-% #3: default weight (rg or bf)
-% #4: default slant (rm or it)
-% #5: default variant (nv, sc, tt)
-% #6: default figure style (ls, lf, tf, lt)
-\def\newtype#1#2#3#4#5#6{
+% #2: typeface name
+% #3: ftag (if any) for optical size
+% #4: font size
+% #5: default weight (rg or bf)
+% #6: default slant (rm or it)
+% #7: default variant (nv, sc, tt)
+% #8: default figure style (ls, lf, tf, lt)
+\def\newtype#1#2#3#4#5#6#7#8{
   \expandafter\xdef\csname @#1@scheme\endcsname{#2}
   \expandafter\gdef\csname#1type\endcsname{%
     \edef\type{#1}%
-    \withscheme{\csname @\type @scheme\endcsname}%
-    \withfontweight{#3}%
-    \withfontslant{#4}%
-    \withfontvariant{#5}%
-    \withfontfigures{#6}%
+    \withtypeface{#2}%
+    \withfontopticalsize{#3}%
+    \withfontsize{#4}%
+    \withfontweight{#5}%
+    \withfontslant{#6}%
+    \withfontvariant{#7}%
+    \withfontfigures{#8}%
     \withfontencoding{tx}%
     \selectfont%
   }
@@ -95,6 +82,7 @@
 \def\withfontvariant#1{\edef\fontvariant{#1}}
 \def\withfontfigures#1{\edef\fontfigures{#1}}
 \def\withfontencoding#1{\edef\fontencoding{#1}}
+\def\withfontopticalsize#1{\edef\fontopticalsize{#1}}
 \def\withfontsize#1{\edef\fontsize{#1}}
 
 \def\loadfont#1{%
@@ -103,7 +91,6 @@
     \edef\new@font@name{\csname#1\endcsname}%
     \global\expandafter\font\new@font@name=\fontspec%
     \on@font@load{typeface}{\new@font@name}%
-    \on@font@load{scheme}{\new@font@name}%
     \on@font@load{type}{\new@font@name}%
   \fi%
 }
