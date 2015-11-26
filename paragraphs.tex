@@ -18,21 +18,25 @@
 \def\raggedspine{\ifodd\pageno \raggedleft\else\raggedright\fi}
 
 \parskip=0pt % extra glue just above paragraphs
-\parfillskip=0pt plus 1fil % additional rightskip at end of paragraphs
+\parfillskip=0pt % additional rightskip at end of paragraphs
 \hangindent=0pt % amount of hanging indentation
 \hangafter=0 % hanging indentation changes after this many lines
 
 % Adjust paragraph formatting to fit the current values of:
 % - \leading
 % - \textsize
+% - \hsize
 \def\fitparagraphs{
   \parindent=\leading
   \emergencystretch=1.5\textsize
+  \dimen0=\hsize
+    \advance\dimen0 by -\parindent
+  \parfillskip=\dimen0 minus \dimen0
 }
 
 \pretolerance=100
-\tolerance=200
-\linepenalty=10
+\tolerance=100
+\linepenalty=0
 \hyphenpenalty=10
 \exhyphenpenalty=50
 \binoppenalty=700

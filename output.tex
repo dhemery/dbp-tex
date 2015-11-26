@@ -1,6 +1,6 @@
 \newif\ifdrawpageguides
 \newif\ifdiagnosepagebreaks
-\newif\ifshippingpages
+\newif\ifshippages
 \newcount\diagnosis
 
 \def\colorize#1#2{
@@ -112,7 +112,7 @@
 
 \def\adjustablepages{
   \ifdim\ht255=\vsize
-    \ifshippingpages \shiponepage \else \discardonepage \fi
+    \ifshippages \shiponepage \else \discardonepage \fi
   \else
     % \vsize at end of page differed from \vsize at start.
     % Rebuild using the ending \vsize
@@ -127,4 +127,4 @@
 }
 
 \output={\adjustablepages}
-\shippingpagestrue
+\shippagestrue
