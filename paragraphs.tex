@@ -24,13 +24,17 @@
 
 % Adjust paragraph formatting to fit the current values of:
 % - \leading
-% - \textsize
+% - \bodytextsize
 % - \hsize
 \def\fitparagraphs{
   \parindent=\leading
-  \emergencystretch=1.5\textsize
+  \emergencystretch=1.5\bodytextsize
+  \minlastlinelength{\parindent}
+}
+
+\def\minlastlinelength#1{
   \dimen0=\hsize
-    \advance\dimen0 by -\parindent
+    \advance\dimen0 by -#1
   \parfillskip=\dimen0 minus \dimen0
 }
 

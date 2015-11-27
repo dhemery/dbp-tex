@@ -38,7 +38,7 @@
 }
 \def\partpage{\nextrectopage}
 \def\partpageframe{\emptyframethispage}
-\def\partheading#1{\sink{\heading{\parttitletype}{#1}}}
+\def\partheading#1{\sink{\heading{\parttitlestyle}{#1}}}
 \def\afterpartheading{\nextrectopage}
 
 \def\chapter#1{
@@ -50,7 +50,7 @@
 }
 \def\chapterpage{\nextpage}
 \def\chapterpageframe{\displayframethispage}
-\def\chapterheading#1{\sink{\heading{\chaptertitletype}{#1}}}
+\def\chapterheading#1{\sink{\heading{\chaptertitlestyle}{#1}}}
 \def\afterchapterheading{\skipline}
 
 % \bookinfo is division in frontmatter or backmatter.
@@ -62,8 +62,8 @@
 }
 \def\bookinfopage{\nextpage}
 \def\bookinfopageframe{}
-\def\bookinfotitletype{\chaptertitletype}
-\def\bookinfoheading#1{\centeredheading{\bookinfotitletype}{#1}}
+\def\bookinfotitlestyle{\chaptertitlestyle}
+\def\bookinfoheading#1{\centeredheading{\bookinfotitlestyle}{#1}}
 \def\afterbookinfoheading{\skipline}
 
 % Boxes the given content and sinks its baseline \sinklines

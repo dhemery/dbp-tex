@@ -23,14 +23,14 @@
 % - \spinemargin
 % - \textblocklines
 % - \leading
-% - \textsize
+% - \bodytextsize
 \def\fittextblock{
   \dimen0=\dimexpr \pdfpagewidth - \hsize \relax % total horizontal margin space
   \global\spinemargin=\dimexpr \dimen0 * \spinemarginratio / 1000 \relax
   \global\edgemargin=\dimexpr \dimen0 - \spinemargin \relax
-  \global\topskip=\textsize
+  \global\topskip=\bodytextsize
   \global\splittopskip=\topskip
-  \global\maxdepth=\dimexpr \leading - \textsize \relax
+  \global\maxdepth=\dimexpr \leading - \bodytextsize \relax
   \global\splitmaxdepth=\maxdepth
   \global\textblockheight=\dimexpr \textblocklines\leading - \maxdepth \relax
   \adjusttextblockheight{0pt}{0}

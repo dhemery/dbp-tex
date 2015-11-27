@@ -4,7 +4,7 @@
 
 \catcode`\@=11
 
-\def\fonttag{\type \fontweight \fontslant \fontvariant \fontfigures \fontencoding}
+\def\fonttag{\typestyle \fontweight \fontslant \fontvariant \fontfigures \fontencoding}
 \def\fontspec{\fontfilename\optionalwithprefix{ at }{\fontsize}}
 \def\fontfilename{%
   \typefaceftag%
@@ -53,7 +53,7 @@
   \edef\fontdefaultftag{\csname @\typeface @default@ftag\endcsname}%
 }
 
-% #1: type name
+% #1: style name
 % #2: typeface name
 % #3: ftag (if any) for optical size
 % #4: font size
@@ -61,9 +61,9 @@
 % #6: default slant (rm or it)
 % #7: default variant (nv, sc, tt)
 % #8: default figure style (ls, lf, tf, lt)
-\def\newtype#1#2#3#4#5#6#7#8{
-  \expandafter\gdef\csname#1type\endcsname{%
-    \edef\type{#1}%
+\def\newtypestyle#1#2#3#4#5#6#7#8{
+  \expandafter\gdef\csname#1\endcsname{%
+    \edef\typestyle{#1}%
     \withtypeface{#2}%
     \withfontopticalsize{#3}%
     \withfontsize{#4}%
@@ -90,14 +90,14 @@
     \edef\new@font@name{\csname#1\endcsname}%
     \global\expandafter\font\new@font@name=\fontspec%
     \on@font@load{typeface}{\new@font@name}%
-    \on@font@load{type}{\new@font@name}%
+    \on@font@load{typestyle}{\new@font@name}%
   \fi%
 }
 
 \def\on@font@load#1#2{%
   \edef\@scope{\csname#1\endcsname}%
-  \ifcsname on\@scope#1load\endcsname%
-    \csname on\@scope#1load\endcsname{#2}%
+  \ifcsname on\@scope fontload\endcsname%
+    \csname on\@scope fontload\endcsname{#2}%
   \fi%
 }
 

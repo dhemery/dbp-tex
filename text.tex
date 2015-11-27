@@ -1,9 +1,9 @@
 \newdimen\aheadsize
 \newdimen\bheadsize
 \newdimen\cheadsize
-\newdimen\textsize
+\newdimen\bodytextsize
 \newdimen\smalltextsize
-\newdimen\captionsize
+\newdimen\pageframesize
 
 \def\hairspace{\hskip.1em\relax}
   \def\nbhairspace{\kern.1em }
@@ -43,7 +43,7 @@
 
 % Adjust layout parameters to fit the current values of:
 % - \leading
-% - \textsize
+% - \bodytextsize
 \def\fittext{
   \fitpageframe
   \fittextblock
@@ -54,8 +54,8 @@
 \aheadsize=36pt
 \bheadsize=24pt
 \cheadsize=18pt
-\textsize=11pt
+\bodytextsize=11pt
 \smalltextsize=10pt
-\captionsize=8pt
+\pageframesize=8pt
 
 \frenchspacing

@@ -13,15 +13,15 @@
 \def\garamond{
   \newtypeface{garamond}{GaramondPremrPro}{}{It}{Bd}{}
 
-  \newtype{booktitle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
-  \newtype{authorname}{garamond}{Disp}{\the\bheadsize}{rg}{rm}{sc}{po}
-  \newtype{parttitle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
-  \newtype{chaptertitle}{garamond}{Subh}{\the\cheadsize}{rg}{rm}{sc}{po}
-  \newtype{body}{garamond}{}{\the\textsize}{rg}{rm}{nv}{po}
-  \newtype{small}{garamond}{}{\the\smalltextsize}{rg}{rm}{nv}{po}
-  \newtype{pageframe}{garamond}{Capt}{\the\captionsize}{rg}{rm}{sc}{po}
+  \newtypestyle{booktitlestyle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{authornamestyle}{garamond}{Disp}{\the\bheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{parttitlestyle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{chaptertitlestyle}{garamond}{Subh}{\the\cheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{bodytext}{garamond}{}{\the\bodytextsize}{rg}{rm}{nv}{po}
+  \newtypestyle{smalltext}{garamond}{}{\the\smalltextsize}{rg}{rm}{nv}{po}
+  \newtypestyle{pageframestyle}{garamond}{Capt}{\the\pageframesize}{rg}{rm}{sc}{po}
 }
 
 % expand body and small fonts, but not others
-\def\onbodytypeload#1{\expandtextfont#1}
-\def\onsmalltypeload#1{\expandtextfont#1}
+\def\onbodytextfontload#1{\expandtextfont#1}
+\def\onsmalltextfontload#1{\expandtextfont#1}

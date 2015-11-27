@@ -32,7 +32,7 @@
   \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
-    \pageframetype \nv
+    \pageframestyle \nv
     \pagenote{\the\vsize}
     \diagnosepageadjustment
     \hfil
@@ -45,7 +45,7 @@
         \ifnum\diagnosis=1
           \pagenote{good paragraph break}
         \else
-          \bodytype \bf\sc
+          \bodytext \bf\sc
           \divide\diagnosis by 2
           \ifodd\diagnosis \pagewarning{club} \fi
           \divide\diagnosis by 2
@@ -73,7 +73,7 @@
   \vbox to \headskip{
     \vbox to \topskip{
       \vfil
-      \line{\pageframetype \the\head}
+      \line{\pageframestyle \the\head}
     }
     \vfil
   }
@@ -83,7 +83,7 @@
 \def\footline{
   \baselineskip=\dimexpr \footskip - \textblockheightadjustment \relax
   \lineskiplimit=0pt
-  \line{\pageframetype \the\foot}
+  \line{\pageframestyle \the\foot}
 }
 
 \def\rebuildpage{\unvbox255 \penalty\outputpenalty}
