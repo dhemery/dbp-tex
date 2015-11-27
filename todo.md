@@ -1,11 +1,13 @@
 1.  Find good values for the line-breaking parameters.
-1.  Problem:
-    Text block height calculation
-    does not account for headline and footline.
-    -   It might leave the
-        too close to the top of the page.
-    -   Redo the calculation
-        to account for the headline and footline?
-    -   Warn if any margin is too small?
+1.  Problem: API for text block dimensions.
+    Guessing the text block height from the leading and line count is awkward.
+
+    Possibilities:
+    1.  Fit height to desired line count.
+    1.  Calculate line count from height,
+        then adjust height to fit line count exactly.
+    1.  Specify height and width, and split margins.
+    1.  Specify four margins.
 1.  trim sizes
-    -   5x8
+    - each sets the text block
+    - fivebyeight
