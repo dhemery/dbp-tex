@@ -1,7 +1,7 @@
 \newdimen\aheadsize
 \newdimen\bheadsize
 \newdimen\cheadsize
-\newdimen\bodytextsize
+\newdimen\textsize
 \newdimen\smalltextsize
 \newdimen\pageframesize
 
@@ -41,21 +41,23 @@
   \sfcode`\,=1000
 }
 
-% Adjust layout parameters to fit the current values of:
-% - \leading
-% - \bodytextsize
-\def\fittext{
-  \fitpageframe
-  \fittextblock
-  \fitparagraphs
-  \fitlogo
+% 1 text size
+% 2 leading
+\def\settextsize#1#2{
+  \globaldefs=1
+  \textsize=#1
+  \leading=#2
+  \aheadsize=36pt
+  \bheadsize=24pt
+  \cheadsize=18pt
+  \smalltextsize=10pt
+  \pageframesize=8pt
+  \topskip=\textsize
+  \splittopskip=\topskip
+  \maxdepth=\leading
+    \advance\maxdepth-\textsize
+  \splitmaxdepth=\maxdepth
+  \headskip=2\leading
+  \footskip=2\leading
+  \globaldefs=0
 }
-
-\aheadsize=36pt
-\bheadsize=24pt
-\cheadsize=18pt
-\bodytextsize=11pt
-\smalltextsize=10pt
-\pageframesize=8pt
-
-\frenchspacing

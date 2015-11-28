@@ -8,8 +8,8 @@
   #2
   \pdfcolorstack0 pop {}
 }
-\def\pagenote#1{\colorize{0 0 1}{#1}}
-\def\pagewarning#1{\colorize{1 0 0}{#1} \message{#1}}
+\def\pagenote#1{\ifdiagnosepagebreaks \colorize{0 0 1}{#1} \fi}
+\def\pagewarning#1{\ifdiagnosepagebreaks \colorize{1 0 0}{#1} \fi \message{#1}}
 
 \def\hruleat#1{\kern#1 \hrule height .2pt \kern-0.2pt \kern-#1 }
 
@@ -17,14 +17,14 @@
   \hruleat{\dimexpr -\headskip + \topskip \relax} % headline
   \hruleat{0pt} % top
   \hruleat\topskip % first baseline
-  \hruleat{\dimexpr \textblockheight \relax} % last baseline
-  \hruleat{\dimexpr \textblockheight + \maxdepth \relax} % bottom
-  \hruleat{\dimexpr \textblockheight + \footskip \relax} % footline
+  \hruleat{\dimexpr \textheight \relax} % last baseline
+  \hruleat{\dimexpr \textheight + \maxdepth \relax} % bottom
+  \hruleat{\dimexpr \textheight + \footskip \relax} % footline
 }
 
 \def\diagnosepageadjustment{
   \ifnum\adjustedpagesremaining>0
-    \pagenote{(\the\textblockheightadjustment, \the\adjustedpagesremaining)}
+    \pagenote{(\the\textheightadjustment, \the\adjustedpagesremaining)}
   \fi
 }
 
@@ -45,7 +45,7 @@
         \ifnum\diagnosis=1
           \pagenote{good paragraph break}
         \else
-          \bodytext \bf\sc
+          \bf\sc
           \divide\diagnosis by 2
           \ifodd\diagnosis \pagewarning{club} \fi
           \divide\diagnosis by 2
@@ -63,7 +63,7 @@
   \headline
   \textblock
   \footline
-  \ifdiagnosepagebreaks \diagnosepagebreaks \fi
+  \diagnosepagebreaks
 }}
 
 \def\textblock{\box255 }
@@ -81,14 +81,14 @@
 }
 
 \def\footline{
-  \baselineskip=\dimexpr \footskip - \textblockheightadjustment \relax
+  \baselineskip=\dimexpr \footskip - \textheightadjustment \relax
   \lineskiplimit=0pt
   \line{\pageframestyle \the\foot}
 }
 
 \def\rebuildpage{\unvbox255 \penalty\outputpenalty}
 
-\def\setnexttextblocklength{
+\def\setnextpagetextheight{
   \ifcase\adjustedpagesremaining
     % Already using normal text blocks
   \or
@@ -101,7 +101,7 @@
 \def\afteroutput{
   \advancepageno
   \pageframes{\runninghead}{\runningfoot}
-  \setnexttextblocklength
+  \setnextpagetextheight
 }
 
 \def\shiponepage{

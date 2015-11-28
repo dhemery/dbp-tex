@@ -1,13 +1,49 @@
-1.  Find good values for the line-breaking parameters.
-1.  Problem: API for text block dimensions.
-    Guessing the text block height from the leading and line count is awkward.
+## Font Sizes
 
-    Possibilities:
-    1.  Fit height to desired line count.
-    1.  Calculate line count from height,
-        then adjust height to fit line count exactly.
-    1.  Specify height and width, and split margins.
-    1.  Specify four margins.
-1.  trim sizes
-    - each sets the text block
-    - fivebyeight
+- Given a typeface and a font size,
+    calculate the appropriate optical size ftag.
+
+## Line Breaking
+
+Specify reasonable values for the line-breaking parameters.
+
+## Text Block
+
+The current API is awkward.
+Guessing the text block height
+from the leading and line count is not obvious.
+
+### Vertical
+
+#### Height
+- `\textheight` = dimen
+- **`\textlines`**
+    - requires
+        - `\textsize`
+        - `\leading`
+
+#### Margin
+- `\topmargin` = dimen
+- `\topmarginratio` = thoundandths
+
+#### Head and Foot
+- **add to height** (bringhurst recommends this)
+- include in height
+
+### Horizontal
+
+#### Width
+
+- `\textwidth` = dimen
+
+#### Margins
+- `\spinemargin` (edge implied)
+- `\spineoffset` (split remainder)
+- `\spineoffset` + `\spinemarginratio`
+
+## Trim Sizes
+
+*Note: I do not need this yet.
+YAGNI?*
+
+- 5in-x-8in.tex

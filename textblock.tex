@@ -1,62 +1,67 @@
-% How much of the horizontal margin space to allocate to
-% the spine margin (thousandths)
-\newcount\spinemarginratio
+\newcount\textlines
+\newdimen\textheight
+\newdimen\textheightadjustment
+\newcount\adjustedpagesremaining
 
-% How much of the vertical margin space to allocate to the
-% top margin (thousandths)
-\newcount\topmarginratio
-
-% How many lines of text to put in each text block.
-\newcount\textblocklines
-
+\newtoks\topmarginratio
+\newtoks\spinemarginratio
+\newdimen\spineoffset
 \newdimen\spinemargin
 \newdimen\edgemargin
-\newdimen\textblockheight
-\newdimen\textblockheightadjustment
-\newcount\adjustedpagesremaining
 
 \def\leftmargin{\ifodd\pageno \spinemargin\else\edgemargin\fi}
 
-% Adjust the textblock to fit the current values of:
-% - \pdfpagewidth
-% - \hsize
-% - \spinemargin
-% - \textblocklines
-% - \leading
-% - \bodytextsize
-\def\fittextblock{
-  \dimen0=\dimexpr \pdfpagewidth - \hsize \relax % total horizontal margin space
-  \global\spinemargin=\dimexpr \dimen0 * \spinemarginratio / 1000 \relax
-  \global\edgemargin=\dimexpr \dimen0 - \spinemargin \relax
-  \global\topskip=\bodytextsize
-  \global\splittopskip=\topskip
-  \global\maxdepth=\dimexpr \leading - \bodytextsize \relax
-  \global\splitmaxdepth=\maxdepth
-  \global\textblockheight=\dimexpr \textblocklines\leading - \maxdepth \relax
-  \adjusttextblockheight{0pt}{0}
-  \dimen0=\dimexpr \pdfpageheight - \textblockheight \relax % total vertical margin space
-  \global\voffset=\dimexpr \dimen0 * \topmarginratio / 1000 \relax
+% 1 page width
+% 2 page height
+% 3 text width
+% 4 text lines
+% 5 top margin ratio
+% 6 spine margin ratio
+% 7 spine offset
+\def\settextblock#1#2#3#4#5#6#7{
+  \globaldefs=1
+  \pdfpagewidth=#1
+  \pdfpageheight=#2
+  \hsize=#3
+  \textlines=#4
+  \topmarginratio={#5}
+  \spinemarginratio={#6}
+  \spineoffset=#7
+  \dimen0=\pdfpagewidth
+    \advance\dimen0 by -\hsize % total horizontal margin
+    \advance\dimen0 by -\spineoffset % margin to divide between spine and edge
+  \spinemargin=\the\spinemarginratio\dimen0
+  \edgemargin=\dimen0
+    \advance\edgemargin by -\spinemargin
+  \advance\spinemargin by \spineoffset
+  \textheight=\dimexpr \textlines\leading - \maxdepth \relax
+  \adjusttextheight{0pt}{0}
+  \dimen0=\pdfpageheight
+    \advance\dimen0 by -\textheight % total vertical excess
+  \voffset=\the\topmarginratio\dimen0
+  \globaldefs=0
 }
 
 \def\showtextblock{
-  \message{\string\vsize: \the\vsize}
+  \message{\string\pdfpagewidth: \the\pdfpagewidth}
+  \message{\string\pdfpageheight: \the\pdfpageheight}
   \message{\string\hsize: \the\hsize}
-  \message{\string\voffset: \the\voffset}
-  \message{\string\spinemargin: \the\spinemargin}
-  \message{\string\edgemargin: \the\edgemargin}
-  \message{\string\textblockheight: \the\textblockheight}
-  \message{\string\topskip: \the\topskip}
-  \message{\string\maxdepth: \the\maxdepth}
-  \message{\string\textblocklines: \the\textblocklines}
-  \message{\string\spinemarginratio: \the\spinemarginratio}
+  \message{\string\textlines: \the\textlines}
+  \message{\string\textheight*: \the\textheight}
+  \message{\string\vsize: \the\vsize}
   \message{\string\topmarginratio: \the\topmarginratio}
+  \message{\string\voffset*: \the\voffset}
+  \message{\string\spinemarginratio: \the\spinemarginratio}
+  \message{\string\spineoffset: \the\spineoffset}
+  \message{\string\spinemargin*: \the\spinemargin}
+  \message{\string\edgemargin*: \the\edgemargin}
 }
 
-\def\adjusttextblockheight#1#2{
-  \global\textblockheightadjustment=#1
-  \global\vsize=\dimexpr \textblockheight + \textblockheightadjustment \relax
-  \global\adjustedpagesremaining=#2
+\def\adjusttextheight#1#2{
+  \globaldefs=1
+  \textheightadjustment=#1
+  \vsize=\textheight
+    \advance\vsize\textheightadjustment
+  \adjustedpagesremaining=#2
+  \globaldefs=0
 }
-
-\spinemarginratio=618 % golden ratio
-\topmarginratio=382 % 1 - golden ratio
