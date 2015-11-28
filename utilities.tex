@@ -19,6 +19,8 @@
 \def\iterate{\body \let\next\iterate \else\let\next\relax\fi \next}
 \let\repeat=\fi
 
+\def\showparam#1{\message{\string#1:\the#1}}
+
 \catcode`@=11
 \outer\def\newif#1{\count255=\escapechar \escapechar-1
   \expandafter\expandafter\expandafter

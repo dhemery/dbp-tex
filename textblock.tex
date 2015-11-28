@@ -40,21 +40,22 @@
     \advance\dimen0 by -\textheight % total vertical excess
   \voffset=\the\topmarginratio\dimen0
   \globaldefs=0
+  \showtextblock
 }
 
 \def\showtextblock{
-  \message{\string\pdfpagewidth: \the\pdfpagewidth}
-  \message{\string\pdfpageheight: \the\pdfpageheight}
-  \message{\string\hsize: \the\hsize}
-  \message{\string\textlines: \the\textlines}
-  \message{\string\textheight*: \the\textheight}
-  \message{\string\vsize: \the\vsize}
-  \message{\string\topmarginratio: \the\topmarginratio}
-  \message{\string\voffset*: \the\voffset}
-  \message{\string\spinemarginratio: \the\spinemarginratio}
-  \message{\string\spineoffset: \the\spineoffset}
-  \message{\string\spinemargin*: \the\spinemargin}
-  \message{\string\edgemargin*: \the\edgemargin}
+  \showparam\pdfpagewidth
+  \showparam\pdfpageheight
+  \showparam\hsize
+  \showparam\textlines
+  \showparam\textheight
+  \showparam\vsize
+  \showparam\topmarginratio
+  \showparam\voffset
+  \showparam\spinemarginratio
+  \showparam\spineoffset
+  \showparam\spinemargin
+  \showparam\edgemargin
 }
 
 \def\adjusttextheight#1#2{

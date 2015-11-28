@@ -43,15 +43,10 @@
 
 % 1 text size
 % 2 leading
-\def\settextsize#1#2{
+\def\settextbase#1#2{
   \globaldefs=1
   \textsize=#1
   \leading=#2
-  \aheadsize=36pt
-  \bheadsize=24pt
-  \cheadsize=18pt
-  \smalltextsize=10pt
-  \pageframesize=8pt
   \topskip=\textsize
   \splittopskip=\topskip
   \maxdepth=\leading
@@ -60,4 +55,27 @@
   \headskip=2\leading
   \footskip=2\leading
   \globaldefs=0
+  \showtextbase
 }
+
+\def\showtextbase{
+  \showparam{\textsize}
+  \showparam\leading
+  \showparam\aheadsize
+  \showparam\bheadsize
+  \showparam\cheadsize
+  \showparam\smalltextsize
+  \showparam\pageframesize
+  \showparam\topskip
+  \showparam\splittopskip
+  \showparam\maxdepth
+  \showparam\splitmaxdepth
+  \showparam\headskip
+  \showparam\footskip
+}
+
+\aheadsize=36pt
+\bheadsize=24pt
+\cheadsize=18pt
+\smalltextsize=10pt
+\pageframesize=8pt
