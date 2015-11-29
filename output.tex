@@ -32,7 +32,7 @@
   \diagnosis=\outputpenalty
   \baselineskip=\leading
   \line{
-    \pageframestyle \nv
+    \pageframefont \nv
     \pagenote{\the\vsize}
     \diagnosepageadjustment
     \hfil
@@ -73,7 +73,7 @@
   \vbox to \headskip{
     \vbox to \topskip{
       \vfil
-      \line{\pageframestyle \the\head}
+      \line{\pageframefont \the\head}
     }
     \vfil
   }
@@ -83,7 +83,7 @@
 \def\footline{
   \baselineskip=\dimexpr \footskip - \textheightadjustment \relax
   \lineskiplimit=0pt
-  \line{\pageframestyle \the\foot}
+  \line{\pageframefont \the\foot}
 }
 
 \def\rebuildpage{\unvbox255 \penalty\outputpenalty}

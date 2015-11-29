@@ -13,13 +13,18 @@
 \def\garamond{
   \newtypeface{garamond}{GaramondPremrPro}{}{It}{Bd}{}
 
-  \newtypestyle{booktitlestyle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
-  \newtypestyle{authornamestyle}{garamond}{Disp}{\the\bheadsize}{rg}{rm}{sc}{po}
-  \newtypestyle{parttitlestyle}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
-  \newtypestyle{chaptertitlestyle}{garamond}{Subh}{\the\cheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{ahead}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{bhead}{garamond}{Disp}{\the\bheadsize}{rg}{rm}{sc}{po}
+  \newtypestyle{chead}{garamond}{Subh}{\the\cheadsize}{rg}{rm}{sc}{po}
   \newtypestyle{text}{garamond}{}{\the\textsize}{rg}{rm}{nv}{po}
   \newtypestyle{smalltext}{garamond}{}{\the\smalltextsize}{rg}{rm}{nv}{po}
-  \newtypestyle{pageframestyle}{garamond}{Capt}{\the\pageframesize}{rg}{rm}{sc}{po}
+  \newtypestyle{caption}{garamond}{Capt}{\the\captionsize}{rg}{rm}{sc}{po}
+
+  \gdef\booktitlefont{\ahead}
+  \gdef\authornamefont{\bhead}
+  \gdef\parttitlefont{\ahead}
+  \gdef\chaptertitlefont{\chead}
+  \gdef\pageframefont{\caption}
 }
 
 % expand body and small fonts, but not others
