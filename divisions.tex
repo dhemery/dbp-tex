@@ -1,5 +1,5 @@
-% How many lines down the page to place \sink titles.
-\newcount\sinklines
+\newtoks\sinkratio
+\newdimen\sinkheight
 \countdef\partno=2
 \countdef\chapterno=3
 
@@ -66,11 +66,20 @@
 \def\bookinfoheading#1{\centeredheading{\bookinfotitlestyle}{#1}}
 \def\afterbookinfoheading{\skipline}
 
-% Boxes the given content and sinks its baseline \sinklines
-% text lines down the box.
-\def\sink#1{
-  \dimen0=\dimexpr \sinklines\leading - \maxdepth \relax
-  \vbox to \dimen0{\vfil#1}
+\def\sink#1{\vbox to \sinkheight{\vfil#1}}
+
+\def\setsink#1{
+  \global\sinkratio={#1}
+  \sinkheight=\the\textlines\leading % text extent
+  \sinkheight=\the\sinkratio\sinkheight % unaligned sink position
+  \advance\sinkheight by .5\leading % half a line for rounding
+  \divide\sinkheight by \leading % sink line number
+  \multiply\sinkheight by \leading % bottom of depth of sink line
+  \advance\sinkheight by -\maxdepth % baseline of sink line
+  \showsink
 }
 
-\sinklines=11
+\def\showsink{
+  \showparam\sinkratio
+  \showparam\sinkheight
+}
