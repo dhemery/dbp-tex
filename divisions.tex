@@ -70,12 +70,9 @@
 
 \def\setsink#1{
   \global\sinkratio={#1}
-  \sinkheight=\the\textlines\leading % text extent
-  \sinkheight=\the\sinkratio\sinkheight % unaligned sink position
-  \advance\sinkheight by .5\leading % half a line for rounding
-  \divide\sinkheight by \leading % sink line number
-  \multiply\sinkheight by \leading % bottom of depth of sink line
-  \advance\sinkheight by -\maxdepth % baseline of sink line
+  \dimen0=\the\textlines\leading % text extent
+  \dimen0=\the\sinkratio\dimen0 % unaligned sink position
+  \alignheight{\dimen0}{\sinkheight}
   \showsink
 }
 
