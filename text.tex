@@ -4,6 +4,8 @@
 \newdimen\textsize
 \newdimen\smalltextsize
 \newdimen\captionsize
+\newtoks\maxtextcharheightratio
+\newtoks\maxtextchardepthratio
 
 \def\hairspace{\hskip.1em\relax}
   \def\nbhairspace{\kern.1em }
@@ -47,10 +49,15 @@
   \globaldefs=1
   \textsize=#1
   \leading=#2
-  \topskip=\textsize
+  \topskip=\the\maxtextcharheightratio\textsize
   \splittopskip=\topskip
-  \maxdepth=\leading
-    \advance\maxdepth-\textsize
+  \maxdepth=\the\maxtextchardepthratio\textsize
+  \dimen0=\topskip
+    \advance\dimen0 by \maxdepth
+  \ifdim\leading<\dimen0
+    \message{ADJUSTING LEADING: \the\leading < \the\dimen0 (\the\topskip+\the\maxdepth) }
+    \leading=\dimen0
+  \fi
   \splitmaxdepth=\maxdepth
   \headskip=2\leading
   \footskip=2\leading
@@ -59,13 +66,15 @@
 }
 
 \def\showtextbase{
-  \showparam{\textsize}
+  \showparam\textsize
   \showparam\leading
   \showparam\aheadsize
   \showparam\bheadsize
   \showparam\cheadsize
   \showparam\smalltextsize
   \showparam\captionsize
+  \showparam\maxtextcharheightratio
+  \showparam\maxtextchardepthratio
   \showparam\topskip
   \showparam\splittopskip
   \showparam\maxdepth

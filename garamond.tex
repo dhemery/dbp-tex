@@ -11,6 +11,9 @@
 % - Display 36 (22.9-72)
 
 \def\garamond{
+  \global\maxtextcharheightratio={.732} % .731 (
+  \global\maxtextchardepthratio={.299} % .298italic Q
+
   \newtypeface{garamond}{GaramondPremrPro}{}{It}{Bd}{}
 
   \newtypestyle{ahead}{garamond}{Disp}{\the\aheadsize}{rg}{rm}{sc}{po}
