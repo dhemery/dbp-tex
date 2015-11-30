@@ -52,13 +52,13 @@
   \topskip=\the\maxtextcharheightratio\textsize
   \splittopskip=\topskip
   \maxdepth=\the\maxtextchardepthratio\textsize
+  \splitmaxdepth=\maxdepth
   \dimen0=\topskip
     \advance\dimen0 by \maxdepth
   \ifdim\leading<\dimen0
     \message{ADJUSTING LEADING: \the\leading < \the\dimen0 (\the\topskip+\the\maxdepth) }
     \leading=\dimen0
   \fi
-  \splitmaxdepth=\maxdepth
   \headskip=2\leading
   \footskip=2\leading
   \globaldefs=0
