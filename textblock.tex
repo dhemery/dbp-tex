@@ -34,7 +34,7 @@
   \edgemargin=\dimen0
     \advance\edgemargin by -\spinemargin
   \advance\spinemargin by \spineoffset
-  \textheight=\dimexpr \textlines\leading - \maxdepth \relax
+  \textheight=\dimexpr \textlines\leading - \leading + \topskip \relax
   \adjusttextheight{0pt}{0}
   \dimen0=\pdfpageheight
     \advance\dimen0 by -\textheight % total vertical excess
