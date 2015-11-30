@@ -19,3 +19,17 @@
 \lineskiplimit=0pt % threshold where \baselineskip changes to \lineskip
 \leftskip=0pt % glue at left of justified lines
 \rightskip=0pt % glue at right of justified lines
+
+\def\baselinebox#1{
+  \setbox0=\vbox{#1}
+  \alignheight{\ht0}{\dimen0}
+  \vbox to \dimen0{\vfil \unvbox0}
+}
+
+\def\alignheight#1#2{%
+  #2=#1 % ht of box
+  \advance#2 by .5\leading
+  \divide#2 by \leading % line #
+  \multiply#2 by \leading
+  \advance#2 by \topskip
+}
