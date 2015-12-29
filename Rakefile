@@ -1,21 +1,20 @@
 require 'rake/clean'
+require 'pathname'
 
 format_name = 'dbp'
+format_install_dir = Pathname.new(ENV['DBP_FORMAT'] || 'DBP_FORMAT_UNDEFINED')
+
 tex_file = "#{format_name}.tex"
-fmt_file = "#{format_name}.fmt"
+format_file = "#{format_name}.fmt"
 log_file = "#{format_name}.log"
-install_dir = '/usr/local/texlive/texmf-local/web2c/pdftex'
-installed_fmt_file = "#{install_dir}/#{fmt_file}"
 
 task default: [:clobber, :build, :log, :install]
 
-directory install_dir do |t|
-  mkdir_p install_dir
+directory format_install_dir do |t|
+  mkdir_p format_install_dir
 end
 
-file fmt_file
-
-file installed_fmt_file
+file format_file => [:build]
 
 desc 'Build the format file'
 task :build do
@@ -23,8 +22,8 @@ task :build do
 end
 
 desc 'Install the format file'
-task install: [:build, install_dir] do
-  cp fmt_file, installed_fmt_file
+task install: [format_file, format_install_dir] do
+  cp format_file, format_install_dir
 end
 
 desc 'Show the log file'
@@ -32,6 +31,6 @@ task :log do
   print `cat #{log_file}`
 end
 
-CLEAN << fmt_file
+CLEAN << format_file
 CLEAN << log_file
-CLOBBER << install_dir
+CLOBBER << format_install_dir
