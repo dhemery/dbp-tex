@@ -17,6 +17,12 @@
 \def\centered{\raggedleft\raggedright}
 \def\raggedspine{\ifodd\pageno \raggedleft\else\raggedright\fi}
 
+\long\def\blockquote#1{{
+  \skiphalfline
+  \leftskip2\parindent \rightskip2\parindent \emph{\noindent #1}
+  \skiphalfline
+}}
+
 \parskip=0pt % extra glue just above paragraphs
 \parfillskip=0pt plus 1fil % additional rightskip at end of paragraphs
 \hangindent=0pt % amount of hanging indentation
