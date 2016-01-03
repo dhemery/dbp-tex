@@ -16,6 +16,9 @@
 \def\raggedright{\parindent=0pt\parfillskip=0pt\rightskip=0pt plus \hsize\relax}
 \def\centered{\raggedleft\raggedright}
 \def\raggedspine{\ifodd\pageno \raggedleft\else\raggedright\fi}
+{\catcode`\^^M=13 % these lines must end with ‘%’
+  \gdef\obeylines{\catcode`\^^M=13 \let^^M=\par}%
+  \global\let^^M=\par} % this is in case ^^M appears in a \write
 
 \long\def\blockquote#1{{
   \skiphalfline
