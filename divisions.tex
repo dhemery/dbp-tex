@@ -66,6 +66,10 @@
 \def\bookinfoheading#1{\baselinebox{\centeredheading{\bookinfotitlefont}{#1}}}
 \def\afterbookinfoheading{\skipline}
 
+\def\introduction#1{\chapter{#1}}
+\def\story#1{\part{#1}}
+\def\note#1{\bookinfo{\emph{#1}}}
+
 \def\sink#1{\vbox to \sinkheight{\vfil#1}}
 
 \def\setsink#1{
